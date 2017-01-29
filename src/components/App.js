@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Link, IndexLink } from 'react-router';
+import Alert from 'react-s-alert';
+
+import 'react-s-alert/dist/s-alert-default.css';
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
@@ -14,6 +17,7 @@ class App extends React.Component {
         {' | '}
         <Link to="/registrarse">Registrarse</Link>
         <br/>
+        <Alert stack={{limit: 3}} />
         {this.props.children}
       </div>
     );
