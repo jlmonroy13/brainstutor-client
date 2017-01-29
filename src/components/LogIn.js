@@ -1,13 +1,12 @@
-import React, { PropTypes } from 'react';
+import React, {PropTypes} from 'react';
 import TextFieldGroup from './TextFieldGroup';
 
-class Signup extends React.Component {
+class LogIn extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			email: '',
 			password: '',
-			passwordConfirmation: '',
 		};
 
 		this.onChangeForm = this.onChangeForm.bind(this);
@@ -20,14 +19,14 @@ class Signup extends React.Component {
 
 	onSubmitForm(e) {
 		e.preventDefault();
-		this.props.userSignupRequest(this.state);
+		this.props.userLogInRequest(this.state);
 	}
 
 
 	render() {
 		return (
 			<form onSubmit={this.onSubmitForm}>
-				<h1>Registrate a nuestra plataforma</h1>
+				<h1>¡Ingresa Ya!</h1>
 				<TextFieldGroup
 					value={this.state.email}
 					onChange={this.onChangeForm}
@@ -42,21 +41,14 @@ class Signup extends React.Component {
 					field="password"
 					label="Contraseña"
 				/>
-				<TextFieldGroup
-					value={this.state.passwordConfirmation}
-					onChange={this.onChangeForm}
-					type="password"
-					field="passwordConfirmation"
-					label="Confirmar Contraseña"
-				/>
-				<button>Registrarse</button>
+				<button>Ingresar</button>
 			</form>
 		);
 	}
 }
 
-Signup.propTypes = {
-	userSignupRequest: PropTypes.func.isRequired
+LogIn.propTypes = {
+	userLogInRequest: PropTypes.func.isRequired
 };
 
-export default Signup;
+export default LogIn;
