@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import TextFieldGroup from './TextFieldGroup';
-import Alert from 'react-s-alert';
 
 class Signup extends React.Component {
 	constructor(props) {
@@ -21,8 +20,7 @@ class Signup extends React.Component {
 
 	onSubmitForm(e) {
 		e.preventDefault();
-		Alert.error('Test message 3');
-		// this.props.userSignupRequest(this.state);
+		this.props.userSignupRequest(this.state);
 	}
 
 

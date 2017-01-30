@@ -10,9 +10,9 @@ import userSignupRequest from '../actions/signup';
 const mapDispatchToProps = dispatch => ({
 	userSignupRequest: (formData) => {
 		const { email, password } = formData;
-		const userParam = 'user[email]=';
-		const passwordParam = 'user[password]=';
-		const params = `?${userParam}${email}&${passwordParam}${password}`;
+		const userParam = 'student[email]=';
+		const passwordParam = 'student[password]=';
+		const params = `students?${userParam}${email}&${passwordParam}${password}`;
 		dispatch(userSignupRequest(params));
 	},
 });
