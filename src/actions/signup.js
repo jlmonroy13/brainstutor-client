@@ -1,6 +1,6 @@
 import { browserHistory } from 'react-router';
 import Alert from 'react-s-alert';
-import { brainsAuthentication } from '../utils/requests';
+import { createUser, showUser } from '../requests/users';
 
 const setToken = token => ({
 	type: 'SET_TOKEN',
@@ -9,20 +9,20 @@ const setToken = token => ({
 
 export default function userSignupRequest(userData) {
 	return dispatch => {
-		return brainsAuthentication.post(userData)
-			.then(successSignup)
-			.catch(failureSignup);
+		return createUser(userData, 'student')
+			.then(successSignup);
 
 		function successSignup(response) {
-			const { token } = response.data;
+			const { token, id } = response.data;
 			dispatch(setToken(token));
-			localStorage.setItem('token', token);
+			localStorage.setItem('BrainsToken', token);
 			Alert.success('Te has registrado exitosamente!');
-			browserHistory.push('/');
+			// browserHistory.push('/');
+			showUser(id, 'student')
+				.then((data) => {
+					alert(data, 'el vacile');
+				});
 		}
 
-		function failureSignup() {
-			Alert.error('Lo sentimos, tenemos problemas para registrarte.');
-		}
 	};
 }
