@@ -14,7 +14,6 @@ brains.interceptors.request.use(config => (
 
 function configBearerToken(config) {
   const token = localStorage.getItem('BrainsToken');
-  console.log(localStorage.getItem('BrainsToken'));
   console.log(token);
   return {
     ...config,

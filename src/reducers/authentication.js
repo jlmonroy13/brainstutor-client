@@ -1,11 +1,9 @@
-import initialState from './initialState';
-
-export default function authenticationReducer(state = initialState, action) {
+export default function authenticationReducer(state = {}, action) {
   switch (action.type) {
-    case 'SET_TOKEN':
+    case 'SET_USER_INFO':
       return {
         ...state,
-        token: action.payload,
+        ...action.payload,
       };
     default:
       return state;

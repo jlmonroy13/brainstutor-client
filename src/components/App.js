@@ -15,7 +15,9 @@ class App extends React.Component {
         {' | '}
         <Link to="/ingresar">Ingresar</Link>
         {' | '}
-        <Link to="/registrarse">Registrarse</Link>
+        <Link to="/registro-estudiantes">Registro Esudiantes</Link>
+        {' | '}
+        <Link to="/registro-profesores">Registro Profesores</Link>
         <br/>
         <Alert stack={{limit: 3}} />
         {this.props.children}

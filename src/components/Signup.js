@@ -25,9 +25,11 @@ class Signup extends React.Component {
 
 
 	render() {
+		const { type } = this.props;
+		const title = `Registrate como ${this.props.type} a nuestra plataforma`;
 		return (
 			<form onSubmit={this.onSubmitForm}>
-				<h1>Registrate a nuestra plataforma</h1>
+				<h1>{ type ? title : 'Registrate a nuestra plataforma'}</h1>
 				<TextFieldGroup
 					value={this.state.email}
 					onChange={this.onChangeForm}
@@ -56,7 +58,8 @@ class Signup extends React.Component {
 }
 
 Signup.propTypes = {
-	userSignupRequest: PropTypes.func.isRequired
+	userSignupRequest: PropTypes.func.isRequired,
+	type: PropTypes.string,
 };
 
 export default Signup;

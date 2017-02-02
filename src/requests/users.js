@@ -26,6 +26,13 @@ const showTeachers = () => (
     .catch(catchRequestError)
 );
 
+const logIn = (userData) => {
+  const { email, password } = userData;
+  return brainsAuthentication
+    .post(`/session?username=${email}&password=${password}`)
+    .catch(catchRequestError);
+};
+
 function catchRequestError(e) {
   Alert.error(`Se presentó incovenientes con la petición. ${e}`);
 }
@@ -35,4 +42,5 @@ export {
   updateUser,
   showUser,
   showTeachers,
+  logIn,
 };
