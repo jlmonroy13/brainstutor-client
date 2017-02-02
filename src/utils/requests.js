@@ -13,13 +13,12 @@ brains.interceptors.request.use(config => (
 ));
 
 function configBearerToken(config) {
-  const token = localStorage.getItem('BrainsToken');
-  console.log(token);
+  const userInfo = JSON.parse(localStorage.getItem('BrainsUserInfo'));
   return {
     ...config,
     headers: {
       ...config.headers,
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${userInfo.token}`
     }
   };
 }

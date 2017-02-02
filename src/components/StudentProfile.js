@@ -30,6 +30,9 @@ class StudentProfile extends React.Component {
 StudentProfile.propTypes = {
 	getUserInfo: PropTypes.func.isRequired,
 	id: PropTypes.number,
+	email: PropTypes.string,
+	role: PropTypes.string,
+	created: PropTypes.string,
 };
 
 export default StudentProfile;

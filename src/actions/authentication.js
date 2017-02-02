@@ -47,7 +47,7 @@ const getUserInfo = (id, type) => {
 
 function setTokenAndUserInfo(userInfo, dispatch) {
 	dispatch(setUserInfo(userInfo));
-	localStorage.setItem('BrainsToken', userInfo.token);
+	localStorage.setItem('BrainsUserInfo', JSON.stringify(userInfo));
 }
 
 export {

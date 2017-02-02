@@ -3,7 +3,8 @@ import StudentProfile from '../components/StudentProfile';
 import { getUserInfo } from '../actions/authentication';
 
 const mapStateToProps = (state) => {
-	const { user_id: id, email, role, created_at: created } = state.userInfo;
+	const { id, email, role, created_at: created } = state.userInfo;
+	console.log(state);
 
   return {
     id,
@@ -15,9 +16,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
 	getUserInfo: id => {
-		dispatch(getUserInfo(id, 'student'));
+		const userId = id || getLocalStorage();
+		dispatch(getUserInfo(userId, 'student'));
 	},
 });
+
+function getLocalStorage() {
+	const userInfo = JSON.parse(localStorage.getItem('BrainsUserInfo'));
+	return userInfo.user_id || userInfo.id;
+}
 
 export default connect(
   mapStateToProps,
