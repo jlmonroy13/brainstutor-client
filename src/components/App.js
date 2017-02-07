@@ -11,20 +11,18 @@ class App extends React.Component {
   render() {
     return (
       <nav>
-        <div className="container">
-          <IndexLink to="/">
-            <img src={require('../images/logo-brains.png')} />
-          </IndexLink>
-          {' | '}
-          <Link to="/ingresar">Ingresar</Link>
-          {' | '}
-          <Link to="/registro-estudiantes">Registro Esudiantes</Link>
-          {' | '}
-          <Link to="/registro-profesores">Registro Profesores</Link>
-          <br/>
-          <Alert stack={{limit: 3}} />
-          {this.props.children}
-        </div>
+        <IndexLink to="/">
+          <img className="main-logo" src={require('../assets/images/logo-brains.png')} />
+        </IndexLink>
+        {' | '}
+        <Link to="/ingresar">Ingresar</Link>
+        {' | '}
+        <Link to="/registro-estudiantes">Registro Esudiantes</Link>
+        {' | '}
+        <Link to="/registro-profesores">Registro Profesores</Link>
+        <br/>
+        <Alert stack={{limit: 3}} />
+        {this.props.children}
       </nav>
     );
   }
