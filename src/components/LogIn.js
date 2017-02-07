@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import TextFieldGroup from './TextFieldGroup';
+import { Link } from 'react-router';
 
 class LogIn extends React.Component {
 	constructor(props) {
@@ -26,7 +27,8 @@ class LogIn extends React.Component {
 	render() {
 		return (
 			<form onSubmit={this.onSubmitForm}>
-				<h1>¡Ingresa Ya!</h1>
+				<h1 className="amaranth">Bienvenidos a la Plataforma de Tutores</h1>
+				<p className="myriad">Log In Estudiantes</p> 
 				<TextFieldGroup
 					value={this.state.email}
 					onChange={this.onChangeForm}
@@ -42,6 +44,10 @@ class LogIn extends React.Component {
 					label="Contraseña"
 				/>
 				<button>Ingresar</button>
+				<div>
+					<button className="button button--full-block">Ingresar</button>
+					<Link to="/">casa</Link>
+				</div>
 			</form>
 		);
 	}

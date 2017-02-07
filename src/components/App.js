@@ -10,18 +10,22 @@ import 'react-s-alert/dist/s-alert-default.css';
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <IndexLink to="/">Inicio</IndexLink>
-        {' | '}
-        <Link to="/ingresar">Ingresar</Link>
-        {' | '}
-        <Link to="/registro-estudiantes">Registro Esudiantes</Link>
-        {' | '}
-        <Link to="/registro-profesores">Registro Profesores</Link>
-        <br/>
-        <Alert stack={{limit: 3}} />
-        {this.props.children}
-      </div>
+      <nav>
+        <div className="container">
+          <IndexLink to="/">
+            <img src={require('../images/logo-brains.png')} />
+          </IndexLink>
+          {' | '}
+          <Link to="/ingresar">Ingresar</Link>
+          {' | '}
+          <Link to="/registro-estudiantes">Registro Esudiantes</Link>
+          {' | '}
+          <Link to="/registro-profesores">Registro Profesores</Link>
+          <br/>
+          <Alert stack={{limit: 3}} />
+          {this.props.children}
+        </div>
+      </nav>
     );
   }
 }

@@ -102,6 +102,14 @@
   padding-left: 0;
   padding-right: 0;
 }
+
+.button--full-block{
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  height: 100%;
+}
+
 .button-mobile--full{
   @media #{$medium-max} {
     width: 100%;
