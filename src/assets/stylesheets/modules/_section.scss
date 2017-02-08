@@ -1,0 +1,21 @@
+.section {
+  padding: $base-spacing-unit*2 0;
+  &--gray {
+    background-color: $gray-bckgr;
+  }
+  &__image {
+    max-width: 450px;
+  }
+  &__subtitle {
+    font-family: $font-family-serif;
+    color: $gray-text;
+    font-weight: 700;
+    @include rem(5, 'margin-bottom');
+  }
+  &__description {
+    font-family: $font-family-sans-serif;
+    color: $gray-text;
+    font-weight: 400;
+    @include rem(18);
+  }
+}

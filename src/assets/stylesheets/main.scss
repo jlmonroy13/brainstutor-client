@@ -51,7 +51,6 @@
 @import "objects/clearfix";
 
 //modules, the real css that you write everyday based on the design
-@import "modules/grid";
 @import "modules/lists";
 // @import "modules/logo";
 @import "modules/forms";
@@ -64,6 +63,8 @@
 @import "modules/round-icons";
 @import "modules/logo";
 @import "modules/navbar";
+@import "modules/hero";
+@import "modules/section";
 
 // Helpers
 @import "helpers/helpers";

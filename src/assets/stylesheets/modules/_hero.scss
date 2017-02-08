@@ -1,0 +1,17 @@
+.hero {
+  background-image: url("../images/hero.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: block;
+  padding: $base-spacing-unit*4 0;
+  background-color: $gray-bckgr;
+  &__description {
+    color: #fff;
+    font-family: $font-family-serif;
+    max-width: 280px;
+    text-align: right;
+    font-weight: 700;
+    @include rem(46);
+    margin: 0;
+  }
+}

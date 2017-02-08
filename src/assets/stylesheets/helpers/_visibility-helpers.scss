@@ -48,3 +48,7 @@
 .ir{
   @extend %hide-text;
 }
+
+.no-space {
+  font-size: 0;
+}
