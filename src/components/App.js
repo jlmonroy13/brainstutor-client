@@ -10,17 +10,19 @@ import 'react-s-alert/dist/s-alert-default.css';
 class App extends React.Component {
   render() {
     return (
-      <nav>
+      <nav className="header">
         <IndexLink to="/">
-          <img className="main-logo" src={require('../assets/images/logo-brains.png')} />
+          <img className="main-logo header__logo" src={require('../assets/images/logo-brains.png')} />
         </IndexLink>
-        {' | '}
-        <Link to="/ingresar">Ingresar</Link>
-        {' | '}
-        <Link to="/registro-estudiantes">Registro Esudiantes</Link>
-        {' | '}
-        <Link to="/registro-profesores">Registro Profesores</Link>
-        <br/>
+        <div className="navbar navbar--right">
+          <div className="inline-block push--right soft--right">
+            <Link className="button button--link-upper button--link-gray" to="/">Materias</Link>
+            <Link className="button button--link-upper button--link-gray" to="/">Contacto</Link>
+            <Link className="button button--link-upper button--link-gray" to="/">Tutores</Link>
+          </div>
+          <Link className="button button--dark-green header__button" to="/ingresar">Ingresar</Link>
+          <Link className="button button--blue header__button" to="/ingresar">Registrarse</Link>
+        </div>
         <Alert stack={{limit: 3}} />
         {this.props.children}
       </nav>

@@ -1,0 +1,33 @@
+.header {
+	background-color: $gray-bckgr;
+  height: 60px;
+	width: 100%;
+	padding: $half-spacing-unit 0;
+  position: relative;
+  &__logo {
+    position: relative;
+    left: 10%;
+    bottom: 3px;
+  }
+  &__button {
+    padding: 1em 1em;
+    width: 130px;
+    height: 60px;
+    border-radius: 0;
+    font-family: $font-family-sans-serif;
+    font-weight: 400;
+    position: relative;
+    @include rem(17);
+    &:last-child {
+      &::before {
+        width: 1px;
+        height: 44px;
+        background-color: #fff;
+        position: absolute;
+        left: -1px;
+        top: 8px;
+        content: '';
+      }
+    }
+  }
+}

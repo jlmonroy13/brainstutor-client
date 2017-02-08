@@ -1,0 +1,37 @@
+.button--link-upper {
+  @extend .button--link;
+  font-family: $font-family-sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.button--link-gray {
+  color: $gray-text;
+  @include rem(18);
+  &:hover,
+  &:focus,
+  &:active {
+    color: $blue;
+    text-decoration: none;
+  }
+}
+
+.button--dark-green {
+  background-color: $dark-green;
+  color: #fff;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: darken($dark-green, 5%);
+  }
+}
+
+.button--blue {
+  background-color: $blue;
+  color: #fff;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: darken($blue, 5%);
+  }
+}

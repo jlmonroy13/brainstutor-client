@@ -28,7 +28,7 @@ class LogIn extends React.Component {
 		return (
 			<form onSubmit={this.onSubmitForm}>
 				<h1 className="amaranth">Bienvenidos a la Plataforma de Tutores</h1>
-				<p className="myriad">Log In Estudiantes</p> 
+				<p className="myriad">Log In Estudiantes</p>
 				<TextFieldGroup
 					value={this.state.email}
 					onChange={this.onChangeForm}
@@ -43,11 +43,7 @@ class LogIn extends React.Component {
 					field="password"
 					label="Contraseña"
 				/>
-				<button>Ingresar</button>
-				<div>
-					<button className="button button--full-block">Ingresar</button>
-					<Link to="/">casa</Link>
-				</div>
+				<button className="button">Ingresar</button>
 			</form>
 		);
 	}
