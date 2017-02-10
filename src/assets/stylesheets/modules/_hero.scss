@@ -1,8 +1,8 @@
 .hero {
   background-image: url("../images/hero.png");
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  display: block;
   padding: $base-spacing-unit*4 0;
   background-color: $gray-bckgr;
   &__description {

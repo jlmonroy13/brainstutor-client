@@ -8,12 +8,13 @@ import StudentProfileContainer from './containers/StudentProfile';
 import LogInContainer from './containers/LogIn';
 import HomePage from './components/HomePage';
 import NotFoundPage from './components/NotFoundPage';
+import SignupIndex from './components/SignupIndex';
 
 function verifyToken() {
 	const userInfo = JSON.parse(localStorage.getItem('BrainsUserInfo'));
 	if (!userInfo || !userInfo.token) {
 		browserHistory.push('/ingresar');
-	} 
+	}
 }
 
 export default (
@@ -21,7 +22,8 @@ export default (
     <IndexRoute component={HomePage}/>
     <Route path="ingresar" component={LogInContainer}/>
     <Route path="registro-estudiantes" component={SignupStudentsContainer}/>
-    <Route path="registro-profesores" component={SignupTeachersContainer}/>
+    <Route path="registro-tutores" component={SignupTeachersContainer}/>
+    <Route path="registro" component={SignupIndex}/>
     <Route
 			path="perfil-estudiante"
 			component={StudentProfileContainer}

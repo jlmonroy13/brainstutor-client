@@ -6,10 +6,10 @@
 	font-size: em(16);
   position: relative;
   &__image {
-    width: 50%;
+    width: 40%;
     position: absolute;
     left: 50%;
-    top: -120px;
+    top: -100px;
     transform: translateX(-50%);
   }
 }

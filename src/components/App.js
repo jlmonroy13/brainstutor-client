@@ -24,7 +24,7 @@ class App extends React.Component {
             <Link className="button button--link-upper button--link-gray" to="/">Tutores</Link>
           </div>
           <Link className="button button--dark-green header__button" to="/ingresar">Ingresar</Link>
-          <Link className="button button--blue header__button" to="/registro-estudiantes">Registrarse</Link>
+          <Link className="button button--blue header__button" to="/registro">Registrarse</Link>
         </div>
         <Alert stack={{limit: 3}} />
         {this.props.children}

@@ -21,4 +21,13 @@
     font-weight: 400;
     @include rem(18);
   }
+  &__auth {
+    background-color: $gray-bckgr;
+    &-container {
+      max-width: 500px;
+      margin: auto;
+      padding: $base-spacing-unit;
+      background-color: red;
+    }
+  }
 }
