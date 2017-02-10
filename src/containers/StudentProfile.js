@@ -4,7 +4,6 @@ import { getUserInfo } from '../actions/authentication';
 
 const mapStateToProps = (state) => {
 	const { id, email, role, created_at: created } = state.userInfo;
-	console.log(state);
 
   return {
     id,
@@ -12,7 +11,7 @@ const mapStateToProps = (state) => {
     role,
     created,
   };
-}; 
+};
 
 const mapDispatchToProps = dispatch => ({
 	getUserInfo: id => {

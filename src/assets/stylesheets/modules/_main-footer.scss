@@ -1,6 +1,15 @@
 .main-footer{
-	background-color: #313131;
+	background-color: $gray-darker;
 	color: white;
-	padding: $half-spacing-unit * 2 0;
+  text-align: center;
+	padding: $base-spacing-unit*2 0;
 	font-size: em(16);
+  position: relative;
+  &__image {
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    top: -120px;
+    transform: translateX(-50%);
+  }
 }

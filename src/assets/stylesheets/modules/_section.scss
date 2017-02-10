@@ -3,6 +3,9 @@
   &--gray {
     background-color: $gray-bckgr;
   }
+  &--padding-btm {
+    @include rem(150, "padding-bottom");
+  }
   &__image {
     max-width: 450px;
   }

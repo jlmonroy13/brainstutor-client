@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 import TextFieldGroup from './TextFieldGroup';
-import { Link } from 'react-router';
 
 class LogIn extends React.Component {
 	constructor(props) {

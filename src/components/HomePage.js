@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './Footer';
 
 const HomePage = () => {
   return (
@@ -14,14 +15,14 @@ const HomePage = () => {
                 width="640"
                 height="360"
                 src="https://www.youtube.com/embed/2ApkwovNqpY"
-                frameborder="0"
-                allowfullscreen
+                frameBorder="0"
+                allowFullscreen
               />
             </div>
           </div>
         </div>
       </div>
-      <div className="section section--gray">
+      <div className="section section--gray section--padding-btm">
         <h1 className="hidden">Como funciona</h1>
         <div className="container container--small">
           <div className="grid no-space push--bottom grid--middle">
@@ -62,6 +63,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
