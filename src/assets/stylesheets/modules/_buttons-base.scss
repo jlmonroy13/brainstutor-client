@@ -45,11 +45,11 @@
 }
 
 .button--link {
-  color: $link-color;
+  color: $blue;
   font-weight: normal;
   cursor: pointer;
   border-radius: 0;
-
+  @include rem(16);
   &,
   &:active,
   &[disabled],

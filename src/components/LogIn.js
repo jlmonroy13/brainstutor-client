@@ -24,26 +24,33 @@ class LogIn extends React.Component {
 
 
 	render() {
+		const { type } = this.props;
+		const text = `Ingreso ${this.props.type}`;
+		const colorClass = type === "Estudiante" ? 'dark-green' : 'blue';
 		return (
-			<form onSubmit={this.onSubmitForm}>
-				<h1 className="amaranth">Bienvenidos a la Plataforma de Tutores</h1>
-				<p className="myriad">Log In Estudiantes</p>
-				<TextFieldGroup
-					value={this.state.email}
-					onChange={this.onChangeForm}
-					type="email"
-					field="email"
-					label="Correo Electrónico"
-				/>
-				<TextFieldGroup
-					value={this.state.password}
-					onChange={this.onChangeForm}
-					type="password"
-					field="password"
-					label="Contraseña"
-				/>
-				<button className="button">Ingresar</button>
-			</form>
+			<div className="section__auth">
+				<img className="full-width push--bottom" src={require('../assets/images/hero-authentication.jpg')} />
+				<div className="section__auth-container section__auth-container--form">
+					<form onSubmit={this.onSubmitForm}>
+						<h1 className="section__auth-title section__auth-title--form">Ingresar</h1>
+						<TextFieldGroup
+							value={this.state.email}
+							onChange={this.onChangeForm}
+							type="email"
+							field="email"
+							label="Correo Electrónico"
+						/>
+						<TextFieldGroup
+							value={this.state.password}
+							onChange={this.onChangeForm}
+							type="password"
+							field="password"
+							label="Contraseña"
+						/>
+						<button className={`button button--large button--block button--${colorClass} push-half--top push--bottom`}>{text}</button>
+					</form>
+				</div>
+			</div>
 		);
 	}
 }

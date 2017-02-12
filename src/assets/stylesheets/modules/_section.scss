@@ -3,11 +3,11 @@
   &--gray {
     background-color: $gray-bckgr;
   }
-  &--padding-btm {
-    @include rem(150, "padding-bottom");
-  }
   &__image {
     max-width: 450px;
+  }
+  &--padding-btm {
+    @include rem(150, "padding-bottom");
   }
   &__subtitle {
     font-family: $font-family-serif;
@@ -23,11 +23,151 @@
   }
   &__auth {
     background-color: $gray-bckgr;
+    text-align: center;
+    @include rem(50, 'padding-bottom');
     &-container {
-      max-width: 500px;
+      max-width: 360px;
       margin: auto;
-      padding: $base-spacing-unit;
-      background-color: red;
+      background-color: $gray-highlight;
+      @include rem(4, 'border-radius');
+      &--index {
+        position: relative;
+        top: -100px;
+        padding: $base-spacing-unit*4 $base-spacing-unit*2 $base-spacing-unit*2;
+      }
+      &--form {
+        padding: $half-spacing-unit $base-spacing-unit;
+      }
+    }
+    &--index {
+      @include calc(height, "100vh - 60px");
+    }
+    &-circle {
+      display: inline-block;
+      @include rem(100, 'width');
+      @include rem(100, 'height');
+      @include rem(17);
+      background-color: $green;
+      border-radius: 50%;
+      color: #fff;
+      font-family: $font-family-sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 2.5em 0;
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      @include box-shadow(4px 6px 5px -4px rgba(0, 0, 0, 0.75));
+    }
+    &-description {
+      font-weight: 300;
+      @include rem(16);
+      @include rem(7, 'margin-right');
+    }
+    &-title {
+      margin: 0;
+      @include rem(5, 'margin-bottom');
+      color: $gray-label;
+      font-weight: 700;
+      text-transform: uppercase;
+      position: relative;
+      @include rem(24);
+      &--form {
+        &:after {
+          content: '';
+          position: absolute;
+          height: 1px;
+          width: 27%;
+          background-color: $gray-label;
+          top: 13px;
+          right: 0;
+        }
+        &:before {
+          content: '';
+          position: absolute;
+          height: 1px;
+          width: 27%;
+          background-color: $gray-label;
+          top: 13px;
+          left: 0;
+        }
+      }
+    }
+  }
+  &-tutor {
+    &__banner {
+      background-image: url("../images/tutor-banner.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      text-align: center;
+      padding: 0.625em 0 3.375em;
+      @include rem(25, "margin-bottom");
+      &-title {
+        color: #fff;
+        font-family: $font-family-serif;
+        font-weight: 700;
+        @include rem(54);
+        margin-top: 0;
+      }
+      &-container {
+        @include rem(70, "margin-bottom");
+      }
+      &-description {
+        line-height: 1;
+        margin: 0;
+        max-width: 300px;
+        @include rem(11);
+        max-width: 170px;
+      }
+    }
+    &__icon {
+      display: inline-block;
+      vertical-align: middle;
+      @include rem(10, "margin-right");
+      width: 100%;
+      &--medium {
+        max-width: 75px;
+      }
+      &--small {
+        max-width: 50px;
+      }
+    }
+    &__subtitle {
+      font-family: $font-family-serif;
+      font-weight: 200;
+      @include rem(18);
+      max-width: 72px;
+      line-height: 0.9;
+      margin: 0 0 0.312rem;
+    }
+    &__title {
+      font-family: $font-family-serif;
+      font-weight: 700;
+      &--medium {
+        color: $gray-text;
+        @include rem(45);
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    &__questions {
+      &-text {
+        margin: 0 0 0 5rem;
+      }
+    }
+    &__steps {
+      &-description {
+        line-height: 1;
+        margin: 0;
+        max-width: 300px;
+        @include rem(18);
+      }
+      &-container {
+        @include rem(50, "margin-bottom");
+      }
     }
   }
 }

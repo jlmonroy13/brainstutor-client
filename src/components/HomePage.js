@@ -8,7 +8,7 @@ const HomePage = () => {
         <div className="container">
           <div className="grid no-space">
             <div className="grid__item two-fifths">
-              <h1 className="hero__description">Bienvenido a la plataforma de tutores</h1>
+              <h1 className="hero__title">Bienvenido a la plataforma de tutores</h1>
             </div>
             <div className="grid__item three-fifths">
               <iframe

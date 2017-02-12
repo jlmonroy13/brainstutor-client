@@ -26,33 +26,39 @@ class Signup extends React.Component {
 
 	render() {
 		const { type } = this.props;
-		const title = `Registrate como ${this.props.type} a nuestra plataforma`;
+		const text = `Registro ${this.props.type}`;
+		const colorClass = type === "Estudiante" ? 'dark-green' : 'blue';
 		return (
-			<form onSubmit={this.onSubmitForm}>
-				<h1>{ type ? title : 'Registrate a nuestra plataforma'}</h1>
-				<TextFieldGroup
-					value={this.state.email}
-					onChange={this.onChangeForm}
-					type="email"
-					field="email"
-					label="Correo Electrónico"
-				/>
-				<TextFieldGroup
-					value={this.state.password}
-					onChange={this.onChangeForm}
-					type="password"
-					field="password"
-					label="Contraseña"
-				/>
-				<TextFieldGroup
-					value={this.state.passwordConfirmation}
-					onChange={this.onChangeForm}
-					type="password"
-					field="passwordConfirmation"
-					label="Confirmar Contraseña"
-				/>
-				<button>Registrarse</button>
-			</form>
+			<div className="section__auth">
+				<img className="full-width push--bottom" src={require('../assets/images/hero-authentication.jpg')} />
+				<div className="section__auth-container section__auth-container--form">
+					<form onSubmit={this.onSubmitForm} autoComplete="off">
+						<h1 className="section__auth-title section__auth-title--form">Registro</h1>
+						<TextFieldGroup
+							value={this.state.email}
+							onChange={this.onChangeForm}
+							type="email"
+							field="email"
+							label="Correo Electrónico"
+						/>
+						<TextFieldGroup
+							value={this.state.password}
+							onChange={this.onChangeForm}
+							type="password"
+							field="password"
+							label="Contraseña"
+						/>
+						<TextFieldGroup
+							value={this.state.passwordConfirmation}
+							onChange={this.onChangeForm}
+							type="password"
+							field="passwordConfirmation"
+							label="Confirmar Contraseña"
+						/>
+						<button className={`button button--large button--block button--${colorClass} push-half--top push--bottom`}>{text}</button>
+					</form>
+				</div>
+			</div>
 		);
 	}
 }

@@ -4,7 +4,7 @@ import { userSignupRequest } from '../actions/authentication';
 
 
 const mapStateToProps = () => {
-	const type = 'Profesor';
+	const type = 'Tutor';
 
   return {
     type,
