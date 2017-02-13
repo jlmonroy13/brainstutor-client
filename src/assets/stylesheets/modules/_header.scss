@@ -4,10 +4,16 @@
 	width: 100%;
 	padding: $half-spacing-unit 0;
   position: relative;
+  &--center {
+    text-align: center;
+  }
   &__logo {
     position: relative;
     left: 10%;
     bottom: 3px;
+    &--center {
+      left: 0;
+    }
   }
   &__button {
     padding: 1em 1em;

@@ -13,6 +13,11 @@ const setTeacherUniversity = university => ({
 	payload: university,
 });
 
+const setAuthInProcess = data => ({
+	type: 'SET_AUTH_IN_PROCESS',
+	payload: data,
+});
+
 const userSignupRequest = (dataForm, type) => {
 	return dispatch => {
 		createUser(dataForm, type)
@@ -62,4 +67,5 @@ export {
 	userLogInRequest,
 	getUserInfo,
 	setTeacherUniversity,
+	setAuthInProcess,
 };

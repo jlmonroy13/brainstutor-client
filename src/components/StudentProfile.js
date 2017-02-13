@@ -1,19 +1,6 @@
 import React, {PropTypes} from 'react';
 
 class StudentProfile extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			email: '',
-			password: '',
-		};
-	}
-
-	componentWillMount() {
-		const { getUserInfo } = this.props;
-		getUserInfo();
-	}
-
 	render() {
 		const { id, email, role, created } = this.props;
 		return (
@@ -28,7 +15,6 @@ class StudentProfile extends React.Component {
 }
 
 StudentProfile.propTypes = {
-	getUserInfo: PropTypes.func.isRequired,
 	id: PropTypes.number,
 	email: PropTypes.string,
 	role: PropTypes.string,

@@ -4,7 +4,7 @@ import Alert from 'react-s-alert';
 const createUser = (userData, type) => {
   const { email, password, firstName, lastName, university } = userData;
   return brainsAuthentication
-    .post(`${type}s?${type}[email]=${email}&${type}[password]=${password}&${type}[first_name]=${firstName}&${type}[last_name]=${lastName}&${type}[profile_attribute[university]]=${university}`)
+    .post(`${type}s?${type}[email]=${email}&${type}[password]=${password}&${type}[first_name]=${firstName}&${type}[last_name]=${lastName}&${type}[profile_attributes[university]]=${university}`)
     .catch(catchRequestError);
 };
 

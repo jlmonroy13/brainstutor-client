@@ -16,7 +16,7 @@ const HomePage = () => {
                 height="360"
                 src="https://www.youtube.com/embed/2ApkwovNqpY"
                 frameBorder="0"
-                allowFullscreen
+                allowFullScreen
               />
             </div>
           </div>

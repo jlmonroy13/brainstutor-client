@@ -60,6 +60,27 @@ export default {
       trackJSToken: ''
     }),
 
+      new HtmlWebpackPlugin({
+      template: 'src/index.ejs',
+      filename: '200.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      },
+      inject: true,
+      // Note that you can add custom options here if you need to handle other custom logic in index.html
+      // To track JavaScript errors via TrackJS, sign up for a free trial at TrackJS.com and enter your token below.
+      trackJSToken: ''
+    }),
+
     // Eliminate duplicate packages when generating bundle
     new webpack.optimize.DedupePlugin(),
 

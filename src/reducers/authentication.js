@@ -10,6 +10,11 @@ export default function authenticationReducer(state = {}, action) {
 				...state,
 				university: action.payload,
 			};
+		case 'SET_AUTH_IN_PROCESS':
+			return {
+				...state,
+				authInProcess: action.payload,
+			};
 		default:
 			return state;
 	}
