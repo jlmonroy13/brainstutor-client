@@ -56,7 +56,8 @@ class LogIn extends React.Component {
 }
 
 LogIn.propTypes = {
-	userLogInRequest: PropTypes.func.isRequired
+	userLogInRequest: PropTypes.func.isRequired,
+	type: PropTypes.string,
 };
 
 export default LogIn;

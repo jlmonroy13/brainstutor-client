@@ -5,27 +5,36 @@ import { getUserInfo } from '../actions/authentication';
 const mapStateToProps = (state) => {
 	const { id, email, role, created_at: created } = state.userInfo;
 
-  return {
-    id,
-    email,
-    role,
-    created,
-  };
+	return {
+		id,
+		email,
+		role,
+		created,
+	};
 };
 
-const mapDispatchToProps = dispatch => ({
-	getUserInfo: id => {
-		const userId = id || getLocalStorage();
-		dispatch(getUserInfo(userId, 'student'));
+function getLocalStorage() {
+	return JSON.parse(localStorage.getItem('BrainsUserInfo'));
+}
+
+const getStore = () => (
+	(dispatch, getState) => {
+		const { userInfo } = getState();
+		const id = userInfo.id||getLocalStorage().id;
+		const role = userInfo.role||getLocalStorage().role;
+		dispatch(getUserInfo(id, role));
+	}
+);
+
+const mapDispatchToProps = (dispatch) => ({
+	getUserInfo: () => {
+		dispatch(getStore());
 	},
 });
 
-function getLocalStorage() {
-	const userInfo = JSON.parse(localStorage.getItem('BrainsUserInfo'));
-	return userInfo.user_id || userInfo.id;
-}
+
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(StudentProfile);
+	mapStateToProps,
+	mapDispatchToProps,
+	)(StudentProfile);

@@ -10,8 +10,8 @@ class StudentProfile extends React.Component {
 	}
 
 	componentWillMount() {
-		const { id, getUserInfo } = this.props;
-		getUserInfo(id);
+		const { getUserInfo } = this.props;
+		getUserInfo();
 	}
 
 	render() {

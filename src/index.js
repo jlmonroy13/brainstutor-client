@@ -11,7 +11,6 @@ import './assets/stylesheets/main.scss'; // Yep, that's right. You can import SA
 import { syncHistoryWithStore } from 'react-router-redux';
 
 const store = configureStore();
-
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store);
 

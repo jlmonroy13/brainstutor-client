@@ -8,6 +8,11 @@ const setUserInfo = userInfo => ({
 	payload: userInfo,
 });
 
+const setTeacherUniversity = university => ({
+	type: 'SET_TEACHER_UNIVERSITY',
+	payload: university,
+});
+
 const userSignupRequest = (dataForm, type) => {
 	return dispatch => {
 		createUser(dataForm, type)
@@ -21,13 +26,13 @@ const userSignupRequest = (dataForm, type) => {
 	};
 };
 
-const userLogInRequest = dataForm => {
+const userLogInRequest = (dataForm, userRole) => {
 	return dispatch => {
 		logIn(dataForm)
 			.then(successLogIn);
 
 		function successLogIn(response) {
-			setTokenAndUserInfo(response.data, dispatch);
+			setTokenAndUserInfo(response.data, dispatch, userRole);
 			Alert.success('¡Bienvenido!');
 			browserHistory.push('/perfil-estudiante');
 		}
@@ -45,7 +50,9 @@ const getUserInfo = (id, type) => {
 	};
 };
 
-function setTokenAndUserInfo(userInfo, dispatch) {
+function setTokenAndUserInfo(userData, dispatch, userRole) {
+	const userInfo = { ...userData, role: userRole, id: userData.user_id };
+	delete userInfo.user_id;
 	dispatch(setUserInfo(userInfo));
 	localStorage.setItem('BrainsUserInfo', JSON.stringify(userInfo));
 }
@@ -54,4 +61,5 @@ export {
 	userSignupRequest,
 	userLogInRequest,
 	getUserInfo,
+	setTeacherUniversity,
 };

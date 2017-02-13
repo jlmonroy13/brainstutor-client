@@ -1,13 +1,18 @@
 import React, { PropTypes } from 'react';
 import TextFieldGroup from './TextFieldGroup';
+import Alert from 'react-s-alert';
 
 class Signup extends React.Component {
 	constructor(props) {
 		super(props);
+		const { university } = this.props;
 		this.state = {
 			email: '',
+			firstName: '',
+			lastName: '',
 			password: '',
 			passwordConfirmation: '',
+			university,
 		};
 
 		this.onChangeForm = this.onChangeForm.bind(this);
@@ -20,9 +25,12 @@ class Signup extends React.Component {
 
 	onSubmitForm(e) {
 		e.preventDefault();
-		this.props.userSignupRequest(this.state);
+		if (this.state.password === this.state.passwordConfirmation) {
+			this.props.userSignupRequest(this.state);
+		} else {
+			Alert.error(`Las contraseñas no coinciden`);
+		}
 	}
-
 
 	render() {
 		const { type } = this.props;
@@ -35,12 +43,38 @@ class Signup extends React.Component {
 					<form onSubmit={this.onSubmitForm} autoComplete="off">
 						<h1 className="section__auth-title section__auth-title--form">Registro</h1>
 						<TextFieldGroup
+							value={this.state.firstName}
+							onChange={this.onChangeForm}
+							type="text"
+							field="firstName"
+							label="Nombre"
+						/>
+						<TextFieldGroup
+							value={this.state.lastName}
+							onChange={this.onChangeForm}
+							type="text"
+							field="lastName"
+							label="Apellido"
+						/>
+						<TextFieldGroup
 							value={this.state.email}
 							onChange={this.onChangeForm}
 							type="email"
 							field="email"
 							label="Correo Electrónico"
 						/>
+						<label className="main-form__label">Universidad</label>
+						<select
+							className="main-form__input"
+							value={this.state.university}
+							onChange={this.onChangeForm}
+							name="university"
+						>
+							<option value="">Elige tu Universidad</option>
+							<option value="Pascual Bravo">Pascual Bravo</option>
+							<option value="ITM(Instituto Tecnológico Metropolitano)">ITM(Instituto Tecnológico Metropolitano)</option>
+							<option value="Colegio Mayor de Antioquia">Colegio Mayor de Antioquia</option>
+						</select>
 						<TextFieldGroup
 							value={this.state.password}
 							onChange={this.onChangeForm}
@@ -66,6 +100,7 @@ class Signup extends React.Component {
 Signup.propTypes = {
 	userSignupRequest: PropTypes.func.isRequired,
 	type: PropTypes.string,
+	university: PropTypes.string,
 };
 
 export default Signup;
