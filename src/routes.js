@@ -11,6 +11,7 @@ import HomePage from './components/HomePage';
 import NotFoundPage from './components/NotFoundPage';
 import SignupIndex from './components/SignupIndex';
 import LogInIndex from './components/LogInIndex';
+import AfterSignupTeacher from './components/AfterSignupTeacher';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 
 const getLocalStorage = () => (
@@ -91,7 +92,13 @@ export default store => (
     />
     <Route
       path="como-ser-tutor"
-      component={HowToBeTutorContainer}/>
+      component={HowToBeTutorContainer}
+    />
+    <Route
+      path="/registro-tutores-3"
+      component={AfterSignupTeacher}
+      onEnter={authInProcess(store)}
+    />
     <Route
       path="perfil-estudiante"
       component={StudentProfileContainer}

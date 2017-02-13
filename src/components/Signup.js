@@ -63,18 +63,22 @@ class Signup extends React.Component {
 							field="email"
 							label="Correo Electrónico"
 						/>
-						<label className="main-form__label">Universidad</label>
-						<select
-							className="main-form__input"
-							value={this.state.university}
-							onChange={this.onChangeForm}
-							name="university"
-						>
-							<option value="">Elige tu Universidad</option>
-							<option value="Pascual Bravo">Pascual Bravo</option>
-							<option value="ITM(Instituto Tecnológico Metropolitano)">ITM(Instituto Tecnológico Metropolitano)</option>
-							<option value="Colegio Mayor de Antioquia">Colegio Mayor de Antioquia</option>
-						</select>
+						{type !== 'Estudiante' ?
+							<div>
+								<label className="main-form__label">Universidad</label>
+								<select
+									className="main-form__input"
+									value={this.state.university}
+									onChange={this.onChangeForm}
+									name="university"
+								>
+									<option value="">Elige tu Universidad</option>
+									<option value="Pascual Bravo">Pascual Bravo</option>
+									<option value="ITM(Instituto Tecnológico Metropolitano)">ITM(Instituto Tecnológico Metropolitano)</option>
+									<option value="Colegio Mayor de Antioquia">Colegio Mayor de Antioquia</option>
+								</select>
+							</div>
+						: ''}
 						<TextFieldGroup
 							value={this.state.password}
 							onChange={this.onChangeForm}
