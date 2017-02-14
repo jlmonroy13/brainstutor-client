@@ -41,9 +41,13 @@ const userLogInRequest = (dataForm, userRole) => {
 			.then(successLogIn);
 
 		function successLogIn(response) {
-			setTokenAndUserInfo(response.data, dispatch, userRole);
-			Alert.success('¡Bienvenido!');
-			browserHistory.push('/perfil-estudiante');
+			if (response.data === 'You need to active your teacher account first.') {
+				Alert.error('Tienes que activar tu cuenta para poder ingresar.');
+			} else {
+				setTokenAndUserInfo(response.data, dispatch, userRole);
+				Alert.success('¡Bienvenido!');
+				browserHistory.push('/perfil-estudiante');
+			}
 		}
 	};
 };
