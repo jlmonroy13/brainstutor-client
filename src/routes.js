@@ -61,22 +61,22 @@ export default store => (
       onEnter={onEnterIndex(store)}
     />
     <Route
-      path="ingresar-estudiantes"
+      path="/estudiantes/ingresar"
       component={LogInStudentsContainer}
       onEnter={authInProcess(store)}
     />
     <Route
-      path="ingresar-tutores"
+      path="/tutores/ingresar"
       component={LogInTutorsContainer}
       onEnter={authInProcess(store)}
     />
     <Route
-      path="registro-estudiantes"
+      path="/estudiantes/registrarse"
       component={SignupStudentsContainer}
       onEnter={authInProcess(store)}
     />
     <Route
-      path="registro-tutores"
+      path="/tutores/registrarse"
       component={SignupTutorsContainer}
       onEnter={authInProcess(store)}
     />
@@ -95,7 +95,7 @@ export default store => (
       component={HowToBeTutorContainer}
     />
     <Route
-      path="/registro-tutores-3"
+      path="/tutores/registrarse-3"
       component={AfterSignupTeacher}
       onEnter={authInProcess(store)}
     />

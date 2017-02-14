@@ -27,7 +27,7 @@ const userSignupRequest = (dataForm, type) => {
 			setTokenAndUserInfo(response.data, dispatch);
 			Alert.success('¡Te has registrado exitosamente!');
 			if (type === 'teacher') {
-				browserHistory.push('/registro-tutores-3');
+				browserHistory.push('/tutores/registrarse-3');
 			} else {
 				browserHistory.push('/perfil-estudiante');
 			}

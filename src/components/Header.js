@@ -27,7 +27,7 @@ class Header extends React.Component {
               <Link className="button button--link-upper button--link-gray" to="/">Contacto</Link>
               <Link className="button button--link-upper button--link-gray" to="/como-ser-tutor">¿Cómo ser Tutor?</Link>
             </div>
-            <Link className="button button--dark-green header__button" to="/registro-estudiantes">Registrarse</Link>
+            <Link className="button button--dark-green header__button" to="/estudiantes/registrarse">Registrarse</Link>
             <Link className="button button--blue header__button" to="/ingresar">Ingresar</Link>
           </div>
           : ''}

@@ -9,11 +9,11 @@ const SignupIndex = () => {
         <div className="section__auth-circle">registro</div>
         <Link
           className="button button--large button--block button--dark-green push-half--bottom"
-          to="/registro-estudiantes"
+          to="/estudiantes/registrarse"
         >Estudiantes</Link>
         <Link
           className="button button--large button--block button--blue push--bottom"
-          to="/registro-tutores"
+          to="/tutores/registrarse"
         >Tutores</Link>
         <span className="section__auth-description">¿Ya tienes una cuenta?</span>
         <Link

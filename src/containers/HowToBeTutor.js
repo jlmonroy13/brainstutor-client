@@ -8,7 +8,7 @@ const mapDispatchToProps = dispatch => ({
 		const userInfo = { university };
 		dispatch(setTeacherUniversity(university));
 		localStorage.setItem('BrainsUserInfo', JSON.stringify(userInfo));
-		browserHistory.push('/registro-tutores');
+		browserHistory.push('/tutores/registrarse');
 	},
 });
 
