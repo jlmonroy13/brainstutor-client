@@ -3,8 +3,9 @@
   border: 2px solid $gray-highlight;
   @include rem(20, "margin-bottom");
   text-align: left;
-  padding: $half-spacing-unit $base-spacing-unit;
+  padding: $base-spacing-unit;
   position: relative;
+  opacity: 0.3;
   &__icon {
     max-width: 80px;
     display: inline-block;
@@ -22,5 +23,8 @@
     top: 50%;
     right: 25px;
     transform: translateY(-50%);
+  }
+  &--enabled {
+    opacity: 1;
   }
 }

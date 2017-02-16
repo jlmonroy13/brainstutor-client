@@ -26,10 +26,10 @@ const showTeachers = () => (
     .catch(catchRequestError)
 );
 
-const logIn = (userData) => {
+const logIn = (userData, role) => {
   const { email, password } = userData;
   return brainsAuthentication
-    .post(`/session?username=${email}&password=${password}`)
+    .post(`/session?username=${email}&password=${password}&role=${role}`)
     .catch(catchRequestError);
 };
 

@@ -37,7 +37,7 @@ const userSignupRequest = (dataForm, type) => {
 
 const userLogInRequest = (dataForm, userRole) => {
 	return dispatch => {
-		logIn(dataForm)
+		logIn(dataForm, userRole)
 			.then(successLogIn);
 
 		function successLogIn(response) {
@@ -51,7 +51,7 @@ const userLogInRequest = (dataForm, userRole) => {
 				} else {
 					browserHistory.push('perfil-estudiante');
 				}
-				
+
 			}
 		}
 	};

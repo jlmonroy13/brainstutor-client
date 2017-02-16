@@ -7,12 +7,12 @@ import StudentProfileContainer from './containers/StudentProfile';
 import LogInStudentsContainer from './containers/LogInStudents';
 import LogInTutorsContainer from './containers/LogInTutors';
 import HowToBeTutorContainer from './containers/HowToBeTutor';
+import SignupTutorsProcessContainer from './containers/SignupTutorsProcess';
 import HomePage from './components/HomePage';
 import NotFoundPage from './components/NotFoundPage';
 import SignupIndex from './components/SignupIndex';
 import LogInIndex from './components/LogInIndex';
 import AfterSignupTeacher from './components/AfterSignupTeacher';
-import SignupTutorsProcess from './components/SignupTutorsProcess';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 
 const getLocalStorage = () => (
@@ -118,7 +118,7 @@ export default store => (
     />
     <Route
       path="tutores/esperando-activacion"
-      component={SignupTutorsProcess}
+      component={SignupTutorsProcessContainer}
       onEnter={onEnterTutorSignupProcess(store)}
     />
     <Route path="*" component={NotFoundPage}/>
