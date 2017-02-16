@@ -46,7 +46,12 @@ const userLogInRequest = (dataForm, userRole) => {
 			} else {
 				setTokenAndUserInfo(response.data, dispatch, userRole);
 				Alert.success('¡Bienvenido!');
-				browserHistory.push('/perfil-estudiante');
+				if(userRole === 'teacher') {
+					browserHistory.push('tutores/esperando-activacion');
+				} else {
+					browserHistory.push('perfil-estudiante');
+				}
+				
 			}
 		}
 	};

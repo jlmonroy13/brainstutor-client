@@ -1,0 +1,26 @@
+.box {
+  background-color: #fff;
+  border: 2px solid $gray-highlight;
+  @include rem(20, "margin-bottom");
+  text-align: left;
+  padding: $half-spacing-unit $base-spacing-unit;
+  position: relative;
+  &__icon {
+    max-width: 80px;
+    display: inline-block;
+    vertical-align: middle;
+    @include rem(20, "margin-right");
+  }
+  &__description {
+    display: inline-block;
+    vertical-align: middle;
+    @include rem(22);
+    max-width: 690px;
+  }
+  &__button {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+  }
+}

@@ -6,7 +6,7 @@
 
 // Text size
 .text--larger  {
-  font-size: em($font-size-larger);
+  @include rem(23);
 }
 
 .text--large   {
@@ -87,7 +87,9 @@
   line-height: $line-height-large;
 }
 
-
+.Amaranth {
+  font-family: $font-family-serif;
+}
 
 // Font Helpers
 //===================

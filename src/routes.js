@@ -12,6 +12,7 @@ import NotFoundPage from './components/NotFoundPage';
 import SignupIndex from './components/SignupIndex';
 import LogInIndex from './components/LogInIndex';
 import AfterSignupTeacher from './components/AfterSignupTeacher';
+import SignupTutorsProcess from './components/SignupTutorsProcess';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 
 const getLocalStorage = () => (
@@ -19,14 +20,21 @@ const getLocalStorage = () => (
 );
 
 const setUserInfo = (userInfo, dispatch) => {
-  const id = userInfo.id||getLocalStorage().id;
-  const role = userInfo.role||getLocalStorage().role;
+  const id = userInfo.id||getLocalStorage()&&getLocalStorage().id;
+  const role = userInfo.role||getLocalStorage()&&getLocalStorage().role;
   dispatch(getUserInfo(id, role));
 };
 
 const verifyToken = userInfo => {
-  const token = userInfo.token||getLocalStorage().token;
+  const token = userInfo&&userInfo.token||getLocalStorage()&&getLocalStorage().token;
   if (!token) browserHistory.push('/ingresar');
+};
+
+const authInProcess = store => {
+  return () => {
+    const { dispatch } = store;
+    dispatch(setAuthInProcess(true));
+  };
 };
 
 const onEnterProfile = store => {
@@ -40,16 +48,20 @@ const onEnterProfile = store => {
   };
 };
 
-const authInProcess = store => {
-  return () => {
-    const { dispatch } = store;
-    dispatch(setAuthInProcess(true));
-  };
-};
-
 const onEnterIndex = store => {
   return () => {
     const { dispatch } = store;
+    dispatch(setAuthInProcess(false));
+  };
+};
+
+const onEnterTutorSignupProcess = store => {
+  return () => {
+    const { dispatch, getState } = store;
+    const { userInfo } = getState();
+
+    verifyToken(userInfo);
+    setUserInfo(userInfo, dispatch);
     dispatch(setAuthInProcess(false));
   };
 };
@@ -103,6 +115,11 @@ export default store => (
       path="perfil-estudiante"
       component={StudentProfileContainer}
       onEnter={onEnterProfile(store)}
+    />
+    <Route
+      path="tutores/esperando-activacion"
+      component={SignupTutorsProcess}
+      onEnter={onEnterTutorSignupProcess(store)}
     />
     <Route path="*" component={NotFoundPage}/>
   </Route>
