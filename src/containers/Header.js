@@ -1,15 +1,22 @@
 import { connect } from 'react-redux';
 import Header from '../components/Header';
+import { onLogOutRequest } from '../actions/authentication';
 
 const mapStateToProps = state => {
-  const { authInProcess } = state.userInfo;
+  const { userInfo } = state;
 
   return {
-    authInProcess,
+    userInfo,
   };
 };
 
+const mapDispatchToProps = dispatch => ({
+  onLogOut: () => {
+    dispatch(onLogOutRequest());
+  },
+});
+
 export default connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(Header);

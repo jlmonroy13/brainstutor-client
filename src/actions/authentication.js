@@ -1,6 +1,6 @@
 import { browserHistory } from 'react-router';
 import Alert from 'react-s-alert';
-import { createUser, logIn, showUser, updateUser } from '../requests/users';
+import { createUser, logIn, showUser, updateUser, logOut } from '../requests/users';
 import { pendingTask, begin, end } from 'react-redux-spinner';
 
 
@@ -8,6 +8,8 @@ const setUserInfo = userInfo => ({
 	type: 'SET_USER_INFO',
 	payload: userInfo,
 });
+
+const deleteUserInfo = () => ({ type: 'DELETE_USER_INFO' });
 
 const setTeacherUniversity = university => ({
 	type: 'SET_TEACHER_UNIVERSITY',
@@ -46,6 +48,18 @@ const userSignupRequest = (dataForm, type) => {
 			} else {
 				browserHistory.push('/perfil-estudiante');
 			}
+		}
+	};
+};
+
+const onLogOutRequest = () => {
+	return dispatch => {
+		logOut().then(successLogOut);
+
+		function successLogOut() {
+			dispatch(deleteUserInfo());
+			localStorage.setItem('BrainsUserInfo', '');
+			browserHistory.push('/');
 		}
 	};
 };
@@ -120,4 +134,5 @@ export {
 	getUserInfo,
 	setTeacherUniversity,
 	setAuthInProcess,
+	onLogOutRequest,
 };

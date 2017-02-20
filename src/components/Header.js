@@ -10,7 +10,8 @@ import 'react-s-alert/dist/s-alert-default.css';
 // component at the top-level.
 class Header extends React.Component {
   render() {
-    const { authInProcess } = this.props;
+    const { authInProcess, first_name: firstName, role } = this.props.userInfo;
+    const { onLogOut } = this.props;
     const imageClass = authInProcess ? 'header__logo--center' : '';
     const headerClass = authInProcess ? 'header--center' : '';
     return (
@@ -28,8 +29,24 @@ class Header extends React.Component {
               <Link className="button button--link-upper button--link-gray" to="/">Contacto</Link>
               <Link className="button button--link-upper button--link-gray" to="/como-ser-tutor">¿Cómo ser Tutor?</Link>
             </div>
-            <Link className="button button--blue header__button" to="/ingresar">Ingresar</Link>
-            <Link className="button button--dark-green header__button" to="/estudiantes/registrarse">Registrarse</Link>  
+            {firstName ?
+              <span>
+                {role === 'teacher' ?
+                  <Link className="button button--blue header__button" to="/tutores/home">{firstName}</Link>
+                :
+                  <Link className="button button--blue header__button" to="/perfil-estudiante">{firstName}</Link>
+                }
+                <button
+                  className="button button--dark-green header__button"
+                  onClick={onLogOut}
+                >Cerrar sesión</button>
+              </span>
+            :
+              <span>
+                <Link className="button button--blue header__button" to="/ingresar">Ingresar</Link>
+                <Link className="button button--dark-green header__button" to="/estudiantes/registrarse">Registrarse</Link>
+              </span>
+            }
           </div>
           : ''}
         <Alert stack={{limit: 3}} />
@@ -42,7 +59,8 @@ class Header extends React.Component {
 
 Header.propTypes = {
   children: PropTypes.element,
-  authInProcess: PropTypes.bool,
+  userInfo: PropTypes.shape(),
+  onLogOut: PropTypes.func,
 };
 
 export default Header;

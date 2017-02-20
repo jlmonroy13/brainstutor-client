@@ -48,6 +48,12 @@ const logIn = (userData, role) => {
     .catch(catchRequestError);
 };
 
+const logOut = () => {
+  return brains
+    .delete(`/session`)
+    .catch(catchRequestError);
+};
+
 function catchRequestError(e) {
   Alert.error(`Se presentó incovenientes con la petición. ${e}`);
 }
@@ -58,4 +64,5 @@ export {
   showUser,
   showTeachers,
   logIn,
+  logOut,
 };

@@ -22,7 +22,9 @@ export default function authenticationReducer(state = {}, action) {
 			return {
 				...state,
 				onLoading: action.payload,
-			};	
+			};
+		case 'DELETE_USER_INFO':
+			return {};
 		default:
 			return state;
 	}
