@@ -6,12 +6,12 @@ import { userUpdateProfileRequest } from '../actions/authentication';
 const mapStateToProps = (state) => {
 	const type = 'Tutor';
 	const { userInfo } = state;
-  console.log(userInfo);
   return {
     type,
     userInfo,
+    onLoading: userInfo.onLoading,
   };
-}; 
+};
 
 const mapDispatchToProps = dispatch => ({
 	userUpdateProfile: (formData) => {

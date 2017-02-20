@@ -9,6 +9,7 @@ import LogInTutorsContainer from './containers/LogInTutors';
 import HowToBeTutorContainer from './containers/HowToBeTutor';
 import SignupTutorsProcessContainer from './containers/SignupTutorsProcess';
 import UpdateTutorContainer from './containers/UpdateTutor';
+import UpdateBankInfoContainer from './containers/UpdateBankInfo';
 import HomePage from './components/HomePage';
 import NotFoundPage from './components/NotFoundPage';
 import SignupIndex from './components/SignupIndex';
@@ -54,6 +55,15 @@ const onEnterTutorProfile = store => {
     const { dispatch, getState } = store;
     const { userInfo } = getState();
     if (!userInfo.first_name) browserHistory.push('/tutores/home');
+    dispatch(setAuthInProcess(true));
+  };
+};
+
+const onEnterBankInfo = store => {
+  return () => {
+    const { dispatch, getState } = store;
+    const { userInfo } = getState();
+    if (Object.keys(userInfo).length === 0 && userInfo.constructor === Object) browserHistory.push('/tutores/home');
     dispatch(setAuthInProcess(true));
   };
 };
@@ -116,6 +126,11 @@ export default store => (
       path="/tutores/perfil"
       component={UpdateTutorContainer}
       onEnter={onEnterTutorProfile(store)}
+    />
+    <Route
+      path="/tutores/informacion-bancaria"
+      component={UpdateBankInfoContainer}
+      onEnter={onEnterBankInfo(store)}
     />
     <Route
       path="/registro"

@@ -38,6 +38,9 @@
       &--form {
         padding: $half-spacing-unit $base-spacing-unit;
       }
+      &--large {
+        max-width: 700px;
+      }
     }
     &--index {
       @include calc(height, "100vh - 60px");

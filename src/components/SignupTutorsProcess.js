@@ -44,7 +44,7 @@ function getTutorStatus(status) {
       tutorStatus.thirdStep.active = false;
       tutorStatus.thirdStep.success = false;
       break;
-    case 'completed':
+    case 'complete':
       tutorStatus.firstStep.active = true;
       tutorStatus.firstStep.success = true;
       tutorStatus.secondStep.active = true;
@@ -128,7 +128,7 @@ class SignupTutorsProcess extends React.Component {
           <div className={`box ${enableStep3Class}`}>
             <img className="box__icon" src={require('../assets/images/money-icon.png')} />
             <span className="box__description">Completa tu información bancaria en la cual podamos transferir el pago por tus clases realizadas.</span>
-            <button className="box__button button button--dark-green" disabled={!tutorStatus.thirdStep.active}>Completar</button>
+            <Link className="box__button button button--dark-green" disabled={!tutorStatus.thirdStep.active} to="/tutores/informacion-bancaria">Completar</Link>
           </div>
         </div>
       </div>

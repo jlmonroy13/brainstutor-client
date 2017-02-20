@@ -1,6 +1,6 @@
 import { browserHistory } from 'react-router';
 import Alert from 'react-s-alert';
-import { createUser, logIn, showUser, updateUser, logOut } from '../requests/users';
+import { createUser, logIn, showUser, updateUser, logOut, updateBankInfo } from '../requests/users';
 import { pendingTask, begin, end } from 'react-redux-spinner';
 
 
@@ -32,6 +32,22 @@ const setStatusRequestTrue = () => ({
 	payload: true,
 	[ pendingTask ]: begin,
 });
+
+const updateBankInfoRequest = (dataForm) => {
+	return (dispatch, getState) => {
+		const { userInfo } = getState();
+		const { bank_information: { id: bankFormId } } = userInfo;
+		dispatch(setStatusRequestTrue());
+		updateBankInfo(bankFormId, dataForm)
+			.then(successBankInfo);
+
+		function successBankInfo() {
+			dispatch(setStatusRequestFalse());
+			Alert.success('¡Tu información bancaria ha sido registrada!');
+			browserHistory.push('/tutores/home');
+		}
+	};
+};
 
 const userSignupRequest = (dataForm, type) => {
 	return dispatch => {
@@ -135,4 +151,5 @@ export {
 	setTeacherUniversity,
 	setAuthInProcess,
 	onLogOutRequest,
+	updateBankInfoRequest,
 };

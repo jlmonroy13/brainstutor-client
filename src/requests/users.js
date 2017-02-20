@@ -29,6 +29,19 @@ const updateUser = (id, profileId, userData, type) => {
     .catch(catchRequestError);
 };
 
+const updateBankInfo = (bankFormId, userData) => {
+  const {
+    accountNumber,
+    ownerId,
+    accountType,
+    ownerName,
+    bankName,
+  } = userData;
+  return brains
+    .put(`teachers/bank_informations/${bankFormId}?bank_information[account_number]=${accountNumber}&bank_information[owner_id]=${ownerId}&bank_information[account_type]=${accountType}&bank_information[owner_name]=${ownerName}&bank_information[bank_name]=${bankName}`)
+    .catch(catchRequestError);
+};
+
 const showUser = (id, type) => (
   brains
     .get(`${type}s/${id}`)
@@ -65,4 +78,5 @@ export {
   showTeachers,
   logIn,
   logOut,
+  updateBankInfo,
 };
