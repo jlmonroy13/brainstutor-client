@@ -33,7 +33,7 @@ class Signup extends React.Component {
 	}
 
 	render() {
-		const { type } = this.props;
+		const { type, onLoading } = this.props;
 		const text = `Registro ${this.props.type}`;
 		const colorClass = type === "Estudiante" ? 'dark-green' : 'blue';
 		return (
@@ -93,7 +93,10 @@ class Signup extends React.Component {
 							field="passwordConfirmation"
 							label="Confirmar Contraseña"
 						/>
-						<button className={`button button--large button--block button--${colorClass} push-half--top push--bottom`}>{text}</button>
+						<button
+							className={`button button--large button--block button--${colorClass} push-half--top push--bottom`}
+							disabled={onLoading}
+						>{text}</button>
 					</form>
 				</div>
 			</div>
@@ -105,6 +108,7 @@ Signup.propTypes = {
 	userSignupRequest: PropTypes.func.isRequired,
 	type: PropTypes.string,
 	university: PropTypes.string,
+	onLoading: PropTypes.bool,
 };
 
 export default Signup;

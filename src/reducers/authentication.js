@@ -8,13 +8,21 @@ export default function authenticationReducer(state = {}, action) {
 		case 'SET_TEACHER_UNIVERSITY':
 			return {
 				...state,
-				university: action.payload,
+				profile: {
+					...state.profile,
+					university: action.payload,
+				}
 			};
 		case 'SET_AUTH_IN_PROCESS':
 			return {
 				...state,
 				authInProcess: action.payload,
 			};
+		case 'SET_STATUS_REQUEST':
+			return {
+				...state,
+				onLoading: action.payload,
+			};	
 		default:
 			return state;
 	}

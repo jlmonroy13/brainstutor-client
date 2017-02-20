@@ -8,6 +8,7 @@ import LogInStudentsContainer from './containers/LogInStudents';
 import LogInTutorsContainer from './containers/LogInTutors';
 import HowToBeTutorContainer from './containers/HowToBeTutor';
 import SignupTutorsProcessContainer from './containers/SignupTutorsProcess';
+import UpdateTutorContainer from './containers/UpdateTutor';
 import HomePage from './components/HomePage';
 import NotFoundPage from './components/NotFoundPage';
 import SignupIndex from './components/SignupIndex';
@@ -48,6 +49,15 @@ const onEnterProfile = store => {
   };
 };
 
+const onEnterTutorProfile = store => {
+  return () => {
+    const { dispatch, getState } = store;
+    const { userInfo } = getState();
+    if (!userInfo.first_name) browserHistory.push('/tutores/home');
+    dispatch(setAuthInProcess(true));
+  };
+};
+
 const onEnterIndex = store => {
   return () => {
     const { dispatch } = store;
@@ -78,13 +88,13 @@ export default store => (
       onEnter={authInProcess(store)}
     />
     <Route
-      path="/tutores/ingresar"
-      component={LogInTutorsContainer}
+      path="/estudiantes/registrarse"
+      component={SignupStudentsContainer}
       onEnter={authInProcess(store)}
     />
     <Route
-      path="/estudiantes/registrarse"
-      component={SignupStudentsContainer}
+      path="/tutores/ingresar"
+      component={LogInTutorsContainer}
       onEnter={authInProcess(store)}
     />
     <Route
@@ -93,34 +103,39 @@ export default store => (
       onEnter={authInProcess(store)}
     />
     <Route
-      path="registro"
-      component={SignupIndex}
-      onEnter={authInProcess(store)}
-    />
-    <Route
-      path="ingresar"
-      component={LogInIndex}
-      onEnter={authInProcess(store)}
-    />
-    <Route
-      path="como-ser-tutor"
-      component={HowToBeTutorContainer}
-    />
-    <Route
       path="/tutores/registrarse-3"
       component={AfterSignupTeacher}
       onEnter={authInProcess(store)}
     />
     <Route
-      path="perfil-estudiante"
-      component={StudentProfileContainer}
-      onEnter={onEnterProfile(store)}
-    />
-    <Route
-      path="tutores/esperando-activacion"
+      path="/tutores/home"
       component={SignupTutorsProcessContainer}
       onEnter={onEnterTutorSignupProcess(store)}
     />
-    <Route path="*" component={NotFoundPage}/>
+    <Route
+      path="/tutores/perfil"
+      component={UpdateTutorContainer}
+      onEnter={onEnterTutorProfile(store)}
+    />
+    <Route
+      path="/registro"
+      component={SignupIndex}
+      onEnter={authInProcess(store)}
+    />
+    <Route
+      path="/ingresar"
+      component={LogInIndex}
+      onEnter={authInProcess(store)}
+    />
+    <Route
+      path="/como-ser-tutor"
+      component={HowToBeTutorContainer}
+    />
+    <Route
+      path="/perfil-estudiante"
+      component={StudentProfileContainer}
+      onEnter={onEnterProfile(store)}
+    />
+    <Route path="*" component={NotFoundPage} />
   </Route>
 );

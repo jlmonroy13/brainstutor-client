@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link, IndexLink } from 'react-router';
 import Alert from 'react-s-alert';
+import { Spinner } from 'react-redux-spinner';
 
 import 'react-s-alert/dist/s-alert-default.css';
 
@@ -27,11 +28,12 @@ class Header extends React.Component {
               <Link className="button button--link-upper button--link-gray" to="/">Contacto</Link>
               <Link className="button button--link-upper button--link-gray" to="/como-ser-tutor">¿Cómo ser Tutor?</Link>
             </div>
-            <Link className="button button--dark-green header__button" to="/estudiantes/registrarse">Registrarse</Link>
             <Link className="button button--blue header__button" to="/ingresar">Ingresar</Link>
+            <Link className="button button--dark-green header__button" to="/estudiantes/registrarse">Registrarse</Link>  
           </div>
           : ''}
         <Alert stack={{limit: 3}} />
+        <Spinner />
         {this.props.children}
       </nav>
     );

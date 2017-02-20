@@ -24,7 +24,7 @@ class LogIn extends React.Component {
 
 
 	render() {
-		const { type } = this.props;
+		const { type, onLoading } = this.props;
 		const text = `Ingreso ${this.props.type}`;
 		const colorClass = type === "Estudiante" ? 'dark-green' : 'blue';
 		return (
@@ -47,7 +47,10 @@ class LogIn extends React.Component {
 							field="password"
 							label="Contraseña"
 						/>
-						<button className={`button button--large button--block button--${colorClass} push-half--top push--bottom`}>{text}</button>
+						<button
+							className={`button button--large button--block button--${colorClass} push-half--top push--bottom`}
+							disabled={onLoading}
+						>{text}</button>
 					</form>
 				</div>
 			</div>
@@ -58,6 +61,7 @@ class LogIn extends React.Component {
 LogIn.propTypes = {
 	userLogInRequest: PropTypes.func.isRequired,
 	type: PropTypes.string,
+	onLoading: PropTypes.bool,
 };
 
 export default LogIn;

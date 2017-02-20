@@ -5,10 +5,11 @@ import { userSignupRequest } from '../actions/authentication';
 
 const mapStateToProps = (state) => {
 	const type = 'Tutor';
-	const { userInfo: { university } } = state;
+	const { profile: { university }, onLoading } = state.userInfo;
   return {
     type,
     university,
+    onLoading,
   };
 }; 
 

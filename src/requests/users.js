@@ -8,11 +8,26 @@ const createUser = (userData, type) => {
     .catch(catchRequestError);
 };
 
-const updateUser = (id, type) => (
-  brains
-    .put(`${type}s/${id}`)
-    .catch(catchRequestError)
-);
+const updateUser = (id, profileId, userData, type) => {
+  const {
+    email,
+    firstName,
+    lastName,
+    university,
+    dob,
+    level,
+    phone,
+    about,
+    city,
+    country,
+    gender,
+    address,
+    rate,
+  } = userData;
+  return brains
+    .put(`${type}s/${id}?${type}[email]=${email}&${type}[first_name]=${firstName}&${type}[last_name]=${lastName}&${type}[profile_attributes[university]]=${university}&${type}[profile_attributes[dob]]=${dob}&${type}[profile_attributes[level]]=${level}&${type}[profile_attributes[phone]]=${phone}&${type}[profile_attributes[about]]=${about}&${type}[profile_attributes[city]]=${city}&${type}[profile_attributes[country]]=${country}&${type}[profile_attributes[gender]]=${gender}&${type}[profile_attributes[address]]=${address}&${type}[profile_attributes[id]]=${profileId}&${type}[profile_attributes[rate]]=${rate}`)
+    .catch(catchRequestError);
+};
 
 const showUser = (id, type) => (
   brains

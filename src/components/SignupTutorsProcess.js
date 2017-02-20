@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import { Link } from 'react-router';
 
 function getTutorStatus(status) {
   const tutorStatus = {
@@ -84,7 +85,7 @@ class SignupTutorsProcess extends React.Component {
         <div>
           <img className="box__icon" src={require('../assets/images/form-icon.png')} />
           <span className="box__description">Para continuar con el proceso de registro primero debes completar tu información.</span>
-          <button className="box__button button button--dark-green">Completar</button>
+          <Link className="box__button button button--dark-green" to="/tutores/perfil" >Completar</Link>
         </div>
       );
     }
@@ -108,7 +109,7 @@ class SignupTutorsProcess extends React.Component {
       return (
         <div>
           <img className="box__icon" src={require('../assets/images/mail-icon.png')} />
-          <span className="box__description">Te llegará un correo con un enlace para que agendes una entrevista con nosotros en donde validaremos tus aptitudes y conicimientos como Tutor.</span>
+          <span className="box__description">Te llegará un correo con un enlace para que agendes una entrevista con nosotros en donde validaremos tus aptitudes y conocimientos como Tutor.</span>
         </div>
       );
     }
@@ -127,7 +128,7 @@ class SignupTutorsProcess extends React.Component {
           <div className={`box ${enableStep3Class}`}>
             <img className="box__icon" src={require('../assets/images/money-icon.png')} />
             <span className="box__description">Completa tu información bancaria en la cual podamos transferir el pago por tus clases realizadas.</span>
-            <button className="box__button button button--dark-green">Completar</button>
+            <button className="box__button button button--dark-green" disabled={!tutorStatus.thirdStep.active}>Completar</button>
           </div>
         </div>
       </div>
