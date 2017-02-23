@@ -5,6 +5,29 @@
   }
   &__image {
     max-width: 450px;
+    &--small {
+      max-width: 100px;
+    }
+  }
+  &__box {
+    width: 150px;
+    display: inline-block;
+    @include rem(10, 'margin-right');
+    &:last-child {
+      margin-right: 0;
+    }
+    &-title {
+      font-family: $font-family-serif;
+      font-weight: 700;
+      color: rgba($gray-label, 0.5);
+      @include rem(24);
+      max-width: 100px;
+      line-height: 1;
+      margin: 10px auto;
+      &--first {
+        max-width: 145px;
+      }
+    }
   }
   &--padding-btm {
     @include rem(150, "padding-bottom");
@@ -14,6 +37,14 @@
     color: $gray-text;
     font-weight: 700;
     @include rem(5, 'margin-bottom');
+  }
+  &__title {
+    font-family: $font-family-serif;
+    @include rem(48);
+    font-weight: 700;
+    color: $dark-green;
+    text-align: center;
+    margin-top: 0;
   }
   &__description {
     font-family: $font-family-sans-serif;

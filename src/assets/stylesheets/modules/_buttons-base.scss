@@ -88,6 +88,11 @@
   @include button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $btn-border-radius);
 }
 
+.button--larger {
+  padding: 10px 40px;
+  @include rem(24);
+}
+
 .button--wide{
   padding-left: 2em;
   padding-right: 2em;

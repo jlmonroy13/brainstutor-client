@@ -26,6 +26,16 @@
   }
 }
 
+.button--light-green {
+  background-color: $green;
+  color: #fff;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: darken($green, 5%);
+  }
+}
+
 .button--blue {
   background-color: $blue;
   color: #fff;

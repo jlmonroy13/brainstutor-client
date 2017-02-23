@@ -88,4 +88,47 @@
       }
     }
   }
+  &__step-to-step {
+    background: url("../images/steptostep-bckg.png") center no-repeat;
+    background-size: cover;
+    background-color: $gray-bckgr;
+    padding: $base-spacing-unit*2 0 $base-spacing-unit*6;
+    &-title {
+      text-align: center;
+      color: #fff;
+      font-family: $font-family-serif;
+      font-weight: 700;
+      @include rem(68);
+      line-height: 0.8;
+      margin: 0;
+      &:first-child {
+        @include rem(80, 'margin-top');
+      }
+    }
+    &-subtitle {
+      color: #fff;
+      @include rem(13);
+      font-family: $font-family-serif;
+      display: inline-block;
+      @include rem(10, 'margin-top');
+    }
+  }
+  &__universities {
+    text-align: center;
+    background: url("../images/hero_universities.png") center no-repeat;
+    background-size: cover;
+    background-color: $gray-bckgr;
+    padding: $base-spacing-unit*6 0 $base-spacing-unit*7;
+    &-title {
+      color: #fff;
+      font-family: $font-family-serif;
+      font-weight: 700;
+      @include rem(66);
+      margin-bottom: $half-spacing-unit;
+    }
+    &-description {
+      color: #fff;
+      @include rem(20);
+    }
+  }
 }

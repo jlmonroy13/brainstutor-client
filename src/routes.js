@@ -15,6 +15,7 @@ import NotFoundPage from './components/NotFoundPage';
 import SignupIndex from './components/SignupIndex';
 import LogInIndex from './components/LogInIndex';
 import AfterSignupTeacher from './components/AfterSignupTeacher';
+import StepToStepInfo from './components/StepToStepInfo';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 
 const getLocalStorage = () => (
@@ -150,6 +151,10 @@ export default store => (
       path="/perfil-estudiante"
       component={StudentProfileContainer}
       onEnter={onEnterProfile(store)}
+    />
+    <Route
+      path="/como-funciona"
+      component={StepToStepInfo}
     />
     <Route path="*" component={NotFoundPage} />
   </Route>
