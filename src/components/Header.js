@@ -10,7 +10,7 @@ import 'react-s-alert/dist/s-alert-default.css';
 // component at the top-level.
 class Header extends React.Component {
   render() {
-    const { authInProcess, first_name: firstName, role } = this.props.userInfo;
+    const { authInProcess, first_name: firstName, role, activated } = this.props.userInfo;
     const { onLogOut } = this.props;
     const imageClass = authInProcess ? 'header__logo--center' : '';
     const headerClass = authInProcess ? 'header--center' : '';
@@ -31,15 +31,31 @@ class Header extends React.Component {
             </div>
             {firstName ?
               <span>
-                {role === 'teacher' ?
-                  <Link className="button button--blue header__button" to="/tutores/home">{firstName}</Link>
+                {role === 'teacher' && activated ?
+                  <span>
+                    <Link className="button button--blue header__button" to="/tutores/home">{firstName}</Link>
+                    <button
+                      className="button button--dark-green header__button"
+                      onClick={onLogOut}
+                    >Cerrar sesión</button>
+                  </span>  
+                : role === 'teacher' && !activated ?
+                  <span>
+                    <Link className="button button--blue header__button" to="/ingresar">Ingresar</Link>
+                    <button
+                      className="button button--dark-green header__button"
+                      to="/estudiantes/registrarse"
+                    >Registrarse</button>
+                  </span>
                 :
-                  <Link className="button button--blue header__button" to="/perfil-estudiante">{firstName}</Link>
+                  <span>
+                    <Link className="button button--blue header__button" to="/perfil-estudiante">{firstName}</Link>
+                    <button
+                      className="button button--dark-green header__button"
+                      onClick={onLogOut}
+                    >Cerrar sesión</button>
+                  </span>
                 }
-                <button
-                  className="button button--dark-green header__button"
-                  onClick={onLogOut}
-                >Cerrar sesión</button>
               </span>
             :
               <span>

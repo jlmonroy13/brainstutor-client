@@ -118,7 +118,7 @@
     background: url("../images/hero_universities.png") center no-repeat;
     background-size: cover;
     background-color: $gray-bckgr;
-    padding: $base-spacing-unit*6 0 $base-spacing-unit*7;
+    padding: $half-spacing-unit 0 $base-spacing-unit*12;
     &-title {
       color: #fff;
       font-family: $font-family-serif;

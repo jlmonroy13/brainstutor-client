@@ -70,9 +70,11 @@ const userSignupRequest = (dataForm, type) => {
 
 const onLogOutRequest = () => {
 	return dispatch => {
+		dispatch(setStatusRequestTrue());
 		logOut().then(successLogOut);
 
 		function successLogOut() {
+			dispatch(setStatusRequestFalse());
 			dispatch(deleteUserInfo());
 			localStorage.setItem('BrainsUserInfo', '');
 			browserHistory.push('/');
