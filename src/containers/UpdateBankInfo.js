@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import UpdateBankInfo from '../components/UpdateBankInfo';
-import { updateBankInfoRequest } from '../actions/authentication';
+import { updateBankInfoRequest } from '../actions/teacher';
 
 
 const mapStateToProps = (state) => {

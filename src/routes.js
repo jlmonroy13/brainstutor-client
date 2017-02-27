@@ -10,6 +10,7 @@ import HowToBeTutorContainer from './containers/HowToBeTutor';
 import SignupTutorsProcessContainer from './containers/SignupTutorsProcess';
 import UpdateTutorContainer from './containers/UpdateTutor';
 import UpdateBankInfoContainer from './containers/UpdateBankInfo';
+import FindTutorContainer from './containers/FindTutor';
 import HomePage from './components/HomePage';
 import NotFoundPage from './components/NotFoundPage';
 import SignupIndex from './components/SignupIndex';
@@ -17,6 +18,7 @@ import LogInIndex from './components/LogInIndex';
 import AfterSignupTeacher from './components/AfterSignupTeacher';
 import StepToStepInfo from './components/StepToStepInfo';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
+import { getTutorsRequest } from './actions/teacher';
 
 const getLocalStorage = () => (
   JSON.parse(localStorage.getItem('BrainsUserInfo'))
@@ -57,6 +59,13 @@ const onEnterTutorProfile = store => {
     const { userInfo } = getState();
     if (!userInfo.first_name) browserHistory.push('/tutores/home');
     dispatch(setAuthInProcess(true));
+  };
+};
+
+const onEnterFindTutor = store => {
+  return () => {
+    const { dispatch } = store;
+    dispatch(getTutorsRequest());
   };
 };
 
@@ -155,6 +164,11 @@ export default store => (
     <Route
       path="/como-funciona"
       component={StepToStepInfo}
+    />
+    <Route
+      path="/ver-tutores"
+      component={FindTutorContainer}
+      onEnter={onEnterFindTutor(store)}
     />
     <Route path="*" component={NotFoundPage} />
   </Route>

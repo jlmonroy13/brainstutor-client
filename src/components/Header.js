@@ -25,7 +25,7 @@ class Header extends React.Component {
         {!authInProcess ?
           <div className="navbar navbar--right">
             <div className="inline-block push--right soft--right">
-              <Link className="button button--link-upper button--link-gray" to="/">Contacto</Link>
+              <Link className="button button--link-upper button--link-gray" to="/ver-tutores">Ver tutores</Link>
               <Link className="button button--link-upper button--link-gray" to="/como-funciona">¿Cómo funciona?</Link>
               <Link className="button button--link-upper button--link-gray" to="/como-ser-tutor">¿Cómo ser Tutor?</Link>
             </div>

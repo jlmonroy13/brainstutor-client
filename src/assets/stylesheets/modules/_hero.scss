@@ -59,6 +59,9 @@
     &-selector {
       height: 50px;
       width: 240px;
+      &--large {
+        width: 440px;
+      }
       &-container {
         position: absolute;
         top: 260px;
@@ -86,6 +89,12 @@
         display: inline-block;
         vertical-align: middle;
       }
+    }
+    &-input {
+      height: 50px;
+      width: 440px;
+      padding: 0 30px 0 20px;
+      @include rem(18);
     }
   }
   &__step-to-step {
@@ -129,6 +138,39 @@
     &-description {
       color: #fff;
       @include rem(20);
+    }
+  }
+  &__find-tutor {
+    background: url("../images/hero-find-tutor.png") center no-repeat;
+    background-size: cover;
+    min-height: 410px;
+    background-color: $gray-bckgr;
+    position: relative;
+    &-title {
+      color: #fff;
+      @include rem(68);
+      font-family: $font-family-serif;
+      font-weight: 700;
+      margin: 0;
+      position: absolute;
+      top: 80px;
+      right: 240px;
+      max-width: 380px;
+      line-height: 0.8;
+    }
+    &-subtitle {
+      color: #fff;
+      @include rem(16);
+      position: absolute;
+      right: 135px;
+      top: 160px;
+      max-width: 242px;
+      line-height: 0.9;
+    }
+    &-selector {
+      background-color: $dark-blue;
+      text-align: center;
+      padding: $base-spacing-unit 0;
     }
   }
 }

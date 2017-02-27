@@ -1,7 +1,7 @@
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import HowToBeTutor from '../components/HowToBeTutor';
-import { setTeacherUniversity } from '../actions/authentication';
+import { setTeacherUniversity } from '../actions/teacher';
 
 const mapDispatchToProps = dispatch => ({
 	setTeacherUniversity: university => {
