@@ -43,13 +43,13 @@ const updateBankInfo = (bankFormId, userData) => {
 };
 
 const showUser = (id, type) => (
-  brains
+  brainsAuthentication
     .get(`${type}s/${id}`)
     .catch(catchRequestError)
 );
 
 const showTeachers = () => (
-  brains
+  brainsAuthentication
     .get(`/teachers`)
     .catch(catchRequestError)
 );

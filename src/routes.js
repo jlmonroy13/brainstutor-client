@@ -10,6 +10,7 @@ import HowToBeTutorContainer from './containers/HowToBeTutor';
 import SignupTutorsProcessContainer from './containers/SignupTutorsProcess';
 import UpdateTutorContainer from './containers/UpdateTutor';
 import UpdateBankInfoContainer from './containers/UpdateBankInfo';
+import TutorProfileContainer from './containers/TutorProfile';
 import FindTutorContainer from './containers/FindTutor';
 import HomePage from './components/HomePage';
 import NotFoundPage from './components/NotFoundPage';
@@ -17,6 +18,8 @@ import SignupIndex from './components/SignupIndex';
 import LogInIndex from './components/LogInIndex';
 import AfterSignupTeacher from './components/AfterSignupTeacher';
 import StepToStepInfo from './components/StepToStepInfo';
+import KnowYourTutor from './components/KnowYourTutor';
+import ScheduleTutor from './components/ScheduleTutor';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 import { getTutorsRequest } from './actions/teacher';
 
@@ -50,6 +53,15 @@ const onEnterProfile = store => {
     verifyToken(userInfo);
     setUserInfo(userInfo, dispatch);
     dispatch(setAuthInProcess(false));
+  };
+};
+
+const onEnterKnowYourTutor = store => {
+  return () => {
+    const { getState } = store;
+    const { userInfo } = getState();
+
+    verifyToken(userInfo);
   };
 };
 
@@ -169,6 +181,20 @@ export default store => (
       path="/ver-tutores"
       component={FindTutorContainer}
       onEnter={onEnterFindTutor(store)}
+    />
+    <Route
+      path="/sesion-conoce-tu-tutor"
+      component={KnowYourTutor}
+      onEnter={onEnterKnowYourTutor(store)}
+    />
+    <Route
+      path="/estudiantes/agendar-tutoria"
+      component={ScheduleTutor}
+      onEnter={onEnterKnowYourTutor(store)}
+    />
+    <Route
+      path="/perfil-tutor/:id"
+      component={TutorProfileContainer}
     />
     <Route path="*" component={NotFoundPage} />
   </Route>

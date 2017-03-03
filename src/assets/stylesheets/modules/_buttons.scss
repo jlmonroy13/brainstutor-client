@@ -45,3 +45,13 @@
     background-color: darken($blue, 5%);
   }
 }
+
+.button--dark-blue {
+  background-color: $dark-blue;
+  color: #fff;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: darken($dark-blue, 5%);
+  }
+}

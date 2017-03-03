@@ -13,7 +13,7 @@ const SignupIndex = () => {
         >Estudiantes</Link>
         <Link
           className="button button--large button--block button--blue push--bottom"
-          to="/tutores/registrarse"
+          to="/como-ser-tutor"
         >Tutores</Link>
         <span className="section__auth-description">¿Ya tienes una cuenta?</span>
         <Link

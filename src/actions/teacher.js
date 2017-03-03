@@ -43,12 +43,14 @@ const updateBankInfoRequest = (dataForm) => {
 
 const getTutorsRequest = () => {
 	return (dispatch) => {
+		dispatch(setStatusRequestTrue());
 		showTeachers().then(successGetTutors);
 
 		function successGetTutors(tutors) {
+			dispatch(setStatusRequestFalse());
 			dispatch(setTeachers(tutors.data));
 		}
-	};	
+	};
 };
 
 export {

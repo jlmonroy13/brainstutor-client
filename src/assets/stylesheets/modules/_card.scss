@@ -1,10 +1,18 @@
 .card {
 	background: #F2F0F0;
-	margin-bottom: 60px;
+	margin: 0 auto 60px;
+	width: 90%;
 	position: relative;
-	-webkit-box-shadow: 3px 3px 9px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 3px 3px 9px 0px rgba(0,0,0,0.75);
-	box-shadow: 3px 3px 9px 0px rgba(0,0,0,0.75);
+	border: 1px solid rgba($gray, 0.1);
+	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	transition: 0.2s;
+	&:hover {
+		-webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+		-moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+	}
 	&__header {
 		background-color: $dark-blue;
 		color: #fff;
@@ -18,8 +26,8 @@
 	}
 	&__image {
 		background-color: #fff;
-		width: 260px;
-		height: 310px;
+		width: 240px;
+		height: 270px;
 		position: absolute;
 		top: -30px;
 		left: 70px;
@@ -29,6 +37,7 @@
 	}
 	&__description {
 		max-width: 450px;
+		color: $gray-text;
 	}
 }
 

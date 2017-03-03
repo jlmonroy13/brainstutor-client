@@ -27,4 +27,33 @@
   &--enabled {
     opacity: 1;
   }
+  &-message {
+    background-color: #fff;
+    @include rem(35, "margin-bottom");
+    &__header {
+      background-color: $blue;
+      padding: $base-spacing-unit;
+      text-align: center;
+      position: relative;
+      &-title {
+        color: #fff;
+        display: inline-block;
+        vertical-align: middle;
+        @include rem(22);
+      }
+    }
+    &__icon {
+      width: 30px;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: left;
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &__body {
+      padding: $base-spacing-unit;
+    }
+  }
 }

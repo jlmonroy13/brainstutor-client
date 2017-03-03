@@ -1,0 +1,43 @@
+.profile {
+	background-color: #fff;
+	padding: $base-spacing-unit $half-spacing-unit;
+	&__container {
+		background-color: rgba($gray-lighter, 0.6);
+		padding: $base-spacing-unit 0 $base-spacing-unit*6;
+	}
+	&__main {
+		border-bottom: 1px solid $gray-light;
+		padding-bottom: $base-spacing-unit;
+		position: relative;
+		&-description {
+			display: inline-block;
+			padding-left: $base-spacing-unit;
+			vertical-align: top;
+		}
+		&-title {
+			color: #000;
+			margin: 0 0 $half-spacing-unit;
+			font-family: $font-family-serif;
+			@include rem(27);
+			line-height: 1;
+		}
+		&-subtitle {
+			color: #000;
+			margin: 0 0 $half-spacing-unit;
+			@include rem(16);
+			color: rgba($gray-label, 0.7);
+			text-transform: capitalize;
+		}
+		&-image {
+			vertical-align: top;
+			display: inline-block;
+		}
+		&-top-corner {
+			position: absolute;
+			right: 5px;
+			top: 0;
+			color: #000;
+			font-weight: 700;
+		}
+	}
+}

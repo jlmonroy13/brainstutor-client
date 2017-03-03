@@ -6,6 +6,9 @@
     font-weight: 300;
     display: block;
     text-align: left;
+    &--large {
+      @include rem(18);
+    }
   }
   &__input {
     display: block;
@@ -15,5 +18,16 @@
     border-radius: 4px;
     height: 45px;
     padding: 0 $half-spacing-unit;
+  }
+  &__textarea {
+    border: 1px solid $gray-highlight;
+    resize: none;
+    padding: $half-spacing-unit;
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+    min-height: 100px;
+    color: $gray-text;
+    outline: none;
   }
 }
