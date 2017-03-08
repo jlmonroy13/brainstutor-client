@@ -8,7 +8,7 @@ import {
 	logOut,
 } from '../requests/users';
 import { pendingTask, begin, end } from 'react-redux-spinner';
-
+import moment from 'moment';
 
 const setUserInfo = userInfo => ({
 	type: 'SET_USER_INFO',
@@ -124,7 +124,12 @@ const getUserInfo = (id, type) => {
 };
 
 function setTokenAndUserInfo(userData, dispatch, userRole) {
-	const userInfo = { ...userData, role: userRole, id: userData.user_id || userData.id};
+	const userInfo = {
+		...userData,
+		role: userRole,
+		id: userData.user_id || userData.id,
+		loginAt: moment(),
+	};
 	delete userInfo.user_id;
 	dispatch(setUserInfo(userInfo));
 	localStorage.setItem('BrainsUserInfo', JSON.stringify(userInfo));
