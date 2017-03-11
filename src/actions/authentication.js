@@ -34,7 +34,7 @@ const setStatusRequestTrue = () => ({
 	[ pendingTask ]: begin,
 });
 
-const userSignupRequest = (dataForm, type) => {
+const userSignupRequest = (dataForm, type, origin='') => {
 	return dispatch => {
 		dispatch(setStatusRequestTrue());
 		createUser(dataForm, type)
@@ -43,11 +43,17 @@ const userSignupRequest = (dataForm, type) => {
 		function successSignup(response) {
 			dispatch(setStatusRequestFalse());
 			setTokenAndUserInfo(response.data, dispatch, type);
-			Alert.success('¡Te has registrado exitosamente!');
-			if (type === 'teacher') {
-				browserHistory.push('/tutores/registrarse-3');
+			if (origin !== 'modal') {
+				Alert.success('¡Te has registrado exitosamente!');
+				if (type === 'teacher') {
+					browserHistory.push('/tutores/registrarse-3');
+				} else {
+					browserHistory.push('/perfil-estudiante');
+				}
 			} else {
-				browserHistory.push('/perfil-estudiante');
+				const id = response.data.user_id||response.data.id;
+				dispatch(getUserInfo(id, type));
+				Alert.success('Tu mensaje ha sido enviado.');
 			}
 		}
 	};
@@ -88,7 +94,7 @@ const userUpdateProfileRequest = (dataForm, type) => {
 	};
 };
 
-const userLogInRequest = (dataForm, userRole) => {
+const userLogInRequest = (dataForm, userRole, origin='') => {
 	return dispatch => {
 		dispatch(setStatusRequestTrue());
 		logIn(dataForm, userRole)
@@ -100,13 +106,18 @@ const userLogInRequest = (dataForm, userRole) => {
 				Alert.error('Tienes que activar tu cuenta para poder ingresar.');
 			} else {
 				setTokenAndUserInfo(response.data, dispatch, userRole);
-				Alert.success('¡Bienvenido!');
-				if(userRole === 'teacher') {
-					browserHistory.push('/tutores/home');
+				if (origin !== 'modal') {
+					Alert.success('¡Bienvenido!');
+					if(userRole === 'teacher') {
+						browserHistory.push('/tutores/home');
+					} else {
+						browserHistory.push('perfil-estudiante');
+					}
 				} else {
-					browserHistory.push('perfil-estudiante');
+					const id = response.data.user_id||response.data.id;
+					dispatch(getUserInfo(id, userRole));
+					Alert.success('Tu mensaje ha sido enviado.');
 				}
-
 			}
 		}
 	};

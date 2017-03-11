@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import TutorProfile from '../components/TutorProfile';
+import { userLogInRequest, userSignupRequest } from '../actions/authentication';
 
 
 const mapStateToProps = () => {
@@ -9,9 +10,12 @@ const mapStateToProps = () => {
   };
 }; 
 
-const mapDispatchToProps = () => ({
-	getTutorProfile: () => {
-
+const mapDispatchToProps = dispatch => ({
+	userLogInRequest: (formData) => {
+		dispatch(userLogInRequest(formData, 'student', 'modal'));
+	},
+	userSignupRequest: (formData) => {
+		dispatch(userSignupRequest(formData, 'student', 'modal'));
 	},
 });
 

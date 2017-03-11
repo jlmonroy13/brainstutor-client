@@ -42,11 +42,16 @@ const updateBankInfo = (bankFormId, userData) => {
     .catch(catchRequestError);
 };
 
-const showUser = (id, type) => (
-  brainsAuthentication
+const showUser = (id, type) => {
+  if (type === 'student') {
+    return brains
+      .get(`${type}s/${id}`)
+      .catch(catchRequestError);
+  }
+  return brainsAuthentication
     .get(`${type}s/${id}`)
-    .catch(catchRequestError)
-);
+    .catch(catchRequestError);
+};
 
 const showTeachers = () => (
   brainsAuthentication

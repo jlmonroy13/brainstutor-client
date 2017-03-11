@@ -16,7 +16,7 @@ class FindTutor extends React.Component {
 
     function renderTeacher(teacher) {
       return (
-        <Link to={`/perfil-tutor/${teacher.id}`}>
+        <Link to={`/perfil-tutor/${teacher.id}`} key={teacher.id}>
           <div className="card">
             <div className="card__header">
               <p className="flush">{teacher.first_name + '' + teacher.last_name} / { teacher.role }</p>

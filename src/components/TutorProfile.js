@@ -5,6 +5,7 @@ import Gravatar from 'react-gravatar';
 import { showUser } from '../requests/users';
 import ReactModal from 'react-modal';
 import TextFieldGroup from './TextFieldGroup';
+import Alert from 'react-s-alert';
 
 class TutorProfile extends React.Component {
   constructor(props) {
@@ -13,12 +14,21 @@ class TutorProfile extends React.Component {
       tutor: {},
       showModal: false,
       isSignUp: true,
+      email: '',
+      firstName: '',
+      lastName: '',
+      password: '',
+      passwordConfirmation: '',
     };
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.activateSignUp = this.activateSignUp.bind(this);
     this.activateLogIn = this.activateLogIn.bind(this);
+    this.onChangeFormLogin = this.onChangeFormLogin.bind(this);
+    this.onSubmitFormLogin = this.onSubmitFormLogin.bind(this);
+    this.onChangeFormSignup = this.onChangeFormSignup.bind(this);
+    this.onSubmitFormSignup = this.onSubmitFormSignup.bind(this);
   }
 
   componentWillMount() {
@@ -26,6 +36,30 @@ class TutorProfile extends React.Component {
     showUser(id, 'teacher').then((response) => {
       this.setState({ tutor: response.data });
     });
+  }
+
+  onChangeFormLogin(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmitFormLogin(e) {
+    e.preventDefault();
+    this.props.userLogInRequest(this.state);
+    this.handleCloseModal();
+  }
+
+  onChangeFormSignup(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmitFormSignup(e) {
+    e.preventDefault();
+    if (this.state.password === this.state.passwordConfirmation) {
+      this.props.userSignupRequest(this.state);
+      this.handleCloseModal();
+    } else {
+      Alert.error(`Las contraseñas no coinciden`);
+    }
   }
 
   handleOpenModal() {
@@ -100,6 +134,7 @@ class TutorProfile extends React.Component {
           isOpen={this.state.showModal}
           className="Modal"
           overlayClassName="Overlay"
+          contentLabel="Autenticación"
         >
           <div className="Modal__content">
             <div className="Modal__header">
@@ -107,75 +142,72 @@ class TutorProfile extends React.Component {
               <span className="Modal__btn-close" onClick={this.handleCloseModal}>&#120;</span>
             </div>
             <div className="Modal__body">
-              <form onSubmit={this.onSubmitForm} autoComplete="off">
-                {isSignUp ?
-                  <div>
-                    <p className="Modal__body-description">Para poder enviar tu mensaje y recibir respuesta, por favor crea una cuenta gratuita.</p>
-                    <TextFieldGroup
-                      value={this.state.firstName}
-                      onChange={this.onChangeForm}
-                      type="text"
-                      field="firstName"
-                      label="Nombre"
-                    />
-                    <TextFieldGroup
-                      value={this.state.lastName}
-                      onChange={this.onChangeForm}
-                      type="text"
-                      field="lastName"
-                      label="Apellido"
-                    />
-                    <TextFieldGroup
-                      value={this.state.email}
-                      onChange={this.onChangeForm}
-                      type="email"
-                      field="email"
-                      label="Correo Electrónico"
-                    />
-                    <TextFieldGroup
-                      value={this.state.password}
-                      onChange={this.onChangeForm}
-                      type="password"
-                      field="password"
-                      label="Contraseña"
-                    />
-                    <TextFieldGroup
-                      value={this.state.passwordConfirmation}
-                      onChange={this.onChangeForm}
-                      type="password"
-                      field="passwordConfirmation"
-                      label="Confirmar Contraseña"
-                    />
-                    <button
-                      className={`button button--large button--block button--blue push-half--top`}
-                    >Registrarse</button>
-                    <p className="Modal__body-footer">¿Ya tienes una cuenta? <span className="Modal__body-footer-link" onClick={this.activateLogIn}>¡Ingresa ya!</span></p>
-                  </div>
-                :
-                  <div>
-                    <p className="Modal__body-description">Para poder enviar tu mensaje y recibir respuesta, por favor ingresa con tu cuenta.</p>
-                    <TextFieldGroup
-                      value={this.state.email}
-                      onChange={this.onChangeForm}
-                      type="email"
-                      field="email"
-                      label="Correo Electrónico"
-                    />
-                    <TextFieldGroup
-                      value={this.state.password}
-                      onChange={this.onChangeForm}
-                      type="password"
-                      field="password"
-                      label="Contraseña"
-                    />
-                    <button
-                      className={`button button--large button--block button--blue push-half--top`}
-                    >Ingresar</button>
-                    <p className="Modal__body-footer">¿Aún no tienes una cuenta? <span className="Modal__body-footer-link" onClick={this.activateSignUp}>¡Registrate!</span></p>
-                  </div>
-                }
-                
-              </form>
+              {isSignUp ?
+                <form onSubmit={this.onSubmitFormSignup} autoComplete="off">
+                  <p className="Modal__body-description">Para poder enviar tu mensaje y recibir respuesta, por favor crea una cuenta gratuita.</p>
+                  <TextFieldGroup
+                    value={this.state.firstName}
+                    onChange={this.onChangeFormSignup}
+                    type="text"
+                    field="firstName"
+                    label="Nombre"
+                  />
+                  <TextFieldGroup
+                    value={this.state.lastName}
+                    onChange={this.onChangeFormSignup}
+                    type="text"
+                    field="lastName"
+                    label="Apellido"
+                  />
+                  <TextFieldGroup
+                    value={this.state.email}
+                    onChange={this.onChangeFormSignup}
+                    type="email"
+                    field="email"
+                    label="Correo Electrónico"
+                  />
+                  <TextFieldGroup
+                    value={this.state.password}
+                    onChange={this.onChangeFormSignup}
+                    type="password"
+                    field="password"
+                    label="Contraseña"
+                  />
+                  <TextFieldGroup
+                    value={this.state.passwordConfirmation}
+                    onChange={this.onChangeFormSignup}
+                    type="password"
+                    field="passwordConfirmation"
+                    label="Confirmar Contraseña"
+                  />
+                  <button
+                    className={`button button--large button--block button--blue push-half--top`}
+                  >Registrarse</button>
+                  <p className="Modal__body-footer">¿Ya tienes una cuenta? <span className="Modal__body-footer-link" onClick={this.activateLogIn}>¡Ingresa ya!</span></p>
+                </form>
+              :
+                <form onSubmit={this.onSubmitFormLogin} autoComplete="off">
+                  <p className="Modal__body-description">Para poder enviar tu mensaje y recibir respuesta, por favor ingresa con tu cuenta.</p>
+                  <TextFieldGroup
+                    value={this.state.email}
+                    onChange={this.onChangeFormLogin}
+                    type="email"
+                    field="email"
+                    label="Correo Electrónico"
+                  />
+                  <TextFieldGroup
+                    value={this.state.password}
+                    onChange={this.onChangeFormLogin}
+                    type="password"
+                    field="password"
+                    label="Contraseña"
+                  />
+                  <button
+                    className={`button button--large button--block button--blue push-half--top`}
+                  >Ingresar</button>
+                  <p className="Modal__body-footer">¿Aún no tienes una cuenta? <span className="Modal__body-footer-link" onClick={this.activateSignUp}>¡Registrate!</span></p>
+                </form>
+              }
             </div>
           </div>
         </ReactModal>
@@ -188,6 +220,8 @@ class TutorProfile extends React.Component {
 TutorProfile.propTypes = {
   teachers: PropTypes.shape(),
   params: PropTypes.shape(),
+  userLogInRequest: PropTypes.func.isRequired,
+  userSignupRequest: PropTypes.func.isRequired,
 };
 
 export default TutorProfile;
