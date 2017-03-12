@@ -14,6 +14,34 @@ class Header extends React.Component {
     const { onLogOut } = this.props;
     const imageClass = authInProcess ? 'header__logo--center' : '';
     const headerClass = authInProcess ? 'header--center' : '';
+    function renderSubMenu() {
+			switch(role) {
+				case 'student':
+					return (
+						<span>
+							<Link className="button button--link-upper button--link-gray" to="/ver-tutores">Ver tutores</Link>
+							<Link className="button button--link-upper button--link-gray" to="/">Mensajes</Link>
+							<Link className="button button--link-upper button--link-gray" to="/">Tutorias agendadas</Link>
+						</span>
+					);
+				case 'teacher':
+					return (
+						<span>
+							<Link className="button button--link-upper button--link-gray" to="/">Mensajes</Link>
+							<Link className="button button--link-upper button--link-gray" to="/">Tutorias agendadas</Link>
+							<Link className="button button--link-upper button--link-gray" to="/">Mis reportes</Link>
+						</span>
+					);
+				default:
+					return (
+						<span>
+							<Link className="button button--link-upper button--link-gray" to="/ver-tutores">Ver tutores</Link>
+							<Link className="button button--link-upper button--link-gray" to="/como-funciona">¿Cómo funciona?</Link>
+							<Link className="button button--link-upper button--link-gray" to="/como-ser-tutor">¿Cómo ser Tutor?</Link>
+						</span>
+					);
+			}
+    }
     return (
       <nav className={`header ${headerClass}`}>
         <IndexLink to="/">
@@ -25,9 +53,7 @@ class Header extends React.Component {
         {!authInProcess ?
           <div className="navbar navbar--right">
             <div className="inline-block push--right soft--right">
-              <Link className="button button--link-upper button--link-gray" to="/ver-tutores">Ver tutores</Link>
-              <Link className="button button--link-upper button--link-gray" to="/como-funciona">¿Cómo funciona?</Link>
-              <Link className="button button--link-upper button--link-gray" to="/como-ser-tutor">¿Cómo ser Tutor?</Link>
+              {renderSubMenu()}
             </div>
             {firstName ?
               <span>

@@ -17,16 +17,24 @@ class Signup extends React.Component {
 
 		this.onChangeForm = this.onChangeForm.bind(this);
 		this.onSubmitForm = this.onSubmitForm.bind(this);
+		this.validateEmptyFields = this.validateEmptyFields.bind(this);
 	}
 
 	onChangeForm(e) {
 		this.setState({ [e.target.name]: e.target.value });
 	}
 
+	validateEmptyFields() {
+		const { state } = this;
+		return !!state.email && !!state.firstName && !!state.lastName && !!state.password && !!state.passwordConfirmation;
+	}
+
 	onSubmitForm(e) {
 		e.preventDefault();
-		if (this.state.password === this.state.passwordConfirmation) {
+		if (this.state.password === this.state.passwordConfirmation && this.validateEmptyFields()) {
 			this.props.userSignupRequest(this.state);
+		} else  if (!this.validateEmptyFields()) {
+			Alert.error(`Todos los campos deben ser completados.`);
 		} else {
 			Alert.error(`Las contraseñas no coinciden`);
 		}

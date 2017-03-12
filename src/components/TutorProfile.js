@@ -6,6 +6,7 @@ import { showUser } from '../requests/users';
 import ReactModal from 'react-modal';
 import TextFieldGroup from './TextFieldGroup';
 import Alert from 'react-s-alert';
+// import { browserHistory } from 'react-router';
 
 class TutorProfile extends React.Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class TutorProfile extends React.Component {
     this.onSubmitFormLogin = this.onSubmitFormLogin.bind(this);
     this.onChangeFormSignup = this.onChangeFormSignup.bind(this);
     this.onSubmitFormSignup = this.onSubmitFormSignup.bind(this);
+    this.validateEmptyFields = this.validateEmptyFields.bind(this);
   }
 
   componentWillMount() {
@@ -44,19 +46,32 @@ class TutorProfile extends React.Component {
 
   onSubmitFormLogin(e) {
     e.preventDefault();
-    this.props.userLogInRequest(this.state);
-    this.handleCloseModal();
+    const { email, password } = this.state;
+    if (email && password) {
+      this.props.userLogInRequest(this.state);
+      this.handleCloseModal();
+    } else {
+      Alert.error(`Debes llenar todos los campos`);
+    }
+    
   }
 
   onChangeFormSignup(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  validateEmptyFields() {
+    const { state } = this;
+    return !!state.email && !!state.firstName && !!state.lastName && !!state.password && !!state.passwordConfirmation;
+  }
+
   onSubmitFormSignup(e) {
     e.preventDefault();
-    if (this.state.password === this.state.passwordConfirmation) {
+    if (this.state.password === this.state.passwordConfirmation && this.validateEmptyFields()) {
       this.props.userSignupRequest(this.state);
       this.handleCloseModal();
+    } else  if (!this.validateEmptyFields()) {
+      Alert.error(`Todos los campos deben ser completados.`);
     } else {
       Alert.error(`Las contraseñas no coinciden`);
     }
@@ -81,6 +96,11 @@ class TutorProfile extends React.Component {
   render() {
     const { tutor, isSignUp } = this.state;
     const { profile } = tutor;
+
+    // function onGoToKnowYourTutor() {
+    //   browserHistory.push('/sesion-conoce-tu-tutor');
+    //   this.handleOpenModal();
+    // }
 
     return (
       <div>

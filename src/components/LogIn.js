@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import TextFieldGroup from './TextFieldGroup';
+import Alert from 'react-s-alert';
 
 class LogIn extends React.Component {
 	constructor(props) {
@@ -19,7 +20,12 @@ class LogIn extends React.Component {
 
 	onSubmitForm(e) {
 		e.preventDefault();
-		this.props.userLogInRequest(this.state);
+		const { email, password } = this.state;
+		if (email && password) {
+			this.props.userLogInRequest(this.state);
+		} else {
+			Alert.error(`Debes llenar todos los campos`);
+		}
 	}
 
 
