@@ -2,6 +2,9 @@ import React, { PropTypes } from 'react';
 import { Link, IndexLink } from 'react-router';
 import Alert from 'react-s-alert';
 import { Spinner } from 'react-redux-spinner';
+import Dropdown from 'rc-dropdown';
+import Menu, { Item as MenuItem, Divider } from 'rc-menu';
+import 'rc-dropdown/assets/index.css';
 
 import 'react-s-alert/dist/s-alert-default.css';
 
@@ -14,11 +17,21 @@ class Header extends React.Component {
     const { onLogOut } = this.props;
     const imageClass = authInProcess ? 'header__logo--center' : '';
     const headerClass = authInProcess ? 'header--center' : '';
+    const menu = (
+      <Menu>
+        <MenuItem disabled>disabled</MenuItem>
+        <MenuItem key="1">one</MenuItem>
+        <Divider />
+        <MenuItem key="2">two</MenuItem>
+      </Menu>
+    );
+
     function renderSubMenu() {
 			switch(role) {
 				case 'student':
 					return (
 						<span>
+							<Link className="button button--link-upper button--link-gray" to="/">Inicio</Link>
 							<Link className="button button--link-upper button--link-gray" to="/ver-tutores">Ver tutores</Link>
 							<Link className="button button--link-upper button--link-gray" to="/">Mensajes</Link>
 							<Link className="button button--link-upper button--link-gray" to="/">Tutorias agendadas</Link>
@@ -27,6 +40,7 @@ class Header extends React.Component {
 				case 'teacher':
 					return (
 						<span>
+							<Link className="button button--link-upper button--link-gray" to="/">Inicio</Link>
 							<Link className="button button--link-upper button--link-gray" to="/">Mensajes</Link>
 							<Link className="button button--link-upper button--link-gray" to="/">Tutorias agendadas</Link>
 							<Link className="button button--link-upper button--link-gray" to="/">Mis reportes</Link>
@@ -42,6 +56,7 @@ class Header extends React.Component {
 					);
 			}
     }
+
     return (
       <nav className={`header ${headerClass}`}>
         <IndexLink to="/">
@@ -59,7 +74,13 @@ class Header extends React.Component {
               <span>
                 {role === 'teacher' && activated ?
                   <span>
-                    <Link className="button button--blue header__button" to="/tutores/home">{firstName}</Link>
+                    <Dropdown
+                      trigger={['click']}
+                      overlay={menu}
+                      animation="slide-up"
+                    >
+											<button className="button button--blue header__button">{firstName}</button>
+                    </Dropdown>
                     <button
                       className="button button--dark-green header__button"
                       onClick={onLogOut}
@@ -75,7 +96,13 @@ class Header extends React.Component {
                   </span>
                 :
                   <span>
-                    <Link className="button button--blue header__button" to="/perfil-estudiante">{firstName}</Link>
+                    <Dropdown
+                      trigger={['click']}
+                      overlay={menu}
+                      animation="slide-up"
+                    >
+                      <button className="button button--blue header__button">{firstName}</button>
+                    </Dropdown>
                     <button
                       className="button button--dark-green header__button"
                       onClick={onLogOut}
