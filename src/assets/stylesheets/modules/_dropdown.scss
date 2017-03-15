@@ -1,0 +1,12 @@
+.dropdown {
+	&-header {
+		top: 58px !important;
+		font-family: $font-family-sans-serif;
+		&__menu {
+			li {
+				font-size: 0.93rem !important;
+				cursor: pointer !important;
+			}
+		}
+	}
+}

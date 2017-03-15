@@ -72,8 +72,9 @@ const logOut = () => {
     .catch(catchRequestError);
 };
 
-function catchRequestError(e) {
-  Alert.error(`Se presentó incovenientes con la petición. ${e}`);
+function catchRequestError({ response }) {
+  const errorMsg = response.data.error.user_authentication[0];
+  Alert.error(errorMsg);
 }
 
 export {

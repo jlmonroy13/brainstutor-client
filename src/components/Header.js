@@ -3,7 +3,7 @@ import { Link, IndexLink } from 'react-router';
 import Alert from 'react-s-alert';
 import { Spinner } from 'react-redux-spinner';
 import Dropdown from 'rc-dropdown';
-import Menu, { Item as MenuItem, Divider } from 'rc-menu';
+import Menu, { Item as MenuItem } from 'rc-menu';
 import 'rc-dropdown/assets/index.css';
 
 import 'react-s-alert/dist/s-alert-default.css';
@@ -17,12 +17,21 @@ class Header extends React.Component {
     const { onLogOut } = this.props;
     const imageClass = authInProcess ? 'header__logo--center' : '';
     const headerClass = authInProcess ? 'header--center' : '';
-    const menu = (
-      <Menu>
-        <MenuItem disabled>disabled</MenuItem>
-        <MenuItem key="1">one</MenuItem>
-        <Divider />
-        <MenuItem key="2">two</MenuItem>
+    const logOutFn = info => {
+      if (info.key) onLogOut();
+    };
+    const studentMenu = (
+      <Menu className="dropdown-header__menu" onClick={logOutFn} >
+        <MenuItem key="1">Perfil</MenuItem>
+        <MenuItem key="2">Facturas</MenuItem>
+        <MenuItem key="3">Salir</MenuItem>
+      </Menu>
+    );
+    const teacherMenu = (
+      <Menu className="dropdown-header__menu" onClick={logOutFn} >
+        <MenuItem key="1">Perfil</MenuItem>
+        <MenuItem key="2">Cuenta Bancaria</MenuItem>
+        <MenuItem key="3">Salir</MenuItem>
       </Menu>
     );
 
@@ -76,15 +85,12 @@ class Header extends React.Component {
                   <span>
                     <Dropdown
                       trigger={['click']}
-                      overlay={menu}
+                      overlay={teacherMenu}
                       animation="slide-up"
+                      overlayClassName="dropdown-header"
                     >
-											<button className="button button--blue header__button">{firstName}</button>
+											<button className="button button--blue header__button header__button--alone">{firstName}</button>
                     </Dropdown>
-                    <button
-                      className="button button--dark-green header__button"
-                      onClick={onLogOut}
-                    >Cerrar sesión</button>
                   </span>  
                 : role === 'teacher' && !activated ?
                   <span>
@@ -98,15 +104,12 @@ class Header extends React.Component {
                   <span>
                     <Dropdown
                       trigger={['click']}
-                      overlay={menu}
+                      overlay={studentMenu}
                       animation="slide-up"
+                      overlayClassName="dropdown-header"
                     >
-                      <button className="button button--blue header__button">{firstName}</button>
+                      <button className="button button--blue header__button header__button--alone">{firstName}</button>
                     </Dropdown>
-                    <button
-                      className="button button--dark-green header__button"
-                      onClick={onLogOut}
-                    >Cerrar sesión</button>
                   </span>
                 }
               </span>
