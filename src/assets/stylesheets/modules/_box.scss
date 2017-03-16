@@ -27,6 +27,11 @@
   &--enabled {
     opacity: 1;
   }
+  &--dashboard {
+    padding: $base-spacing-unit*2;
+    opacity: 1;
+    @include rem(40, "margin-bottom");
+  }
   &-message {
     background-color: #fff;
     @include rem(35, "margin-bottom");

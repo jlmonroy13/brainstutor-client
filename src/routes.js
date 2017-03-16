@@ -20,6 +20,7 @@ import AfterSignupTeacher from './components/AfterSignupTeacher';
 import StepToStepInfo from './components/StepToStepInfo';
 import KnowYourTutor from './components/KnowYourTutor';
 import ScheduleTutor from './components/ScheduleTutor';
+import Dashboard from './components/Dashboard';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 import { getTutorsRequest } from './actions/teacher';
 
@@ -195,6 +196,11 @@ export default store => (
     <Route
       path="/perfil-tutor/:id"
       component={TutorProfileContainer}
+    />
+    <Route
+      path="/inicio"
+      component={Dashboard}
+      onEnter={onEnterProfile(store)}
     />
     <Route path="*" component={NotFoundPage} />
   </Route>

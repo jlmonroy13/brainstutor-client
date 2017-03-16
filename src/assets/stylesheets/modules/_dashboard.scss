@@ -1,0 +1,28 @@
+.dashboard {
+	background-color: rgba($gray-bckgr, 0.4);
+	&__container {
+		padding: $base-spacing-unit*2 0;
+	}
+	&__icon {
+		width: 40px;
+		vertical-align: middle;
+		margin-right: $half-spacing-unit;
+	}
+	&__title {
+		font-family: $font-family-serif;
+		@include rem(22);
+		vertical-align: middle;
+	}
+	&__box-title {
+		margin-bottom: $half-spacing-unit;
+	}
+	&__subtitle {
+		color: #000;
+		margin-bottom: $half-spacing-unit/2;
+		@include rem(22);
+	}
+	&__description {
+		margin: 0;
+		@include rem(18);
+	}
+}

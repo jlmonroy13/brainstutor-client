@@ -111,7 +111,7 @@ const userLogInRequest = (dataForm, userRole, origin='') => {
 					if(userRole === 'teacher') {
 						browserHistory.push('/tutores/home');
 					} else {
-						browserHistory.push('perfil-estudiante');
+						browserHistory.push('/inicio');
 					}
 				} else {
 					const id = response.data.user_id||response.data.id;
