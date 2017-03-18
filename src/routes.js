@@ -20,23 +20,31 @@ import AfterSignupTeacher from './components/AfterSignupTeacher';
 import StepToStepInfo from './components/StepToStepInfo';
 import KnowYourTutor from './components/KnowYourTutor';
 import ScheduleTutor from './components/ScheduleTutor';
-import Dashboard from './components/Dashboard';
+import StudentsDashboard from './components/StudentsDashboard';
+import TutorsDashboard from './components/TutorsDashboard';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 import { getTutorsRequest } from './actions/teacher';
 
-const getLocalStorage = () => (
-  JSON.parse(localStorage.getItem('BrainsUserInfo'))
-);
-
-const setUserInfo = (userInfo, dispatch) => {
-  const id = userInfo.id||getLocalStorage()&&getLocalStorage().id;
-  const role = userInfo.role||getLocalStorage()&&getLocalStorage().role;
-  dispatch(getUserInfo(id, role));
+const getLocalStorage = () => {
+  const localData = localStorage.getItem('BrainsUserInfo');
+  if (localData) return JSON.parse(localData);
+  return '';
 };
 
-const verifyToken = userInfo => {
+// const setUserInfo = (userInfo, dispatch) => {
+//   const id = userInfo.id||getLocalStorage()&&getLocalStorage().id;
+//   const role = userInfo.role||getLocalStorage()&&getLocalStorage().role;
+//   dispatch(getUserInfo(id, role));
+// };
+
+const verifyToken = (userInfo, store) => {
+  const { dispatch, getState } = store;
+  const { routing:{ locationBeforeTransitions: { pathname } } } = getState();
   const token = userInfo&&userInfo.token||getLocalStorage()&&getLocalStorage().token;
-  if (!token) browserHistory.push('/ingresar');
+  if (!token && pathname !== '/') browserHistory.push('/');
+  const id = getLocalStorage()&&getLocalStorage().id;
+  const role = getLocalStorage()&&getLocalStorage().role;
+  if (userInfo&&!userInfo.first_name&&token) dispatch(getUserInfo(id, role));
 };
 
 const authInProcess = store => {
@@ -51,8 +59,7 @@ const onEnterProfile = store => {
     const { dispatch, getState } = store;
     const { userInfo } = getState();
 
-    verifyToken(userInfo);
-    setUserInfo(userInfo, dispatch);
+    verifyToken(userInfo, store);
     dispatch(setAuthInProcess(false));
   };
 };
@@ -62,7 +69,7 @@ const onEnterKnowYourTutor = store => {
     const { getState } = store;
     const { userInfo } = getState();
 
-    verifyToken(userInfo);
+    verifyToken(userInfo, store);
   };
 };
 
@@ -93,7 +100,10 @@ const onEnterBankInfo = store => {
 
 const onEnterIndex = store => {
   return () => {
-    const { dispatch } = store;
+    const { dispatch, getState } = store;
+    const { userInfo } = getState();
+
+    verifyToken(userInfo, store);
     dispatch(setAuthInProcess(false));
   };
 };
@@ -103,8 +113,7 @@ const onEnterTutorSignupProcess = store => {
     const { dispatch, getState } = store;
     const { userInfo } = getState();
 
-    verifyToken(userInfo);
-    setUserInfo(userInfo, dispatch);
+    verifyToken(userInfo, store);
     dispatch(setAuthInProcess(false));
   };
 };
@@ -198,8 +207,13 @@ export default store => (
       component={TutorProfileContainer}
     />
     <Route
-      path="/inicio"
-      component={Dashboard}
+      path="/estudiantes/inicio"
+      component={StudentsDashboard}
+      onEnter={onEnterProfile(store)}
+    />
+    <Route
+      path="/tutores/inicio"
+      component={TutorsDashboard}
       onEnter={onEnterProfile(store)}
     />
     <Route path="*" component={NotFoundPage} />

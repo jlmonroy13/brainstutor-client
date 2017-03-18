@@ -105,17 +105,22 @@ const userLogInRequest = (dataForm, userRole, origin='') => {
 			if (response.data === 'You need to active your teacher account first.') {
 				Alert.error('Tienes que activar tu cuenta para poder ingresar.');
 			} else {
+				const id = response.data.user_id||response.data.id;
 				setTokenAndUserInfo(response.data, dispatch, userRole);
+				dispatch(getUserInfo(id, userRole));
 				if (origin !== 'modal') {
 					Alert.success('¡Bienvenido!');
 					if(userRole === 'teacher') {
-						browserHistory.push('/tutores/home');
+						const { status } = response.data;
+						if (status === 'complete') {
+							browserHistory.push('/tutores/inicio');
+						} else {
+							browserHistory.push('/tutores/home');
+						}
 					} else {
-						browserHistory.push('/inicio');
+						browserHistory.push('/estudiantes/inicio');
 					}
 				} else {
-					const id = response.data.user_id||response.data.id;
-					dispatch(getUserInfo(id, userRole));
 					Alert.success('Tu mensaje ha sido enviado.');
 				}
 			}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Dashboard extends React.Component {
+class TutorsDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +31,7 @@ class Dashboard extends React.Component {
             </div>
             <div className="dashboard__box-title">
               <img className="dashboard__icon" src={require('../assets/images/star-icon.png')} />
-              <span className="dashboard__title">Mis Tutores</span>
+              <span className="dashboard__title">Mis Estudiantes</span>
             </div>
             <div className="box box--dashboard">
               <span className="box__description">Completa tu información bancaria en la cual podamos transferir el pago por tus clases realizadas.</span>
@@ -43,4 +43,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default TutorsDashboard;
