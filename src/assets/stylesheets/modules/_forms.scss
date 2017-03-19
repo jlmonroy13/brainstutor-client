@@ -20,13 +20,13 @@
     padding: 0 $half-spacing-unit;
   }
   &__textarea {
-    border: 1px solid $gray-highlight;
+    border: none;
     resize: none;
     padding: $half-spacing-unit;
     width: 100%;
     display: block;
     border-radius: 4px;
-    min-height: 100px;
+    min-height: 200px;
     color: $gray-text;
     outline: none;
   }

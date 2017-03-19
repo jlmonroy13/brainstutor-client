@@ -16,7 +16,7 @@ class UpdateUser extends React.Component {
 			first_name: firstName,
 			last_name: lastName,
 			email,
-			profile: { university },
+			profile: { university, dob, level, phone, about, country, city, gender, address, rate },
 		} = this.props.userInfo;
 
 		this.state = {
@@ -24,15 +24,15 @@ class UpdateUser extends React.Component {
 			firstName,
 			lastName,
 			university,
-			dob: '',
-			level: '',
-			phone: '',
-			about: '',
-			country: '',
-			city: '',
-			gender: '',
-			address: '',
-			rate: '',
+			dob,
+			level,
+			phone,
+			about,
+			country,
+			city,
+			gender,
+			address,
+			rate,
 		};
 
 		this.onChangeForm = this.onChangeForm.bind(this);
@@ -109,7 +109,7 @@ class UpdateUser extends React.Component {
 									label="Fecha de Nacimiento"
 								/>
 								<div>
-									<label className="main-form__label">Nivel (Profesor/Tutor)</label>
+									<label className="main-form__label">Nivel (Profesor/Monitor)</label>
 									<select
 										className="main-form__input"
 										value={this.state.level}
@@ -118,7 +118,7 @@ class UpdateUser extends React.Component {
 									>
 										<option value="">Seleccina tu nivel</option>
 										<option value="Profesor">Profesor</option>
-										<option value="Tutor">Tutor</option>
+										<option value="Monitor">Monitor</option>
 									</select>
 								</div>
 								<TextFieldGroup
@@ -145,15 +145,6 @@ class UpdateUser extends React.Component {
 									label="Ciudad"
 								/>
 								<div>
-									<label className="main-form__label">Acerca de ti</label>
-									<textarea
-										className="main-form__input"
-										value={this.state.about}
-										onChange={this.onChangeForm}
-										name="about"
-									/>
-								</div>
-								<div>
 									<label className="main-form__label">Genero</label>
 									<select
 										className="main-form__input"
@@ -173,14 +164,43 @@ class UpdateUser extends React.Component {
 									field="address"
 									label="Dirección"
 								/>
-								<TextFieldGroup
-									value={this.state.rate}
-									onChange={this.onChangeForm}
-									type="text"
-									field="rate"
-									label="Rate"
-								/>
+								<div>
+									<label className="main-form__label">Valor hora tutoria</label>
+									{this.state.level === 'Profesor' ?
+										<select
+											className="main-form__input"
+											value={this.state.rate}
+											onChange={this.onChangeForm}
+											name="rate"
+										>
+											<option value="">Selecciona un valor</option>
+											<option value="45000">$45.000</option>
+											<option value="50000">$50.000</option>
+											<option value="55000">$55.000</option>
+										</select>
+									:
+										<select
+											className="main-form__input"
+											value={this.state.rate}
+											onChange={this.onChangeForm}
+											name="rate"
+										>
+											<option value="">Selecciona un valor</option>
+											<option value="35000">$35.000</option>
+											<option value="40000">$40.000</option>
+										</select>
+									}
+								</div>
 							</div>
+						</div>
+						<div className="push-half--ends">
+							<label className="main-form__label">Acerca de ti</label>
+							<textarea
+								className="main-form__textarea"
+								value={this.state.about}
+								onChange={this.onChangeForm}
+								name="about"
+							/>
 						</div>
 						<button
 							className={`button button--large button--block button--${colorClass} push-half--top push--bottom`}
@@ -195,7 +215,7 @@ class UpdateUser extends React.Component {
 
 UpdateUser.propTypes = {
 	type: PropTypes.string,
-	userInfo: PropTypes.shape,
+	userInfo: PropTypes.object,
 	userUpdateProfile: PropTypes.func.isRequired,
 	onLoading: PropTypes.bool,
 };

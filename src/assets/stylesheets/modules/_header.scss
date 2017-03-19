@@ -24,17 +24,17 @@
     font-weight: 400;
     position: relative;
     @include rem(17);
-    &:last-child {
-      &::before {
-        width: 1px;
-        height: 44px;
-        background-color: #fff;
-        position: absolute;
-        left: -1px;
-        top: 8px;
-        content: '';
-      }
-    }
+    // &:last-child {
+    //   &::before {
+    //     width: 1px;
+    //     height: 44px;
+    //     background-color: #fff;
+    //     position: absolute;
+    //     left: -1px;
+    //     top: 8px;
+    //     content: '';
+    //   }
+    // }
     &--alone {
       &:last-child {
         &::before {

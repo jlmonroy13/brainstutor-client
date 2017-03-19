@@ -45,6 +45,17 @@ const verifyToken = (userInfo, store) => {
   const id = getLocalStorage()&&getLocalStorage().id;
   const role = getLocalStorage()&&getLocalStorage().role;
   if (userInfo&&!userInfo.first_name&&token) dispatch(getUserInfo(id, role));
+  if (userInfo && userInfo.status !== 'complete' && pathname !== '/' && pathname !== '/tutores/home' && pathname !== '/tutores/inicio') {
+    dispatch(setAuthInProcess(true));
+  } else if (userInfo && userInfo.status !== 'complete' && pathname === '/tutores/home') {
+    dispatch(getUserInfo(id, role));
+    dispatch(setAuthInProcess(true));
+  } else if (userInfo && userInfo.status === 'complete' && pathname === '/tutores/home') {
+    browserHistory.push('/tutores/inicio');
+    dispatch(setAuthInProcess(false));
+  } else {
+    dispatch(setAuthInProcess(false));
+  }
 };
 
 const authInProcess = store => {
@@ -56,11 +67,9 @@ const authInProcess = store => {
 
 const onEnterProfile = store => {
   return () => {
-    const { dispatch, getState } = store;
+    const { getState } = store;
     const { userInfo } = getState();
-
     verifyToken(userInfo, store);
-    dispatch(setAuthInProcess(false));
   };
 };
 
@@ -100,21 +109,18 @@ const onEnterBankInfo = store => {
 
 const onEnterIndex = store => {
   return () => {
-    const { dispatch, getState } = store;
+    const { getState } = store;
     const { userInfo } = getState();
 
     verifyToken(userInfo, store);
-    dispatch(setAuthInProcess(false));
   };
 };
 
 const onEnterTutorSignupProcess = store => {
   return () => {
-    const { dispatch, getState } = store;
+    const { getState } = store;
     const { userInfo } = getState();
-
     verifyToken(userInfo, store);
-    dispatch(setAuthInProcess(false));
   };
 };
 

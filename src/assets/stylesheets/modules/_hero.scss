@@ -15,7 +15,7 @@
   &__tutor {
     background: url("../images/hero-tutor.png") center no-repeat;
     background-size: cover;
-    min-height: 410px;
+    min-height: 422px;
     position: relative;
     &-title {
       color: #fff;
@@ -35,6 +35,10 @@
         right: 180px;
       }
     }
+    &--universities {
+      background: url("../images/hero_universities.png") center no-repeat;
+      background-size: cover;
+    }
     &-title-center {
       color: #fff;
       font-family: $font-family-serif;
@@ -43,7 +47,8 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -108%);
+      width: 100%;
     }
     &-description {
       color: #fff;

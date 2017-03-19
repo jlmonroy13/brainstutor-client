@@ -73,7 +73,7 @@ const logOut = () => {
 };
 
 function catchRequestError({ response }) {
-  const errorMsg = response.data.error.user_authentication[0];
+  const errorMsg = response.data.error && response.data.error.user_authentication[0];
   Alert.error(errorMsg);
 }
 

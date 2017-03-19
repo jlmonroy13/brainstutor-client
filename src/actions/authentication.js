@@ -134,7 +134,9 @@ const getUserInfo = (id, type) => {
 			.then(successRequest);
 
 		function successRequest(response) {
+			const { data } = response;
 			dispatch(setUserInfo(response.data));
+			if (data.status === 'complete') browserHistory.push('/tutores/inicio');
 		}
 	};
 };
