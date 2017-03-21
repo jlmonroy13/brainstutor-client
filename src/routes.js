@@ -24,6 +24,8 @@ import StudentsDashboard from './components/StudentsDashboard';
 import TutorsDashboard from './components/TutorsDashboard';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 import { getTutorsRequest } from './actions/teacher';
+import moment from 'moment-timezone';
+
 
 const getLocalStorage = () => {
   const localData = localStorage.getItem('BrainsUserInfo');
@@ -31,13 +33,18 @@ const getLocalStorage = () => {
   return '';
 };
 
-// const setUserInfo = (userInfo, dispatch) => {
-//   const id = userInfo.id||getLocalStorage()&&getLocalStorage().id;
-//   const role = userInfo.role||getLocalStorage()&&getLocalStorage().role;
-//   dispatch(getUserInfo(id, role));
-// };
-
 const verifyToken = (userInfo, store) => {
+  const today = moment.tz(moment.tz.guess());
+  let localData = localStorage.getItem('BrainsUserInfo');
+  if (localData)  {
+    localData = JSON.parse(localData);
+    const loginDate = moment(localData.loginAt).tz(moment.tz.guess());
+    const diffDates = today.from(loginDate);
+    if (diffDates.indexOf('day') != -1) {
+      localStorage.setItem('BrainsUserInfo', '');
+    } 
+  }
+
   const { dispatch, getState } = store;
   const { routing:{ locationBeforeTransitions: { pathname } } } = getState();
   const token = userInfo&&userInfo.token||getLocalStorage()&&getLocalStorage().token;

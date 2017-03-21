@@ -29,5 +29,8 @@
     min-height: 200px;
     color: $gray-text;
     outline: none;
+    &--border {
+      border: 1px solid rgba($gray-text, 0.3);
+    }
   }
 }

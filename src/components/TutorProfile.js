@@ -131,7 +131,7 @@ class TutorProfile extends React.Component {
                   </div>
                   <div className="box-message__body">
                     <label className="main-form__label main-form__label--large">Tu mensaje*</label>
-                    <textarea className="main-form__textarea push--bottom" />
+                    <textarea className="main-form__textarea main-form__textarea--border push--bottom" />
                     <button
                       className="button button--dark-green button--block button--large"
                       onClick={this.handleOpenModal}

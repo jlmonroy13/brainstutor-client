@@ -8,7 +8,7 @@ import {
 	logOut,
 } from '../requests/users';
 import { pendingTask, begin, end } from 'react-redux-spinner';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 const setUserInfo = userInfo => ({
 	type: 'SET_USER_INFO',
@@ -142,11 +142,12 @@ const getUserInfo = (id, type) => {
 };
 
 function setTokenAndUserInfo(userData, dispatch, userRole) {
+	moment.tz.setDefault('America/Bogota');
 	const userInfo = {
 		...userData,
 		role: userRole,
 		id: userData.user_id || userData.id,
-		loginAt: moment(),
+		loginAt: moment.tz(moment.tz.guess()).format(),
 	};
 	delete userInfo.user_id;
 	dispatch(setUserInfo(userInfo));
