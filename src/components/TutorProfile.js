@@ -20,6 +20,7 @@ class TutorProfile extends React.Component {
       lastName: '',
       password: '',
       passwordConfirmation: '',
+      textMessage: '',
     };
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -31,10 +32,11 @@ class TutorProfile extends React.Component {
     this.onChangeFormSignup = this.onChangeFormSignup.bind(this);
     this.onSubmitFormSignup = this.onSubmitFormSignup.bind(this);
     this.validateEmptyFields = this.validateEmptyFields.bind(this);
+    this.onSendTextMessage = this.onSendTextMessage.bind(this);
   }
 
   componentWillMount() {
-    const id = this.props.params.id; 
+    const id = this.props.params.id;
     showUser(id, 'teacher').then((response) => {
       this.setState({ tutor: response.data });
     });
@@ -53,7 +55,7 @@ class TutorProfile extends React.Component {
     } else {
       Alert.error(`Debes llenar todos los campos`);
     }
-    
+
   }
 
   onChangeFormSignup(e) {
@@ -77,10 +79,22 @@ class TutorProfile extends React.Component {
     }
   }
 
+  onSendTextMessage() {
+    const { textMessage } = this.state;
+    const { userInfo } = this.props;
+    if (!textMessage) {
+      Alert.error(`¡Escribe un mensaje!`);
+    } else if (textMessage && !userInfo.first_name) {
+      this.handleOpenModal();
+    } else {
+      Alert.success(`Tu mensaje ha sido enviado`);
+    }
+  }
+
   handleOpenModal() {
     this.setState({ showModal: true });
   }
-    
+
   handleCloseModal() {
     this.setState({ showModal: false });
   }
@@ -88,19 +102,14 @@ class TutorProfile extends React.Component {
   activateLogIn() {
     this.setState({ isSignUp: false });
   }
-    
+
   activateSignUp() {
     this.setState({ isSignUp: true });
   }
 
   render() {
-    const { tutor, isSignUp } = this.state;
+    const { tutor, isSignUp, textMessage } = this.state;
     const { profile } = tutor;
-
-    // function onGoToKnowYourTutor() {
-    //   browserHistory.push('/sesion-conoce-tu-tutor');
-    //   this.handleOpenModal();
-    // }
 
     return (
       <div>
@@ -131,10 +140,14 @@ class TutorProfile extends React.Component {
                   </div>
                   <div className="box-message__body">
                     <label className="main-form__label main-form__label--large">Tu mensaje*</label>
-                    <textarea className="main-form__textarea main-form__textarea--border push--bottom" />
+                    <textarea
+                      className="main-form__textarea main-form__textarea--border push--bottom"
+                      value={textMessage}
+                      onChange={(e) => this.setState({ textMessage: e.target.value })}
+                    />
                     <button
                       className="button button--dark-green button--block button--large"
-                      onClick={this.handleOpenModal}
+                      onClick={this.onSendTextMessage}
                     >{`Contactar a ${tutor.first_name}`}</button>
                   </div>
                 </div>
@@ -150,7 +163,7 @@ class TutorProfile extends React.Component {
             </div>
           </div>
         </div>
-        <ReactModal 
+        <ReactModal
           isOpen={this.state.showModal}
           className="Modal"
           overlayClassName="Overlay"
@@ -238,7 +251,7 @@ class TutorProfile extends React.Component {
 }
 
 TutorProfile.propTypes = {
-  teachers: PropTypes.shape(),
+  userInfo: PropTypes.object,
   params: PropTypes.shape(),
   userLogInRequest: PropTypes.func.isRequired,
   userSignupRequest: PropTypes.func.isRequired,

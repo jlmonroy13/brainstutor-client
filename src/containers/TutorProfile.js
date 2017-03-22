@@ -3,12 +3,14 @@ import TutorProfile from '../components/TutorProfile';
 import { userLogInRequest, userSignupRequest } from '../actions/authentication';
 
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
 	const type = 'Tutor';
+  const { userInfo } = state;
   return {
     type,
+    userInfo,
   };
-}; 
+};
 
 const mapDispatchToProps = dispatch => ({
 	userLogInRequest: (formData) => {
