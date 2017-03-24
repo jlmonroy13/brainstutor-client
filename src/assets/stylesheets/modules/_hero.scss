@@ -178,4 +178,19 @@
       padding: $base-spacing-unit 0;
     }
   }
+  &__blue {
+    background-color: $bckg-blue;
+    text-align: center;
+    padding: $base-spacing-unit 0 $base-spacing-unit*3;
+    &-title {
+      color: #fff;
+      @include rem(40);
+    }
+    &-subtitle {
+      color: #fff;
+      @include rem(19);
+      display: block;
+      margin-bottom: $base-spacing-unit;
+    }
+  }
 }

@@ -61,4 +61,44 @@
       padding: $base-spacing-unit;
     }
   }
+  &__form {
+    background-color: $gray-highlight;
+    width: 400px;
+    margin: 0 auto $base-spacing-unit*3;
+    position: relative;
+    border-radius: 4px;
+    top: -50px;
+    &-header {
+      padding: $half-spacing-unit;
+      border-bottom: 1px solid $gray-bckgr;
+      background-color: $green;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+      &-icon {
+        max-width: 55px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: $half-spacing-unit;
+      }
+      &-title {
+        color: #fff;
+        @include rem(24);
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    &-body {
+      padding: $base-spacing-unit;
+    }
+    &-select {
+      &-group {
+        display: inline-block;
+        width: 12%;
+        &--first {
+          width: 70%;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
 }

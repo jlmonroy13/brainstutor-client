@@ -1,12 +1,11 @@
 import React, {PropTypes} from 'react';
 import Footer from './Footer';
-import { Link } from 'react-router';
 import Gravatar from 'react-gravatar';
 import { showUser } from '../requests/users';
 import ReactModal from 'react-modal';
 import TextFieldGroup from './TextFieldGroup';
 import Alert from 'react-s-alert';
-// import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 
 class TutorProfile extends React.Component {
   constructor(props) {
@@ -21,6 +20,7 @@ class TutorProfile extends React.Component {
       password: '',
       passwordConfirmation: '',
       textMessage: '',
+      goTo: '',
     };
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -33,6 +33,8 @@ class TutorProfile extends React.Component {
     this.onSubmitFormSignup = this.onSubmitFormSignup.bind(this);
     this.validateEmptyFields = this.validateEmptyFields.bind(this);
     this.onSendTextMessage = this.onSendTextMessage.bind(this);
+    this.onGoToKnowUTutor = this.onGoToKnowUTutor.bind(this);
+    this.onGoToScheduleTutor = this.onGoToScheduleTutor.bind(this);
   }
 
   componentWillMount() {
@@ -88,6 +90,26 @@ class TutorProfile extends React.Component {
       this.handleOpenModal();
     } else {
       Alert.success(`Tu mensaje ha sido enviado`);
+    }
+  }
+
+  onGoToKnowUTutor() {
+    this.setState({ goTo: 'know-your-tutor' });
+    const { userInfo } = this.props;
+    if (!userInfo.first_name) {
+      this.handleOpenModal();
+    } else {
+      browserHistory.push('/sesion-conoce-tu-tutor');
+    }
+  }
+
+  onGoToScheduleTutor() {
+    this.setState({ goTo: 'schedule-tutor' });
+    const { userInfo } = this.props;
+    if (!userInfo.first_name) {
+      this.handleOpenModal();
+    } else {
+      browserHistory.push('/estudiantes/agendar-tutoria');
     }
   }
 
@@ -153,10 +175,16 @@ class TutorProfile extends React.Component {
                 </div>
                 <div className="grid">
                   <div className="grid__item one-half">
-                    <Link className="button button--light-green button--block button--large" to="/sesion-conoce-tu-tutor">Conoce a tu tutor</Link>
+                    <button
+                      className="button button--light-green button--block button--large"
+                      onClick={this.onGoToKnowUTutor}
+                    >Conoce a tu tutor</button>
                   </div>
                   <div className="grid__item one-half">
-                    <Link className="button button--blue button--block button--large" to="/estudiantes/agendar-tutoria">Agendar Tutoria</Link>
+                    <button
+                      className="button button--blue button--block button--large"
+                      onClick={this.onGoToScheduleTutor}
+                    >Agendar Tutoria</button>
                   </div>
                 </div>
               </div>
