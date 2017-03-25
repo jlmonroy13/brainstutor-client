@@ -33,26 +33,38 @@ const getLocalStorage = () => {
   return '';
 };
 
-const verifyToken = (userInfo, store) => {
-  const today = moment.tz(moment.tz.guess());
-  let localData = localStorage.getItem('BrainsUserInfo');
+const validateTokenExpiration = (localData, today, pathname) => {
   if (localData)  {
-    localData = JSON.parse(localData);
     const loginDate = moment(localData.loginAt).tz(moment.tz.guess());
     const diffDates = today.from(loginDate);
     if (diffDates.indexOf('day') != -1) {
       localStorage.setItem('BrainsUserInfo', '');
+      if (pathname !== '/') {
+        browserHistory.push('/');
+        return;
+      }
     } 
   }
+};
 
+const verifyToken = (userInfo, store) => {
+  const today = moment.tz(moment.tz.guess());
+  const localData = getLocalStorage();
   const { dispatch, getState } = store;
   const { routing:{ locationBeforeTransitions: { pathname } } } = getState();
-  const token = userInfo&&userInfo.token||getLocalStorage()&&getLocalStorage().token;
-  if (!token && pathname !== '/') browserHistory.push('/');
-  const id = getLocalStorage()&&getLocalStorage().id;
-  const role = getLocalStorage()&&getLocalStorage().role;
+  const token = userInfo&&userInfo.token||localData&&localData.token;
+  const id = localData&&localData.id;
+  const role = localData&&localData.role;
+  if (!token && pathname !== '/') {
+    browserHistory.push('/');
+    return;
+  }
+
+  validateTokenExpiration(localData, today, pathname);
+  
   if (userInfo&&!userInfo.first_name&&token) dispatch(getUserInfo(id, role));
-  if (userInfo && userInfo.status !== 'complete' && pathname !== '/' && pathname !== '/tutores/home' && pathname !== '/tutores/inicio') {
+
+  if (userInfo && userInfo.status && userInfo.status !== 'complete' && pathname !== '/' && pathname !== '/tutores/home' && pathname !== '/tutores/inicio') {
     dispatch(setAuthInProcess(true));
   } else if (userInfo && userInfo.status !== 'complete' && pathname === '/tutores/home') {
     dispatch(getUserInfo(id, role));
