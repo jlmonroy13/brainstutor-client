@@ -1,8 +1,45 @@
+import { requestScheduleMeeting } from '../requests/schedules';
+import { pendingTask, begin, end } from 'react-redux-spinner';
+import { browserHistory } from 'react-router';
+
+const setStatusRequestFalse = () => ({
+	type: 'SET_STATUS_REQUEST',
+	payload: false,
+	[ pendingTask ]: end,
+});
+
+const setStatusRequestTrue = () => ({
+	type: 'SET_STATUS_REQUEST',
+	payload: true,
+	[ pendingTask ]: begin,
+});
+
 const setTutorInfo = tutorInfo => ({
 	type: 'SET_TUTOR_INFO',
 	payload: tutorInfo,
 });
 
+const setAppointmenteType = type => ({
+	type: 'SET_APPOINTMENT_TYPE',
+	payload: type,
+});
+
+const scheduleMeeting = (data) => {
+	return (dispatch) => {
+		dispatch(setStatusRequestTrue());
+		requestScheduleMeeting(data)
+			.then(successScheduleMeeting);
+
+		function successScheduleMeeting(response) {
+			dispatch(setStatusRequestFalse());
+			browserHistory.push('/estudiantes/tutorias-agendadas');
+			console.warn(response);
+		}
+	};
+};
+
 export {
 	setTutorInfo,
+	setAppointmenteType,
+	scheduleMeeting,
 };

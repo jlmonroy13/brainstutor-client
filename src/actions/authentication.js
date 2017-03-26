@@ -35,13 +35,14 @@ const setStatusRequestTrue = () => ({
 });
 
 const userSignupRequest = (dataForm, type, origin='') => {
-	return dispatch => {
+	return (dispatch, getState) => {
 		dispatch(setStatusRequestTrue());
 		createUser(dataForm, type)
 			.then(successSignup);
 
 		function successSignup(response) {
 			dispatch(setStatusRequestFalse());
+			const { appointmentType } = getState().scheduleTutor;
 			setTokenAndUserInfo(response.data, dispatch, type);
 			if (origin !== 'modal') {
 				Alert.success('¡Te has registrado exitosamente!');
@@ -53,7 +54,13 @@ const userSignupRequest = (dataForm, type, origin='') => {
 			} else {
 				const id = response.data.user_id||response.data.id;
 				dispatch(getUserInfo(id, type));
-				Alert.success('Tu mensaje ha sido enviado.');
+				if (!appointmentType) {
+					Alert.success('Tu mensaje ha sido enviado.');
+				} else if (appointmentType === 'free') {
+					browserHistory.push('/estudiantes/conoce-tu-tutor');
+				} else if (appointmentType === 'paid') {
+					browserHistory.push('/estudiantes/agendar-tutoria');
+				}
 			}
 		}
 	};
@@ -95,13 +102,14 @@ const userUpdateProfileRequest = (dataForm, type) => {
 };
 
 const userLogInRequest = (dataForm, userRole, origin='') => {
-	return dispatch => {
+	return (dispatch, getState) => {
 		dispatch(setStatusRequestTrue());
 		logIn(dataForm, userRole)
 			.then(successLogIn);
 
 		function successLogIn(response) {
 			dispatch(setStatusRequestFalse());
+			const { appointmentType } = getState().scheduleTutor;
 			if (response.data === 'You need to active your teacher account first.') {
 				Alert.error('Tienes que activar tu cuenta para poder ingresar.');
 			} else {
@@ -121,7 +129,13 @@ const userLogInRequest = (dataForm, userRole, origin='') => {
 						browserHistory.push('/estudiantes/inicio');
 					}
 				} else {
-					Alert.success('Tu mensaje ha sido enviado.');
+					if (!appointmentType) {
+						Alert.success('Tu mensaje ha sido enviado.');
+					} else if (appointmentType === 'free') {
+						browserHistory.push('/estudiantes/conoce-tu-tutor');
+					} else if (appointmentType === 'paid') {
+						browserHistory.push('/estudiantes/agendar-tutoria');
+					}
 				}
 			}
 		}

@@ -1,0 +1,75 @@
+.schedule-list {
+	background-color: $gray-bckgr;
+	&__box {
+		background-color: #fff;
+		margin: $base-spacing-unit 0 $base-spacing-unit*5;
+	}
+	&__menu {
+		&-btn {
+			width: 50%;
+			padding-top: $half-spacing-unit;
+			padding-bottom: $half-spacing-unit;
+			background-color: #fff;
+			border-radius: 0;
+			@include rem(17);
+			&:hover {
+				color: #000;
+			}
+			&.disable {
+				background-color: $gray-highlight;
+				&:hover {
+					color: #fff;
+				}
+			}
+		}
+	}
+	&__body {
+		padding: $base-spacing-unit;
+	}
+	&__photo {
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: $half-spacing-unit;
+	}
+	&__icon {
+		width: 20px;
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: $half-spacing-unit;
+	}
+	&__description {
+		display: inline-block;
+		vertical-align: middle;
+		&-txt {
+			margin: 0;
+		}
+		&-highlight {
+			color: $blue;
+			display: inline-block;
+			vertical-align: middle;
+			max-width: 170px;
+			@include rem(14);
+			line-height: 1;
+		}
+	}
+	&__link {
+		cursor: pointer;
+	}
+	&__row {
+		border-bottom: 1px solid $gray-highlight;
+		padding: $half-spacing-unit;
+		&:first-child {
+			width: 32%;
+		}
+		&:nth-child(2) {
+			width: 20%;
+		}
+	}
+	&__table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+}

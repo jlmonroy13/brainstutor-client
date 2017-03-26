@@ -99,16 +99,18 @@ class TutorProfile extends React.Component {
     const { tutor } = this.state;
     delete tutor.bank_information;
     this.props.storeTutorInfo(tutor);
+    this.props.onSetAppointmenteType('free');
     localStorage.setItem('tutorInfo', JSON.stringify(tutor));
     if (!userInfo.first_name) {
       this.handleOpenModal();
     } else {
-      browserHistory.push('/sesion-conoce-tu-tutor');
+      browserHistory.push('/estudiantes/conoce-tu-tutor');
     }
   }
 
   onGoToScheduleTutor() {
     this.setState({ goTo: 'schedule-tutor' });
+    this.props.onSetAppointmenteType('paid');
     const { userInfo } = this.props;
     if (!userInfo.first_name) {
       this.handleOpenModal();
@@ -288,6 +290,7 @@ TutorProfile.propTypes = {
   userLogInRequest: PropTypes.func.isRequired,
   userSignupRequest: PropTypes.func.isRequired,
   storeTutorInfo: PropTypes.func.isRequired,
+  onSetAppointmenteType: PropTypes.func.isRequired,
 };
 
 export default TutorProfile;

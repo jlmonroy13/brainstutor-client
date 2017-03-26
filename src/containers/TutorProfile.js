@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import TutorProfile from '../components/TutorProfile';
 import { userLogInRequest, userSignupRequest } from '../actions/authentication';
-import { setTutorInfo } from '../actions/scheduleTutor';
+import { setTutorInfo, setAppointmenteType } from '../actions/scheduleTutor';
 
 
 const mapStateToProps = (state) => {
@@ -22,6 +22,9 @@ const mapDispatchToProps = dispatch => ({
 	},
 	storeTutorInfo: (tutorInfo) => {
 		dispatch(setTutorInfo(tutorInfo));
+	},
+	onSetAppointmenteType: (type) => {
+		dispatch(setAppointmenteType(type));
 	},
 });
 

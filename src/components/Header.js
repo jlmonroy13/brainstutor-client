@@ -43,7 +43,7 @@ class Header extends React.Component {
 							<Link className="button button--link-upper button--link-gray" to="/estudiantes/inicio">Inicio</Link>
 							<Link className="button button--link-upper button--link-gray" to="/ver-tutores">Ver tutores</Link>
 							<Link className="button button--link-upper button--link-gray" to="/">Mensajes</Link>
-							<Link className="button button--link-upper button--link-gray" to="/">Tutorias agendadas</Link>
+							<Link className="button button--link-upper button--link-gray" to="/estudiantes/tutorias-agendadas">Tutorias agendadas</Link>
 						</span>
 					);
 				case 'teacher':
@@ -99,10 +99,10 @@ class Header extends React.Component {
 								: role === 'teacher' && !activated ?
 									<span>
 										<Link className="button button--blue header__button" to="/ingresar">Ingresar</Link>
-										<button
+										<Link
 											className="button button--dark-green header__button"
 											to="/estudiantes/registrarse"
-										>Registrarse</button>
+										>Registrarse</Link>
 									</span>
 								:
 									<span>

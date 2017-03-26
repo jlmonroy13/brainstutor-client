@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Footer from './Footer';
 import TextFieldGroup from './TextFieldGroup';
+import Alert from 'react-s-alert';
 
 class KnowYourTutor extends React.Component {
   constructor(props) {
@@ -13,8 +14,39 @@ class KnowYourTutor extends React.Component {
       minute: '',
       message: '',
     };
+
+    this.onRenderDates = this.onRenderDates.bind(this);
+    this.onChangeForm = this.onChangeForm.bind(this);
+    this.onSubmitForm = this.onSubmitForm.bind(this);
   }
 
+  onRenderDates() {
+    const { dates } = this.props;
+    return dates.map((date) => (
+      <option key={date} value={date.substring(0,10)}>{date.substring(0,10)}</option>
+    ));
+  }
+
+  onChangeForm(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmitForm(e) {
+    e.preventDefault();
+    const { date, hour, minute } = this.state;
+    const { teacherId, studentId, onScheduleMeeting } = this.props;
+    const data = {
+      teacherId,
+      studentId,
+      startAt: `${date}T${hour}:${minute}:00-05:00`,
+      modality: 'free',
+    };
+    if(!date, !hour, !minute) {
+      Alert.error('Debers seleccionar fecha y hora.');
+    } else {
+      onScheduleMeeting(data);
+    }
+  }
 
   render() {
     return (
@@ -29,7 +61,7 @@ class KnowYourTutor extends React.Component {
             <span className="box__form-header-title">Tu entrevista gratuita</span>
           </div>
           <div className="box__form-body">
-            <form autoComplete="off">
+            <form onSubmit={this.onSubmitForm} autoComplete="off">
               <TextFieldGroup
                 value={this.state.tutorName}
                 onChange={this.onChangeForm}
@@ -47,10 +79,7 @@ class KnowYourTutor extends React.Component {
                   name="date"
                 >
                   <option value="">Selecciona una fecha</option>
-                  <option value="27 Marzo 2017">27 Marzo 2017</option>
-                  <option value="28 Marzo 2017">28 Marzo 2017</option>
-                  <option value="29 Marzo 2017">29 Marzo 2017</option>
-                  <option value="30 Marzo 2017">30 Marzo 2017</option>
+                  {this.onRenderDates()}
                 </select>
               </div>
               <div className="box__form-select-group">
@@ -117,7 +146,10 @@ class KnowYourTutor extends React.Component {
 KnowYourTutor.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
-  id: PropTypes.string,
+  teacherId: PropTypes.number,
+  studentId: PropTypes.number,
+  dates: PropTypes.array,
+  onScheduleMeeting: PropTypes.func.isRequired,
 };
 
 export default KnowYourTutor;

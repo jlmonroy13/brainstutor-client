@@ -20,6 +20,7 @@ import LogInIndex from './components/LogInIndex';
 import AfterSignupTeacher from './components/AfterSignupTeacher';
 import StepToStepInfo from './components/StepToStepInfo';
 import ScheduleTutor from './components/ScheduleTutor';
+import ScheduleList from './components/ScheduleList';
 import StudentsDashboard from './components/StudentsDashboard';
 import TutorsDashboard from './components/TutorsDashboard';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
@@ -218,7 +219,7 @@ export default store => (
       onEnter={onEnterFindTutor(store)}
     />
     <Route
-      path="/sesion-conoce-tu-tutor"
+      path="/estudiantes/conoce-tu-tutor"
       component={KnowYourTutorContainer}
       onEnter={onEnterKnowYourTutor(store)}
     />
@@ -240,6 +241,11 @@ export default store => (
       path="/tutores/inicio"
       component={TutorsDashboard}
       onEnter={onEnterProfile(store)}
+    />
+    <Route
+      path="/estudiantes/tutorias-agendadas"
+      component={ScheduleList}
+      onEnter={onEnterKnowYourTutor(store)}
     />
     <Route path="*" component={NotFoundPage} />
   </Route>
