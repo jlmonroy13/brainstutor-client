@@ -96,6 +96,10 @@ class TutorProfile extends React.Component {
   onGoToKnowUTutor() {
     this.setState({ goTo: 'know-your-tutor' });
     const { userInfo } = this.props;
+    const { tutor } = this.state;
+    delete tutor.bank_information;
+    this.props.storeTutorInfo(tutor);
+    localStorage.setItem('tutorInfo', JSON.stringify(tutor));
     if (!userInfo.first_name) {
       this.handleOpenModal();
     } else {
@@ -283,6 +287,7 @@ TutorProfile.propTypes = {
   params: PropTypes.shape(),
   userLogInRequest: PropTypes.func.isRequired,
   userSignupRequest: PropTypes.func.isRequired,
+  storeTutorInfo: PropTypes.func.isRequired,
 };
 
 export default TutorProfile;

@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Footer from './Footer';
 import TextFieldGroup from './TextFieldGroup';
 
 class KnowYourTutor extends React.Component {
   constructor(props) {
     super(props);
+    const { firstName, lastName } = this.props;
     this.state = {
-      tutorName: '',
+      tutorName: firstName + ' ' +  lastName,
       date: '',
       hour: '',
       minute: '',
@@ -35,6 +36,7 @@ class KnowYourTutor extends React.Component {
                 type="text"
                 field="tutorName"
                 label="Tu Tutor"
+                disabled={true}
               />
               <div className="box__form-select-group box__form-select-group--first">
                 <label className="main-form__label">Fecha</label>
@@ -111,5 +113,11 @@ class KnowYourTutor extends React.Component {
     );
   }
 }
+
+KnowYourTutor.propTypes = {
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  id: PropTypes.string,
+};
 
 export default KnowYourTutor;

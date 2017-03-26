@@ -12,13 +12,13 @@ import UpdateTutorContainer from './containers/UpdateTutor';
 import UpdateBankInfoContainer from './containers/UpdateBankInfo';
 import TutorProfileContainer from './containers/TutorProfile';
 import FindTutorContainer from './containers/FindTutor';
+import KnowYourTutorContainer from './containers/KnowYourTutor';
 import HomePage from './components/HomePage';
 import NotFoundPage from './components/NotFoundPage';
 import SignupIndex from './components/SignupIndex';
 import LogInIndex from './components/LogInIndex';
 import AfterSignupTeacher from './components/AfterSignupTeacher';
 import StepToStepInfo from './components/StepToStepInfo';
-import KnowYourTutor from './components/KnowYourTutor';
 import ScheduleTutor from './components/ScheduleTutor';
 import StudentsDashboard from './components/StudentsDashboard';
 import TutorsDashboard from './components/TutorsDashboard';
@@ -96,7 +96,7 @@ const onEnterKnowYourTutor = store => {
   return () => {
     const { getState } = store;
     const { userInfo } = getState();
-
+    
     verifyToken(userInfo, store);
   };
 };
@@ -219,7 +219,7 @@ export default store => (
     />
     <Route
       path="/sesion-conoce-tu-tutor"
-      component={KnowYourTutor}
+      component={KnowYourTutorContainer}
       onEnter={onEnterKnowYourTutor(store)}
     />
     <Route

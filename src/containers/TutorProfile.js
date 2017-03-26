@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import TutorProfile from '../components/TutorProfile';
 import { userLogInRequest, userSignupRequest } from '../actions/authentication';
+import { setTutorInfo } from '../actions/scheduleTutor';
 
 
 const mapStateToProps = (state) => {
@@ -18,6 +19,9 @@ const mapDispatchToProps = dispatch => ({
 	},
 	userSignupRequest: (formData) => {
 		dispatch(userSignupRequest(formData, 'student', 'modal'));
+	},
+	storeTutorInfo: (tutorInfo) => {
+		dispatch(setTutorInfo(tutorInfo));
 	},
 });
 
