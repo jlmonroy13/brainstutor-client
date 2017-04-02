@@ -1,5 +1,6 @@
 import { brains } from '../utils/requests';
 import Alert from 'react-s-alert';
+import { } from '../requests/users';
 
 const requestScheduleMeeting = (data) => {
   const { teacherId, studentId, startAt, modality } = data;
@@ -8,6 +9,13 @@ const requestScheduleMeeting = (data) => {
     .catch(catchRequestError);
 };
 
+const fetchScheduleList = (type) => {
+  return brains
+    .get(`/${type}s/schedules`)
+    .catch(catchRequestError);
+};
+
+
 function catchRequestError({ response }) {
   const errorMsg = response.data.error && response.data.error.user_authentication[0];
   Alert.error(errorMsg);
@@ -15,4 +23,5 @@ function catchRequestError({ response }) {
 
 export {
   requestScheduleMeeting,
+  fetchScheduleList,
 };

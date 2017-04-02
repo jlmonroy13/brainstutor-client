@@ -55,7 +55,7 @@ class Header extends React.Component {
 								<Link className="button button--link-upper button--link-gray" to="/tutores/home">Inicio</Link>
 							}
 							<Link className="button button--link-upper button--link-gray" to="/">Mensajes</Link>
-							<Link className="button button--link-upper button--link-gray" to="/">Tutorias agendadas</Link>
+							<Link className="button button--link-upper button--link-gray" to="/tutores/tutorias-agendadas">Tutorias agendadas</Link>
 							<Link className="button button--link-upper button--link-gray" to="/">Mis reportes</Link>
 						</span>
 					);
@@ -72,12 +72,7 @@ class Header extends React.Component {
 
 		return (
 			<nav className={`header ${headerClass}`}>
-				<IndexLink to="/">
-					<img
-						className={`main-logo header__logo ${imageClass}`}
-						src={require('../assets/images/logo-brains.png')}
-					/>
-				</IndexLink>
+				<IndexLink to="/" className={`main-logo header__logo ${imageClass}`} />
 				{!authInProcess ?
 					<div className="navbar navbar--right">
 						<div className="inline-block push--right soft--right">

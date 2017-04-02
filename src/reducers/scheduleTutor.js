@@ -10,6 +10,11 @@ export default function scheduleTutorReducer(state = {}, action) {
 				...state,
 				appointmentType: action.payload,
 			};
+		case 'SET_SCHEDULE_LIST':
+			return {
+				...state,
+				scheduleList: action.payload,
+			};
 		default:
 			return state;
 	}

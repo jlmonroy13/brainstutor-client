@@ -5,10 +5,9 @@ import { scheduleMeeting } from '../actions/scheduleTutor';
 
 const create10Dates = () => {
   let dates = [];
-  for (let i = 1; i < 11; i++) {
-    dates.push(moment.tz(moment.tz.guess()).day(i).format());
+  for (let i = 0; i < 10; i++) {
+    dates.push(moment.tz(moment.tz.guess()).add(i, 'days').format());
   }
-
   return dates;
 };
 

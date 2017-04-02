@@ -142,15 +142,23 @@ const userLogInRequest = (dataForm, userRole, origin='') => {
 	};
 };
 
-const getUserInfo = (id, type) => {
+const getUserInfo = (id, type, callback) => {
 	return dispatch => {
 		showUser(id, type)
 			.then(successRequest);
 
 		function successRequest(response) {
 			const { data } = response;
-			dispatch(setUserInfo(response.data));
-			if (data.status === 'complete') browserHistory.push('/tutores/inicio');
+			if (data.status === 'complete') {
+				browserHistory.push('/tutores/inicio');
+				dispatch(setUserInfo(data));
+				dispatch(setAuthInProcess(false));
+			}
+			if (!data.status) {
+				dispatch(setUserInfo(data));
+				dispatch(setAuthInProcess(false));
+			}
+			callback();
 		}
 	};
 };

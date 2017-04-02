@@ -10,8 +10,8 @@ class KnowYourTutor extends React.Component {
     this.state = {
       tutorName: firstName + ' ' +  lastName,
       date: '',
-      hour: '',
-      minute: '',
+      hour: '07',
+      minute: '00',
       message: '',
     };
 

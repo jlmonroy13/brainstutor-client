@@ -1,6 +1,7 @@
-import { requestScheduleMeeting } from '../requests/schedules';
+import { requestScheduleMeeting, fetchScheduleList } from '../requests/schedules';
 import { pendingTask, begin, end } from 'react-redux-spinner';
 import { browserHistory } from 'react-router';
+
 
 const setStatusRequestFalse = () => ({
 	type: 'SET_STATUS_REQUEST',
@@ -24,6 +25,11 @@ const setAppointmenteType = type => ({
 	payload: type,
 });
 
+const setScheduleList = list => ({
+	type: 'SET_SCHEDULE_LIST',
+	payload: list,
+});
+
 const scheduleMeeting = (data) => {
 	return (dispatch) => {
 		dispatch(setStatusRequestTrue());
@@ -38,8 +44,22 @@ const scheduleMeeting = (data) => {
 	};
 };
 
+const fetchingScheduleList = (type) => {
+	return (dispatch) => {
+		dispatch(setStatusRequestTrue());
+		fetchScheduleList(type)
+			.then(successFetchScheduleList);
+
+		function successFetchScheduleList({ data: scheduleList }) {
+			dispatch(setScheduleList(scheduleList));
+			dispatch(setStatusRequestFalse());
+		}
+	}
+};
+
 export {
 	setTutorInfo,
 	setAppointmenteType,
 	scheduleMeeting,
+	fetchingScheduleList,
 };

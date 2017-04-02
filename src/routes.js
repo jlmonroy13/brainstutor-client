@@ -13,6 +13,7 @@ import UpdateBankInfoContainer from './containers/UpdateBankInfo';
 import TutorProfileContainer from './containers/TutorProfile';
 import FindTutorContainer from './containers/FindTutor';
 import KnowYourTutorContainer from './containers/KnowYourTutor';
+import ScheduleListContainer from './containers/ScheduleList';
 import HomePage from './components/HomePage';
 import NotFoundPage from './components/NotFoundPage';
 import SignupIndex from './components/SignupIndex';
@@ -20,7 +21,6 @@ import LogInIndex from './components/LogInIndex';
 import AfterSignupTeacher from './components/AfterSignupTeacher';
 import StepToStepInfo from './components/StepToStepInfo';
 import ScheduleTutor from './components/ScheduleTutor';
-import ScheduleList from './components/ScheduleList';
 import StudentsDashboard from './components/StudentsDashboard';
 import TutorsDashboard from './components/TutorsDashboard';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
@@ -34,7 +34,7 @@ const getLocalStorage = () => {
   return '';
 };
 
-const validateTokenExpiration = (localData, today, pathname) => {
+const validateTokenExpiration = (localData, today, pathname, callback) => {
   if (localData)  {
     const loginDate = moment(localData.loginAt).tz(moment.tz.guess());
     const diffDates = today.from(loginDate);
@@ -42,13 +42,14 @@ const validateTokenExpiration = (localData, today, pathname) => {
       localStorage.setItem('BrainsUserInfo', '');
       if (pathname !== '/') {
         browserHistory.push('/');
+        callback()
         return;
       }
     } 
   }
 };
 
-const verifyToken = (userInfo, store) => {
+const verifyToken = (userInfo, store, callback) => {
   const today = moment.tz(moment.tz.guess());
   const localData = getLocalStorage();
   const { dispatch, getState } = store;
@@ -56,25 +57,34 @@ const verifyToken = (userInfo, store) => {
   const token = userInfo&&userInfo.token||localData&&localData.token;
   const id = localData&&localData.id;
   const role = localData&&localData.role;
+
   if (!token && pathname !== '/') {
     browserHistory.push('/');
+    callback();
     return;
   }
 
-  validateTokenExpiration(localData, today, pathname);
+  validateTokenExpiration(localData, today, pathname, callback);
   
-  if (userInfo&&!userInfo.first_name&&token) dispatch(getUserInfo(id, role));
-
+  if (userInfo&&!userInfo.first_name&&token)  {
+    dispatch(getUserInfo(id, role, callback));
+    return;
+  }
   if (userInfo && userInfo.status && userInfo.status !== 'complete' && pathname !== '/' && pathname !== '/tutores/home' && pathname !== '/tutores/inicio') {
     dispatch(setAuthInProcess(true));
+    callback();
   } else if (userInfo && userInfo.status !== 'complete' && pathname === '/tutores/home') {
-    dispatch(getUserInfo(id, role));
+    dispatch(getUserInfo(id, role, callback));
     dispatch(setAuthInProcess(true));
+    return;
   } else if (userInfo && userInfo.status === 'complete' && pathname === '/tutores/home') {
     browserHistory.push('/tutores/inicio');
     dispatch(setAuthInProcess(false));
+    callback();
+    return;
   } else {
     dispatch(setAuthInProcess(false));
+    callback();
   }
 };
 
@@ -86,19 +96,19 @@ const authInProcess = store => {
 };
 
 const onEnterProfile = store => {
-  return () => {
+  return (nextState, replace, callback) => {
     const { getState } = store;
     const { userInfo } = getState();
-    verifyToken(userInfo, store);
+    verifyToken(userInfo, store, callback);
   };
 };
 
 const onEnterKnowYourTutor = store => {
-  return () => {
+  return (nextState, replace, callback) => {
     const { getState } = store;
     const { userInfo } = getState();
     
-    verifyToken(userInfo, store);
+    verifyToken(userInfo, store, callback);
   };
 };
 
@@ -112,9 +122,9 @@ const onEnterTutorProfile = store => {
 };
 
 const onEnterFindTutor = store => {
-  return () => {
+  return (nextState, replace, callback) => {
     const { dispatch } = store;
-    dispatch(getTutorsRequest());
+    dispatch(getTutorsRequest(callback));
   };
 };
 
@@ -128,19 +138,19 @@ const onEnterBankInfo = store => {
 };
 
 const onEnterIndex = store => {
-  return () => {
+  return (nextState, replace, callback) => {
     const { getState } = store;
     const { userInfo } = getState();
 
-    verifyToken(userInfo, store);
+    verifyToken(userInfo, store, callback);
   };
 };
 
 const onEnterTutorSignupProcess = store => {
-  return () => {
+  return (nextState, replace, callback) => {
     const { getState } = store;
     const { userInfo } = getState();
-    verifyToken(userInfo, store);
+    verifyToken(userInfo, store, callback);
   };
 };
 
@@ -244,7 +254,12 @@ export default store => (
     />
     <Route
       path="/estudiantes/tutorias-agendadas"
-      component={ScheduleList}
+      component={ScheduleListContainer}
+      onEnter={onEnterKnowYourTutor(store)}
+    />
+    <Route
+      path="/tutores/tutorias-agendadas"
+      component={ScheduleListContainer}
       onEnter={onEnterKnowYourTutor(store)}
     />
     <Route path="*" component={NotFoundPage} />

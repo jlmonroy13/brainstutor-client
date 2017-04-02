@@ -41,7 +41,7 @@ const updateBankInfoRequest = (dataForm) => {
 	};
 };
 
-const getTutorsRequest = () => {
+const getTutorsRequest = (callback) => {
 	return (dispatch) => {
 		dispatch(setStatusRequestTrue());
 		showTeachers().then(successGetTutors);
@@ -49,6 +49,7 @@ const getTutorsRequest = () => {
 		function successGetTutors(tutors) {
 			dispatch(setStatusRequestFalse());
 			dispatch(setTeachers(tutors.data));
+			callback();
 		}
 	};
 };
