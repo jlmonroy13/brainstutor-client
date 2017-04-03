@@ -23,6 +23,7 @@ import StepToStepInfo from './components/StepToStepInfo';
 import ScheduleTutor from './components/ScheduleTutor';
 import StudentsDashboard from './components/StudentsDashboard';
 import TutorsDashboard from './components/TutorsDashboard';
+import Example from './components/PruebaAutoComplete';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 import { getTutorsRequest } from './actions/teacher';
 import moment from 'moment-timezone';
@@ -261,6 +262,10 @@ export default store => (
       path="/tutores/tutorias-agendadas"
       component={ScheduleListContainer}
       onEnter={onEnterKnowYourTutor(store)}
+    />
+    <Route
+      path="/testing"
+      component={Example}
     />
     <Route path="*" component={NotFoundPage} />
   </Route>
