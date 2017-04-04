@@ -1,18 +1,76 @@
 import React, {PropTypes} from 'react';
 import Footer from './Footer';
 import ObjectUtils from '../utils/object';
+import subjects from '../consts/subjects';
 import Gravatar from 'react-gravatar';
 import { Link } from 'react-router';
+import Autosuggest from 'react-autosuggest';
 
 class FindTutor extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      value: '',
+      suggestions: []
+    };
+
+    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
+    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
+
+  onChange(event, { newValue }) {
+    this.setState({
+      value: newValue
+    });
+  }
+
+  // Autosuggest will call this function every time you need to update suggestions.
+  // You already implemented this logic above, so just use it.
+  onSuggestionsFetchRequested({ value }) {
+    this.setState({
+      suggestions: this.getSuggestions(value)
+    });
+  }
+
+  // Autosuggest will call this function every time you need to clear suggestions.
+  onSuggestionsClearRequested() {
+    this.setState({
+      suggestions: []
+    });
+  }
+
+  getSuggestions(value) {
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+
+    return inputLength === 0 ? [] : subjects.filter(lang =>
+      lang.name.toLowerCase().slice(0, inputLength) === inputValue
+    );
+  }
+
+  getSuggestionValue(suggestion) {
+    return suggestion.name;
+  } 
 
   render() {
     const { teachers } = this.props;
+    const { value, suggestions } = this.state;
     const teacherArray = ObjectUtils.toArray(teachers);
+
+    const inputProps = {
+      placeholder: 'Buscar por materia',
+      value,
+      onChange: this.onChange
+    };
+
+    const renderSuggestion = suggestion => (
+      <div>
+        {suggestion.name}
+      </div>
+    );
 
     function renderTeacher(teacher) {
       return (
@@ -47,9 +105,15 @@ class FindTutor extends React.Component {
           </div>
         </div>
         <div className="hero__find-tutor-selector">
-          <input className="hero__tutor-input" />
-          <img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon.png')} />
-          <span className="hero__tutor-selector-button">Tema</span>
+          <Autosuggest
+            suggestions={suggestions}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            getSuggestionValue={this.getSuggestionValue}
+            renderSuggestion={renderSuggestion}
+            inputProps={inputProps}
+          />
+          <span className="hero__tutor-selector-button">Buscar</span>
         </div>
         <div className="container container--small">
           <div className="cards-container">

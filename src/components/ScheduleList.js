@@ -24,10 +24,10 @@ class ScheduleList extends Component {
     return (
       <tr key={schedule.id}>
         <td className="schedule-list__row">
-          <Gravatar  className="schedule-list__photo" email={`hola${schedule.id}@hola.com`} size={50} />
+          <Gravatar  className="schedule-list__photo" email={schedule.teacher_email} size={50} />
           <div className="schedule-list__description">
             <p className="schedule-list__description-txt">{moment(schedule.start_at.substring(0,10)).tz(moment.tz.guess()).format('ddd, MMMM Do YYYY')}</p>
-            <p className="schedule-list__description-txt">{schedule.start_at.substring(11,16)} - <Link className="schedule-list__link">{schedule.id}</Link></p>
+            <p className="schedule-list__description-txt">{schedule.start_at.substring(11,16)} - <Link className="schedule-list__link">{schedule.teacher_name}</Link></p>
           </div>
         </td>
         <td className="schedule-list__row">
