@@ -21,13 +21,14 @@ class ScheduleList extends Component {
   }
 
   onRenderSchedules(schedule) {
+    const { userInfo: { role } } = this.props;
     return (
       <tr key={schedule.id}>
         <td className="schedule-list__row">
-          <Gravatar  className="schedule-list__photo" email={schedule.teacher_email} size={50} />
+          <Gravatar  className="schedule-list__photo" email={role === 'student' ? schedule.teacher_email : schedule.student_email} size={50} />
           <div className="schedule-list__description">
             <p className="schedule-list__description-txt">{moment(schedule.start_at.substring(0,10)).tz(moment.tz.guess()).format('ddd, MMMM Do YYYY')}</p>
-            <p className="schedule-list__description-txt">{schedule.start_at.substring(11,16)} - <Link className="schedule-list__link">{schedule.teacher_name}</Link></p>
+            <p className="schedule-list__description-txt">{schedule.start_at.substring(11,16)} - <Link className="schedule-list__link">{role === 'student' ? schedule.teacher_name : schedule.student_name}</Link></p>
           </div>
         </td>
         <td className="schedule-list__row">

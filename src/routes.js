@@ -21,6 +21,7 @@ import LogInIndex from './components/LogInIndex';
 import AfterSignupTeacher from './components/AfterSignupTeacher';
 import StepToStepInfo from './components/StepToStepInfo';
 import ScheduleTutor from './components/ScheduleTutor';
+import Prices from './components/Prices';
 import StudentsDashboard from './components/StudentsDashboard';
 import TutorsDashboard from './components/TutorsDashboard';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
@@ -45,7 +46,7 @@ const validateTokenExpiration = (localData, today, pathname, callback) => {
         callback()
         return;
       }
-    } 
+    }
   }
 };
 
@@ -65,7 +66,7 @@ const verifyToken = (userInfo, store, callback) => {
   }
 
   validateTokenExpiration(localData, today, pathname, callback);
-  
+
   if (userInfo&&!userInfo.first_name&&token)  {
     dispatch(getUserInfo(id, role, callback));
     return;
@@ -107,7 +108,7 @@ const onEnterKnowYourTutor = store => {
   return (nextState, replace, callback) => {
     const { getState } = store;
     const { userInfo } = getState();
-    
+
     verifyToken(userInfo, store, callback);
   };
 };
@@ -261,6 +262,10 @@ export default store => (
       path="/tutores/tutorias-agendadas"
       component={ScheduleListContainer}
       onEnter={onEnterKnowYourTutor(store)}
+    />
+    <Route
+      path="/precios"
+      component={Prices}
     />
     <Route path="*" component={NotFoundPage} />
   </Route>

@@ -62,6 +62,7 @@ class Header extends React.Component {
 				default:
 					return (
 						<span>
+							<Link className="button button--link-upper button--link-gray" to="/precios">Precios</Link>
 							<Link className="button button--link-upper button--link-gray" to="/ver-tutores">Ver tutores</Link>
 							<Link className="button button--link-upper button--link-gray" to="/como-funciona">¿Cómo funciona?</Link>
 							<Link className="button button--link-upper button--link-gray" to="/como-ser-tutor">¿Cómo ser Tutor?</Link>
@@ -90,7 +91,7 @@ class Header extends React.Component {
 										>
 											<button className="button button--blue header__button header__button--alone">{firstName}</button>
 										</Dropdown>
-									</span>  
+									</span>
 								: role === 'teacher' && !activated ?
 									<span>
 										<Link className="button button--blue header__button" to="/ingresar">Ingresar</Link>
