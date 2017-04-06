@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Gravatar from 'react-gravatar';
 import TextFieldGroup from './TextFieldGroup';
 import Alert from 'react-s-alert';
 
@@ -64,6 +65,13 @@ class UpdateUser extends React.Component {
 						<h1 className="section__auth-title section__auth-title--form">Perfil</h1>
 						<div className="grid">
 							<div className="grid__item one-half">
+								<div className="gravatar-section">
+									<Gravatar email={this.state.email} size={120} className="profile__main-image" />
+									<div className="gravatar-section__description">
+										<p className="hola">Imagen cargada por Gravatar.</p>
+										<a href="http://gravatar.com" target="_blank" className="gravatar-section__button">Cambiar</a>
+									</div>
+								</div>
 								<TextFieldGroup
 									value={this.state.firstName}
 									onChange={this.onChangeForm}
@@ -108,6 +116,8 @@ class UpdateUser extends React.Component {
 									field="dob"
 									label="Fecha de Nacimiento"
 								/>
+							</div>
+							<div className="grid__item one-half">
 								<div>
 									<label className="main-form__label">Nivel (Profesor/Monitor)</label>
 									<select
@@ -128,8 +138,6 @@ class UpdateUser extends React.Component {
 									field="phone"
 									label="Celular"
 								/>
-							</div>
-							<div className="grid__item one-half">
 								<TextFieldGroup
 									value={this.state.country}
 									onChange={this.onChangeForm}

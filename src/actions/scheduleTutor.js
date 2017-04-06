@@ -36,10 +36,9 @@ const scheduleMeeting = (data) => {
 		requestScheduleMeeting(data)
 			.then(successScheduleMeeting);
 
-		function successScheduleMeeting(response) {
+		function successScheduleMeeting() {
 			dispatch(setStatusRequestFalse());
 			browserHistory.push('/estudiantes/tutorias-agendadas');
-			console.warn(response);
 		}
 	};
 };
@@ -54,7 +53,7 @@ const fetchingScheduleList = (type) => {
 			dispatch(setScheduleList(scheduleList));
 			dispatch(setStatusRequestFalse());
 		}
-	}
+	};
 };
 
 export {

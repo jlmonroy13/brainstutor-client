@@ -43,7 +43,7 @@ const validateTokenExpiration = (localData, today, pathname, callback) => {
       localStorage.setItem('BrainsUserInfo', '');
       if (pathname !== '/') {
         browserHistory.push('/');
-        callback()
+        callback();
         return;
       }
     }

@@ -22,14 +22,14 @@ class Header extends React.Component {
 		};
 		const studentMenu = (
 			<Menu className="dropdown-header__menu" onClick={logOutFn} >
-				<MenuItem key="1">Perfil</MenuItem>
+				<MenuItem key="1"><Link to="/perfil-estudiante">Perfil</Link></MenuItem>
 				<MenuItem key="2">Facturas</MenuItem>
 				<MenuItem key="3">Salir</MenuItem>
 			</Menu>
 		);
 		const teacherMenu = (
 			<Menu className="dropdown-header__menu" onClick={logOutFn} >
-				<MenuItem key="1">Perfil</MenuItem>
+				<MenuItem key="1"><Link to="/tutores/perfil">Perfil</Link></MenuItem>
 				<MenuItem key="2">Cuenta Bancaria</MenuItem>
 				<MenuItem key="3">Salir</MenuItem>
 			</Menu>

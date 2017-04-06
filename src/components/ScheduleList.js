@@ -10,7 +10,7 @@ class ScheduleList extends Component {
 
     this.state = {
       scheduleList: [],
-    }
+    };
 
     this.onRenderSchedules = this.onRenderSchedules.bind(this);
   }
@@ -43,12 +43,11 @@ class ScheduleList extends Component {
           <button className="button button--blue">Volver a Agendar</button>
         </td>
       </tr>
-    )
+    );
   }
 
   render() {
     const scheduleList = this.props.scheduleList || [];
-    console.warn(scheduleList);
 
     return (
       <div>
