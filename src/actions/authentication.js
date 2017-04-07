@@ -83,8 +83,9 @@ const onLogOutRequest = () => {
 const userUpdateProfileRequest = (dataForm, type) => {
 	return (dispatch, getState) => {
 		dispatch(setStatusRequestTrue());
-		const { id: profileId } = getState().userInfo.profile;
-		const { id } = getState().userInfo;
+		const { userInfo } = getState();
+		const { id: profileId } = userInfo.profile;
+		const { id } = userInfo;
 		updateUser(id, profileId, dataForm, type)
 			.then(successSignup);
 
@@ -143,20 +144,20 @@ const userLogInRequest = (dataForm, userRole, origin='') => {
 };
 
 const getUserInfo = (id, type, callback) => {
-	return dispatch => {
+	return (dispatch) => {
+
 		showUser(id, type)
 			.then(successRequest);
 
 		function successRequest(response) {
 			const { data } = response;
+			dispatch(setUserInfo(data));
 			if (data.status === 'complete') {
-				browserHistory.push('/tutores/inicio');
-				dispatch(setUserInfo(data));
 				dispatch(setAuthInProcess(false));
-			}
-			if (!data.status) {
-				dispatch(setUserInfo(data));
+			} else if (!data.status) {
 				dispatch(setAuthInProcess(false));
+			} else {
+				dispatch(setAuthInProcess(true));
 			}
 			callback();
 		}

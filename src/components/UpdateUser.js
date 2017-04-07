@@ -93,6 +93,28 @@ class UpdateUser extends React.Component {
 									field="email"
 									label="Correo Electrónico"
 								/>
+								<div>
+									<label className="main-form__label">Genero</label>
+									<select
+										className="main-form__input"
+										value={this.state.gender}
+										onChange={this.onChangeForm}
+										name="gender"
+									>
+										<option value="">Elige tu genero</option>
+										<option value="Hombre">Hombre</option>
+										<option value="Mujer">Mujer</option>
+									</select>
+								</div>
+								<TextFieldGroup
+									value={this.state.dob}
+									onChange={this.onChangeForm}
+									type="date"
+									field="dob"
+									label="Fecha de Nacimiento"
+								/>
+							</div>
+							<div className="grid__item one-half">
 								{type !== 'Estudiante' ?
 									<div>
 										<label className="main-form__label">Universidad</label>
@@ -109,28 +131,6 @@ class UpdateUser extends React.Component {
 										</select>
 									</div>
 								: ''}
-								<TextFieldGroup
-									value={this.state.dob}
-									onChange={this.onChangeForm}
-									type="date"
-									field="dob"
-									label="Fecha de Nacimiento"
-								/>
-							</div>
-							<div className="grid__item one-half">
-								<div>
-									<label className="main-form__label">Nivel (Profesor/Monitor)</label>
-									<select
-										className="main-form__input"
-										value={this.state.level}
-										onChange={this.onChangeForm}
-										name="level"
-									>
-										<option value="">Seleccina tu nivel</option>
-										<option value="Profesor">Profesor</option>
-										<option value="Monitor">Monitor</option>
-									</select>
-								</div>
 								<TextFieldGroup
 									value={this.state.phone}
 									onChange={this.onChangeForm}
@@ -152,19 +152,6 @@ class UpdateUser extends React.Component {
 									field="city"
 									label="Ciudad"
 								/>
-								<div>
-									<label className="main-form__label">Genero</label>
-									<select
-										className="main-form__input"
-										value={this.state.gender}
-										onChange={this.onChangeForm}
-										name="gender"
-									>
-										<option value="">Elige tu genero</option>
-										<option value="Hombre">Hombre</option>
-										<option value="Mujer">Mujer</option>
-									</select>
-								</div>
 								<TextFieldGroup
 									value={this.state.address}
 									onChange={this.onChangeForm}
@@ -172,6 +159,19 @@ class UpdateUser extends React.Component {
 									field="address"
 									label="Dirección"
 								/>
+								<div>
+									<label className="main-form__label">Nivel (Profesor/Monitor)</label>
+									<select
+										className="main-form__input"
+										value={this.state.level}
+										onChange={this.onChangeForm}
+										name="level"
+									>
+										<option value="">Seleccina tu nivel</option>
+										<option value="Profesor">Profesor</option>
+										<option value="Monitor">Monitor</option>
+									</select>
+								</div>
 								<div>
 									<label className="main-form__label">Valor hora tutoria</label>
 									{this.state.level === 'Profesor' ?

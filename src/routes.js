@@ -59,7 +59,7 @@ const verifyToken = (userInfo, store, callback) => {
   const id = localData&&localData.id;
   const role = localData&&localData.role;
 
-  if (!token && pathname !== '/') {
+  if (!token && pathname !== '/' && pathname !== '/ver-tutores' && pathname.indexOf('/perfil-tutor/') == -1) {
     browserHistory.push('/');
     callback();
     return;
@@ -79,7 +79,6 @@ const verifyToken = (userInfo, store, callback) => {
     dispatch(setAuthInProcess(true));
     return;
   } else if (userInfo && userInfo.status === 'complete' && pathname === '/tutores/home') {
-    browserHistory.push('/tutores/inicio');
     dispatch(setAuthInProcess(false));
     callback();
     return;
@@ -114,17 +113,18 @@ const onEnterKnowYourTutor = store => {
 };
 
 const onEnterTutorProfile = store => {
-  return () => {
-    const { dispatch, getState } = store;
+  return (nextState, replace, callback) => {
+    const { getState } = store;
     const { userInfo } = getState();
-    if (!userInfo.first_name) browserHistory.push('/tutores/home');
-    dispatch(setAuthInProcess(true));
+    verifyToken(userInfo, store, callback);
   };
 };
 
 const onEnterFindTutor = store => {
   return (nextState, replace, callback) => {
-    const { dispatch } = store;
+    const { dispatch, getState } = store;
+    const { userInfo } = getState();
+    verifyToken(userInfo, store, callback);
     dispatch(getTutorsRequest(callback));
   };
 };
@@ -242,6 +242,7 @@ export default store => (
     <Route
       path="/perfil-tutor/:id"
       component={TutorProfileContainer}
+      onEnter={onEnterFindTutor(store)}
     />
     <Route
       path="/estudiantes/inicio"
