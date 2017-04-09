@@ -58,7 +58,6 @@ const verifyToken = (userInfo, store, callback) => {
   const token = userInfo&&userInfo.token||localData&&localData.token;
   const id = localData&&localData.id;
   const role = localData&&localData.role;
-
   if (!token && pathname !== '/' && pathname !== '/ver-tutores' && pathname.indexOf('/perfil-tutor/') == -1) {
     browserHistory.push('/');
     callback();
@@ -80,6 +79,7 @@ const verifyToken = (userInfo, store, callback) => {
     return;
   } else if (userInfo && userInfo.status === 'complete' && pathname === '/tutores/home') {
     dispatch(setAuthInProcess(false));
+    browserHistory.push('/tutores/inicio');
     callback();
     return;
   } else {

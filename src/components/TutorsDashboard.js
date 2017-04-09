@@ -34,7 +34,7 @@ class TutorsDashboard extends React.Component {
               <span className="dashboard__title">Mis Estudiantes</span>
             </div>
             <div className="box box--dashboard">
-              <span className="box__description">Completa tu información bancaria en la cual podamos transferir el pago por tus clases realizadas.</span>
+              <span className="box__description">En este espacio encontraras los estudiantes a los que mas les has dado tutorias.</span>
             </div>
           </div>
         </div>

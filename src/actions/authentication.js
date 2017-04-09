@@ -90,11 +90,14 @@ const userUpdateProfileRequest = (dataForm, type) => {
 			.then(successSignup);
 
 		function successSignup(response) {
+			const userData = response.data;
 			dispatch(setStatusRequestFalse());
-			setTokenAndUserInfo(response.data, dispatch, type);
+			setTokenAndUserInfo(userData, dispatch, type);
 			Alert.success('¡Has actualizado exitosamente tu perfil!');
-			if (type === 'teacher') {
+			if (type === 'teacher' && userData.status !== 'complete') {
 				browserHistory.push('/tutores/home');
+			} else if (type === 'teacher' && userData.status === 'complete') {
+				browserHistory.push('/tutores/inicio');
 			} else {
 				browserHistory.push('/perfil-estudiante');
 			}
@@ -144,7 +147,8 @@ const userLogInRequest = (dataForm, userRole, origin='') => {
 };
 
 const getUserInfo = (id, type, callback) => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const { routing:{ locationBeforeTransitions: { pathname } } } = getState();
 
 		showUser(id, type)
 			.then(successRequest);
@@ -152,7 +156,10 @@ const getUserInfo = (id, type, callback) => {
 		function successRequest(response) {
 			const { data } = response;
 			dispatch(setUserInfo(data));
-			if (data.status === 'complete') {
+			if (data.status === 'complete' && pathname !== '/tutores/home') {
+				dispatch(setAuthInProcess(false));
+			} else if (data.status === 'complete' && pathname === '/tutores/home') {
+				browserHistory.push('/tutores/inicio');
 				dispatch(setAuthInProcess(false));
 			} else if (!data.status) {
 				dispatch(setAuthInProcess(false));
@@ -165,6 +172,8 @@ const getUserInfo = (id, type, callback) => {
 };
 
 function setTokenAndUserInfo(userData, dispatch, userRole) {
+	let localData = localStorage.getItem('BrainsUserInfo');
+	localData = localData ? JSON.parse(localData) : {};
 	moment.tz.setDefault('America/Bogota');
 	const userInfo = {
 		...userData,
@@ -174,7 +183,7 @@ function setTokenAndUserInfo(userData, dispatch, userRole) {
 	};
 	delete userInfo.user_id;
 	dispatch(setUserInfo(userInfo));
-	localStorage.setItem('BrainsUserInfo', JSON.stringify(userInfo));
+	localStorage.setItem('BrainsUserInfo', JSON.stringify({ ...userInfo, ...localData }));
 }
 
 export {
