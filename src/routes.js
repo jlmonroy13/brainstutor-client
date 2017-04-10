@@ -26,6 +26,7 @@ import StudentsDashboard from './components/StudentsDashboard';
 import TutorsDashboard from './components/TutorsDashboard';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 import { getTutorsRequest } from './actions/teacher';
+import { gettingSchedule } from './actions/scheduleTutor';
 import moment from 'moment-timezone';
 
 
@@ -107,8 +108,17 @@ const onEnterKnowYourTutor = store => {
   return (nextState, replace, callback) => {
     const { getState } = store;
     const { userInfo } = getState();
-
     verifyToken(userInfo, store, callback);
+  };
+};
+
+const onEnterKnowYourTutorId = store => {
+  return (nextState, replace, callback) => {
+    const { dispatch, getState } = store;
+    const { userInfo, routing: { locationBeforeTransitions: { pathname }} } = getState();
+    const id = pathname.substr(29);
+    if(!userInfo.id) browserHistory.push('/estudiantes/tutorias-agendadas');
+    dispatch(gettingSchedule(id, callback));
   };
 };
 
@@ -267,6 +277,11 @@ export default store => (
     <Route
       path="/precios"
       component={Prices}
+    />
+    <Route
+      path="/estudiantes/agendar-tutoria/:id"
+      component={KnowYourTutorContainer}
+      onEnter={onEnterKnowYourTutorId(store)}
     />
     <Route path="*" component={NotFoundPage} />
   </Route>

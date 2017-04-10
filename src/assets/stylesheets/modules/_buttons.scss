@@ -60,3 +60,16 @@
     outline: none;
   }
 }
+
+.button--transparent-blue {
+  background-color: transparent;
+  color: $dark-blue;
+  border: 1px solid $dark-blue;
+  &:hover,
+  &:focus,
+  &:active {
+    color: darken($dark-blue, 5%);
+    outline: none;
+    color: $dark-blue;
+  }
+}

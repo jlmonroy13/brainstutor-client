@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import KnowYourTutor from '../components/KnowYourTutor';
 import moment from 'moment-timezone';
-import { scheduleMeeting } from '../actions/scheduleTutor';
+import { scheduleMeeting, updatingScheduleMeeting, gettingSchedule } from '../actions/scheduleTutor';
 
 const create10Dates = () => {
   let dates = [];
@@ -18,6 +18,7 @@ const getLocalStorage = () => {
 };
 
 const mapStateToProps = (state) => {
+  const scheduleCreated = state.scheduleTutor.scheduleAction.schedule;
   let scheduleTutor = state.scheduleTutor;
   scheduleTutor = scheduleTutor.first_name ? scheduleTutor : getLocalStorage();
   const { id: studentId } = state.userInfo;
@@ -30,12 +31,19 @@ const mapStateToProps = (state) => {
     teacherId,
     studentId,
     dates,
+    scheduleCreated,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   onScheduleMeeting: (formData) => {
     dispatch(scheduleMeeting(formData));
+  },
+  onUpdateScheduleMeeting: (formData) => {
+    dispatch(updatingScheduleMeeting(formData));
+  },
+  onGettingSchedule: (scheduleId) => {
+    dispatch(gettingSchedule(scheduleId));
   },
 });
 

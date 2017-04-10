@@ -53,6 +53,7 @@
 			max-width: 170px;
 			@include rem(14);
 			line-height: 1;
+			max-width: 140px;
 		}
 	}
 	&__link {
@@ -64,8 +65,18 @@
 		&:first-child {
 			width: 32%;
 		}
-		&:nth-child(2) {
-			width: 20%;
+		&:last-child{
+			text-align: left;
+		}
+	}
+	&__row {
+		&--teacher {
+			&:nth-child(2) {
+				width: 15%;
+			}
+			&:nth-child(3) {
+				width: 20%;
+			}
 		}
 	}
 	&__table {

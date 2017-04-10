@@ -1,5 +1,12 @@
-import { requestScheduleMeeting, fetchScheduleList } from '../requests/schedules';
+import {
+	requestScheduleMeeting,
+	fetchScheduleList,
+	updateScheduleStatus,
+	updateScheduleMeeting,
+	getSchedule,
+} from '../requests/schedules';
 import { pendingTask, begin, end } from 'react-redux-spinner';
+import Alert from 'react-s-alert';
 import { browserHistory } from 'react-router';
 
 
@@ -30,6 +37,34 @@ const setScheduleList = list => ({
 	payload: list,
 });
 
+const setScheduleAction = data => ({
+	type: 'SET_SCHEDULE_ACTION',
+	payload: {
+		action: data.action,
+		scheduleId: data.scheduleId,
+	}
+});
+
+const setSchedule = data => ({
+	type: 'SET_SCHEDULE',
+	payload: data,
+});
+
+const updatingScheduleStatus = (type, data) => {
+	return (dispatch) => {
+		dispatch(setStatusRequestTrue());
+		updateScheduleStatus(type, data)
+			.then(successupdatingScheduleStatus);
+
+		function successupdatingScheduleStatus() {
+			dispatch(fetchingScheduleList(type));
+			Alert.success("¡La Tutoria ha sido actualizada!");
+			dispatch(setScheduleAction({ action: '', scheduleId: '' }));
+			dispatch(setStatusRequestFalse());
+		}
+	};
+};
+
 const scheduleMeeting = (data) => {
 	return (dispatch) => {
 		dispatch(setStatusRequestTrue());
@@ -38,7 +73,36 @@ const scheduleMeeting = (data) => {
 
 		function successScheduleMeeting() {
 			dispatch(setStatusRequestFalse());
+			Alert.success("¡La Tutoria ha sido creada!");
 			browserHistory.push('/estudiantes/tutorias-agendadas');
+		}
+	};
+};
+
+const updatingScheduleMeeting = (data) => {
+	return (dispatch) => {
+		dispatch(setStatusRequestTrue());
+		updateScheduleMeeting(data)
+			.then(successScheduleMeeting);
+
+		function successScheduleMeeting() {
+			dispatch(setStatusRequestFalse());
+			Alert.success("¡La Tutoria ha sido actualizada!");
+			browserHistory.push('/estudiantes/tutorias-agendadas');
+		}
+	};
+};
+
+const gettingSchedule = (scheduleId, callback) => {
+	return (dispatch) => {
+		dispatch(setStatusRequestTrue());
+		getSchedule(scheduleId)
+			.then(successGettingSchedule);
+
+		function successGettingSchedule({ data }) {
+			dispatch(setStatusRequestFalse());
+			dispatch(setSchedule(data));
+			callback();
 		}
 	};
 };
@@ -59,6 +123,10 @@ const fetchingScheduleList = (type) => {
 export {
 	setTutorInfo,
 	setAppointmenteType,
+	setScheduleAction,
 	scheduleMeeting,
 	fetchingScheduleList,
+	updatingScheduleStatus,
+	updatingScheduleMeeting,
+	gettingSchedule,
 };

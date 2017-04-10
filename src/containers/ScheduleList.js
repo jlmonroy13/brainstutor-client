@@ -3,11 +3,15 @@ import ScheduleList from '../components/ScheduleList';
 import { fetchingScheduleList } from '../actions/scheduleTutor';
 
 const mapStateToProps = (state) => {
-	const { userInfo, scheduleTutor: { scheduleList } } = state;
-  
+	const {
+    userInfo,
+    scheduleTutor: { scheduleList, scheduleAction },
+  } = state;
+
   return {
     userInfo,
     scheduleList,
+    scheduleAction,
   };
 };
 
