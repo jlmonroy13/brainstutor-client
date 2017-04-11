@@ -2,6 +2,9 @@ import React, { PropTypes } from 'react';
 import Footer from './Footer';
 import TextFieldGroup from './TextFieldGroup';
 import Alert from 'react-s-alert';
+import Gravatar from 'react-gravatar';
+import ReactModal from 'react-modal';
+import { browserHistory } from 'react-router';
 
 class KnowYourTutor extends React.Component {
   constructor(props) {
@@ -25,11 +28,13 @@ class KnowYourTutor extends React.Component {
       hour: params.id ? oldHour : '07',
       minute: params.id ? oldMinute : '00',
       message: '',
+      isModalOpened: false,
     };
 
     this.onRenderDates = this.onRenderDates.bind(this);
     this.onChangeForm = this.onChangeForm.bind(this);
     this.onSubmitForm = this.onSubmitForm.bind(this);
+    this.onClickAccept = this.onClickAccept.bind(this);
   }
 
   onRenderDates() {
@@ -43,10 +48,15 @@ class KnowYourTutor extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onClickAccept() {
+    this.props.onSettingScheduleCreated(false);
+    browserHistory.push('/estudiantes/tutorias-agendadas');
+  }
+
   onSubmitForm(e) {
     e.preventDefault();
-    const { date, hour, minute, message } = this.state;
-    const { teacherId, studentId, onScheduleMeeting, onUpdateScheduleMeeting, params } = this.props;
+    const { date, hour, minute, message,  } = this.state;
+    const { teacherId, studentId, onUpdateScheduleMeeting, onScheduleMeeting, params } = this.props;
     const data = {
       teacherId,
       studentId,
@@ -67,7 +77,7 @@ class KnowYourTutor extends React.Component {
   }
 
   render() {
-    const { id } = this.props.params;
+    const { params: { id }, wasCreatedSchedule, firstName, lastName, email } = this.props;
     return (
       <div>
         <div className="hero__blue">
@@ -158,6 +168,30 @@ class KnowYourTutor extends React.Component {
           </div>
         </div>
         <Footer />
+        <ReactModal
+          isOpen={wasCreatedSchedule}
+          className="Modal"
+          overlayClassName="Overlay"
+          contentLabel="Acciones Agendar"
+        >
+          <div className="Modal__content">
+            <div className="Modal__header">
+              <h2 className="Modal__header-title">Solicitud enviada</h2>
+            </div>
+            <div className="Modal__body Modal__body--center">
+              <Gravatar email={email} size={100} />
+              <p className="">Tu solicitud ha sido enviada a:</p>
+              <p className="">{`${firstName} ${lastName}`}</p>
+              <p className="">Recibiras un correo cuando tu tutoria sea confirmada.</p>
+              <div>
+                <button
+                  className="button button--blue"
+                  onClick={this.onClickAccept}
+                >Ver mis tutorias</button>
+              </div>
+            </div>
+          </div>
+        </ReactModal>
       </div>
     );
   }
@@ -166,6 +200,8 @@ class KnowYourTutor extends React.Component {
 KnowYourTutor.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
+  email: PropTypes.string,
+  wasCreatedSchedule: PropTypes.bool,
   teacherId: PropTypes.number,
   studentId: PropTypes.number,
   scheduleCreated: PropTypes.object,
@@ -173,6 +209,7 @@ KnowYourTutor.propTypes = {
   dates: PropTypes.array,
   onScheduleMeeting: PropTypes.func.isRequired,
   onUpdateScheduleMeeting: PropTypes.func.isRequired,
+  onSettingScheduleCreated: PropTypes.func.isRequired,
 };
 
 export default KnowYourTutor;

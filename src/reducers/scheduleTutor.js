@@ -6,6 +6,7 @@ const initialState = {
 		schedule: {},
 	},
 	appointmentType: '',
+	wasCreatedSchedule: false,
 };
 
 export default function scheduleTutorReducer(state = initialState, action) {
@@ -42,6 +43,11 @@ export default function scheduleTutorReducer(state = initialState, action) {
 						...action.payload,
 					}
 				},
+			};
+		case 'SET_SCHEDULE_CREATED':
+			return {
+				...state,
+				wasCreatedSchedule: action.payload,
 			};
 		default:
 			return state;

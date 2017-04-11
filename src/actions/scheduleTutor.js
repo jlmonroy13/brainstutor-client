@@ -37,6 +37,12 @@ const setScheduleList = list => ({
 	payload: list,
 });
 
+
+const setScheduleCreated = status => ({
+	type: 'SET_SCHEDULE_CREATED',
+	payload: status,
+});
+
 const setScheduleAction = data => ({
 	type: 'SET_SCHEDULE_ACTION',
 	payload: {
@@ -73,8 +79,8 @@ const scheduleMeeting = (data) => {
 
 		function successScheduleMeeting() {
 			dispatch(setStatusRequestFalse());
-			Alert.success("¡La Tutoria ha sido creada!");
-			browserHistory.push('/estudiantes/tutorias-agendadas');
+			dispatch(setScheduleCreated(true));
+			Alert.success("¡Tu solicitud de tutoria ha sido enviada!");
 		}
 	};
 };
@@ -129,4 +135,5 @@ export {
 	updatingScheduleStatus,
 	updatingScheduleMeeting,
 	gettingSchedule,
+	setScheduleCreated,
 };
