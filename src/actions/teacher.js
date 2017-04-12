@@ -48,7 +48,7 @@ const getTutorsRequest = (callback) => {
 
 		function successGetTutors(tutors) {
 			dispatch(setStatusRequestFalse());
-			dispatch(setTeachers(tutors.data));
+			dispatch(setTeachers(tutors.data.teachers));
 			callback();
 		}
 	};

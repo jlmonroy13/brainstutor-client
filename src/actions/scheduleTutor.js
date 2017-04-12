@@ -107,7 +107,7 @@ const gettingSchedule = (scheduleId, callback) => {
 
 		function successGettingSchedule({ data }) {
 			dispatch(setStatusRequestFalse());
-			dispatch(setSchedule(data));
+			dispatch(setSchedule(data.schedule));
 			callback();
 		}
 	};
@@ -119,8 +119,8 @@ const fetchingScheduleList = (type) => {
 		fetchScheduleList(type)
 			.then(successFetchScheduleList);
 
-		function successFetchScheduleList({ data: scheduleList }) {
-			dispatch(setScheduleList(scheduleList));
+		function successFetchScheduleList({data}) {
+			dispatch(setScheduleList(data.schedules));
 			dispatch(setStatusRequestFalse());
 		}
 	};

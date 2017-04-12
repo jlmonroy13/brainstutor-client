@@ -155,13 +155,13 @@ const getUserInfo = (id, type, callback) => {
 
 		function successRequest(response) {
 			const { data } = response;
-			dispatch(setUserInfo(data));
-			if (data.status === 'complete' && pathname !== '/tutores/home') {
+			dispatch(setUserInfo(data[type]));
+			if (data[type].status === 'complete' && pathname !== '/tutores/home') {
 				dispatch(setAuthInProcess(false));
-			} else if (data.status === 'complete' && pathname === '/tutores/home') {
+			} else if (data[type].status === 'complete' && pathname === '/tutores/home') {
 				browserHistory.push('/tutores/inicio');
 				dispatch(setAuthInProcess(false));
-			} else if (!data.status) {
+			} else if (!data[type].status) {
 				dispatch(setAuthInProcess(false));
 			} else {
 				dispatch(setAuthInProcess(true));

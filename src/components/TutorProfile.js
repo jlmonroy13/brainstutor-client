@@ -40,7 +40,7 @@ class TutorProfile extends React.Component {
   componentWillMount() {
     const id = this.props.params.id;
     showUser(id, 'teacher').then((response) => {
-      this.setState({ tutor: response.data });
+      this.setState({ tutor: response.data.teacher });
     });
   }
 
