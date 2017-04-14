@@ -3,105 +3,104 @@ import Footer from './Footer';
 
 
 const Prices = () => {
-  return (
-
-    <div className="container-fluid pricesFont">
-    	<h3 className="pricesTitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    	tempor incididunt ut labore et dolore magna aliqua.</h3>
-  		<div className="grid no-space push--bottom grid--middle text-center">
-  			<div className="grid__item one-half section-gratis">
-  				<div className="circle">
-  					<div className="gratisContainer">
-  						<h1 className="gratisTitle">GRATIS</h1>
-  					</div>
-  					<p>87% de nuestros clientes empiezan conociendo un tutor gratis.</p>
-  				</div>
-  				<div>
-  					<ul className="pricesList">
-  						<li>
-  							<div className="priceDetail">
-  								<p>Lorem ipsum dolor sit amet elit.</p>
-  							</div>
-			  				<div className="priceDetailcheck">
-			  					<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-			  				</div>
-  						</li>
-  						<li>
-  							<div className="priceDetail">
-  								<p>Lorem ipsum dolor sit amet elit.</p>
-  							</div>
-			  				<div className="priceDetailcheck">
-			  					<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-			  				</div>
-  						</li>
-  						<li>
-  							<div className="priceDetail">
-  								<p>Lorem ipsum dolor sit amet elit.</p>
-  							</div>
-			  				<div className="priceDetailcheck">
-			  					<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-			  				</div>
-  						</li>
-  						<li>
-  							<div className="priceDetail">
-  								<p>Lorem ipsum dolor sit amet elit.</p>
-  							</div>
-			  				<div className="priceDetailcheck">
-			  					<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-			  				</div>
-  						</li>
-  					</ul>
-  				</div>
-  				<button>
-  					<h5>Empezar</h5>
-  				</button>
+	return (
+	<div className="container-fluid pricesFont">
+		<h3 className="pricesTitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua.</h3>
+			<div className="grid no-space push--bottom grid--middle text-center">
+				<div className="grid__item one-half section-gratis">
+					<div className="circle">
+						<div className="gratisContainer">
+							<h1 className="gratisTitle">GRATIS</h1>
+						</div>
+						<p>87% de nuestros clientes empiezan conociendo un tutor gratis.</p>
+					</div>
+					<div>
+						<ul className="pricesList">
+							<li>
+								<div className="priceDetail">
+									<p>Lorem ipsum dolor sit amet elit.</p>
+								</div>
+								<div className="priceDetailcheck">
+									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
+								</div>
+							</li>
+							<li>
+								<div className="priceDetail">
+									<p>Lorem ipsum dolor sit amet elit.</p>
+								</div>
+								<div className="priceDetailcheck">
+									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
+								</div>
+							</li>
+							<li>
+								<div className="priceDetail">
+									<p>Lorem ipsum dolor sit amet elit.</p>
+								</div>
+								<div className="priceDetailcheck">
+									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
+								</div>
+							</li>
+							<li>
+								<div className="priceDetail">
+									<p>Lorem ipsum dolor sit amet elit.</p>
+								</div>
+								<div className="priceDetailcheck">
+									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
+								</div>
+							</li>
+						</ul>
+					</div>
+					<button>
+						<h5>Empezar</h5>
+					</button>
 				</div>
 				<div className="grid__item one-half section-premium">
-  				<div className="circle">
-  					<div className="gratisContainer">
-  						<h1 className="gratisTitle">PLAN PREMIUM</h1>
-  					</div>
-  					<p>Cuenta con múltiples beneficios, acceso a videos y contenido especial.</p>
-  				</div>
-  				<div>
-  					<ul className="pricesList">
-  						<li>
-  							<div className="priceDetail">
-  								<p>Lorem ipsum dolor sit amet elit.</p>
-  							</div>
-			  				<div className="priceDetailcheck">
-			  					<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-			  				</div>
-  						</li>
-  						<li>
-  							<div className="priceDetail">
-  								<p>Lorem ipsum dolor sit amet elit.</p>
-  							</div>
-			  				<div className="priceDetailcheck">
-			  					<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-			  				</div>
-  						</li>
-  						<li>
-  							<div className="priceDetail">
-  								<p>Lorem ipsum dolor sit amet elit.</p>
-  							</div>
-			  				<div className="priceDetailcheck">
-			  					<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-			  				</div>
-  						</li>
-  						<li>
-  							<div className="priceDetail">
-  								<p>Lorem ipsum dolor sit amet elit.</p>
-  							</div>
-			  				<div className="priceDetailcheck">
-			  					<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-			  				</div>
-  						</li>
-  					</ul>
-  				</div>
-  				<button>
-  					<h5>Empezar</h5>
-  				</button>
+					<div className="circle">
+						<div className="gratisContainer">
+							<h1 className="gratisTitle">PLAN PREMIUM</h1>
+						</div>
+						<p>Cuenta con múltiples beneficios, acceso a videos y contenido especial.</p>
+					</div>
+					<div>
+						<ul className="pricesList">
+							<li>
+								<div className="priceDetail">
+									<p>Lorem ipsum dolor sit amet elit.</p>
+								</div>
+								<div className="priceDetailcheck">
+									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
+								</div>
+							</li>
+							<li>
+								<div className="priceDetail">
+									<p>Lorem ipsum dolor sit amet elit.</p>
+								</div>
+								<div className="priceDetailcheck">
+									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
+								</div>
+							</li>
+							<li>
+								<div className="priceDetail">
+									<p>Lorem ipsum dolor sit amet elit.</p>
+								</div>
+								<div className="priceDetailcheck">
+									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
+								</div>
+							</li>
+							<li>
+								<div className="priceDetail">
+									<p>Lorem ipsum dolor sit amet elit.</p>
+								</div>
+								<div className="priceDetailcheck">
+									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
+								</div>
+							</li>
+						</ul>
+					</div>
+					<button>
+						<h5>Empezar</h5>
+					</button>
 				</div>
 			</div>
 			<div className="grid no-space push--bottom grid--middle text-center">
@@ -142,8 +141,8 @@ const Prices = () => {
 						<span>Preguntas frecuentes</span>
 					</h4>
 					<div className="grid no-space push--bottom grid--middle text-center">
-		  			<div className="grid__item one-half">
-		  				<div className="favPricesbox">
+						<div className="grid__item one-half">
+							<div className="favPricesbox">
 								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -153,7 +152,7 @@ const Prices = () => {
 							</div>
 						</div>
 						<div className="grid__item one-half">
-		  				<div className="favPricesbox">
+							<div className="favPricesbox">
 								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -166,8 +165,8 @@ const Prices = () => {
 				</div>
 				<div className="container favQuestions">
 					<div className="grid no-space push--bottom grid--middle text-center">
-		  			<div className="grid__item one-half">
-		  				<div className="favPricesbox">
+						<div className="grid__item one-half">
+							<div className="favPricesbox">
 								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -177,7 +176,7 @@ const Prices = () => {
 							</div>
 						</div>
 						<div className="grid__item one-half">
-		  				<div className="favPricesbox">
+							<div className="favPricesbox">
 								<h6><strong>How much does tuition with Brains cost?</strong></h6>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -190,8 +189,8 @@ const Prices = () => {
 				</div>
 				<div className="container favQuestions">
 					<div className="grid no-space push--bottom grid--middle text-center">
-		  			<div className="grid__item one-half">
-		  				<div className="favPricesbox">
+						<div className="grid__item one-half">
+							<div className="favPricesbox">
 								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -201,7 +200,7 @@ const Prices = () => {
 							</div>
 						</div>
 						<div className="grid__item one-half">
-		  				<div className="favPricesbox">
+							<div className="favPricesbox">
 								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -214,9 +213,9 @@ const Prices = () => {
 				</div>
 			</div>
 			<Footer />
-    </div>
+	</div>
 
-  );
+	);
 };
 
 export default Prices;
