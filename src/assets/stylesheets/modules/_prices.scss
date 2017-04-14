@@ -1,0 +1,209 @@
+.section-gratis{
+	background-image: url("../images/tutor1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 560px;
+  width: 432px;
+  margin: 0 30px 30px 30px;
+  padding-left: 0;
+}
+
+.section-premium{
+	background-image: url("../images/tutor2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 560px;
+  width: 432px;
+  margin: 0 30px 30px 30px;
+  padding-left: 0;
+}
+
+.pricesTitle{
+	margin: 7% 15%;
+}
+
+.circle {
+  background: $btn-default-color;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  font-size: 14px;
+  margin: 5% auto;
+} p{
+	font-size: 15px;
+	font-family: $font-family-sans-serif;
+	padding: 0% 11%;
+	margin: -7px 0 22px;
+	line-height: 1;
+}
+
+.gratisTitle{
+	background-color: #234c5e;
+	color: white;
+	border-radius: 5px;
+	font-family: $font-family-serif;
+  margin: 22px -14px;
+  font-weight: bold;
+  margin: 22px -14px;
+  font-weight: bold;
+  font-size: 47px;
+}
+
+.gratisContainer{
+	padding-top: 9%;
+}
+
+.pricesFont{
+	font-family: $font-family-serif;
+}
+
+.section-premium .gratisTitle{
+	margin: 22px -74px;
+}
+
+.grid__item{
+	button{
+		font-size: 12px;
+		font-family: $font-family-serif;
+	  background-color: #d6d9d9;
+	  color: white;
+    border-radius: 3px;
+    box-shadow: 2px 2px 0px #8c9093;
+    width: 280px;
+    position: relative;
+    top: 45px;
+    border: 0
+	}
+}
+
+.grid__item button h5{
+	font-size: 32px;
+	line-height: 1;
+}
+
+.section-premium{
+	button{
+		background-color: #25a49c;
+	}
+}
+
+
+.section-gratis{
+	button{
+		background-color: #27b366;
+	}
+}
+
+.one-third{
+	.hero__tutor-selector-icon{
+		max-width: 40px;
+	}	p{
+			margin: 15px 15px;
+	}
+}
+.payUsection{
+	background: #0b375b;
+	padding: 30px 10px;
+	height: 10em;
+}
+
+.payUlogoDiv{
+  display: inline-block;
+  width: 38%;
+  text-align: right;
+  float: left;
+  margin-top: 10px;
+}
+
+.payUDetails{
+	display: inline-block;
+	width: 60%;
+  color: white;
+  float: right;
+}
+
+.payUlogo{
+	max-width: 87px;
+}
+.payUDetails{
+	p{
+		color: white;
+		padding: 0;
+	}h2{
+		margin-bottom: 10px;
+	}
+}
+
+.hero__tutor-selector-icon{
+	max-width: 40px;
+}	
+
+.feedbackText{
+	margin: 15px 15px;
+}
+
+.favQuestions{
+	hr{
+		width: 75%;
+		border: 1px solid #9b9b9b;
+	}
+}
+
+.favQuestions .one-half{
+	width: 40%;
+	background-color: #ecedee;
+	margin-right: 2%;
+}
+    
+.siderule span{
+	background: #fff;
+  position: relative;
+  z-index: 1;
+  padding: 0 20px;
+}
+
+.siderule:before {
+  content: "";
+  border-bottom: 1px solid;
+  border-color: #9b9b9b;
+  width: 70%;
+  position: absolute;
+  top: 8%;
+  left: 14%;
+  z-index: 0;
+}
+
+.siderule{
+	margin-bottom: 30px;
+	margin-top: 60px;
+	color: #9b9b9b;
+	border-color: #9b9b9b;
+}
+
+.priceDetail{
+	float: left;
+  width: 70%;
+  padding-top: 5px;
+} 
+
+.priceDetail p{
+	padding-top: 5px;
+	margin-bottom: 0;
+}
+
+
+.priceDetailcheck .hero__tutor-selector-icon{
+	max-width: 20px;
+}
+
+.pricesList{
+	margin-top: 21%;
+}
+
+.pricesList li{
+	margin-bottom: 10px;
+}
+
+.pricesQuestions{
+	margin-bottom: 10%;
+}
