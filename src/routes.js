@@ -20,7 +20,6 @@ import SignupIndex from './components/SignupIndex';
 import LogInIndex from './components/LogInIndex';
 import AfterSignupTeacher from './components/AfterSignupTeacher';
 import StepToStepInfo from './components/StepToStepInfo';
-import ScheduleTutor from './components/ScheduleTutor';
 import Prices from './components/Prices';
 import StudentsDashboard from './components/StudentsDashboard';
 import TutorsDashboard from './components/TutorsDashboard';
@@ -108,6 +107,15 @@ const onEnterKnowYourTutor = store => {
     const { getState } = store;
     const { userInfo } = getState();
     verifyToken(userInfo, store, callback);
+  };
+};
+
+const onEnterPaidScheduleTutor = store => {
+  return (nextState, replace, callback) => {
+    const { getState } = store;
+    const { userInfo, scheduleTutor: { appointmentType } } = getState();
+    verifyToken(userInfo, store, callback);
+    if (appointmentType !== 'paid') browserHistory.push('/ver-tutores');
   };
 };
 
@@ -244,8 +252,8 @@ export default store => (
     />
     <Route
       path="/estudiantes/agendar-tutoria"
-      component={ScheduleTutor}
-      onEnter={onEnterKnowYourTutor(store)}
+      component={KnowYourTutorContainer}
+      onEnter={onEnterPaidScheduleTutor(store)}
     />
     <Route
       path="/perfil-tutor/:id"

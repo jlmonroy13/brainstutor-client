@@ -110,8 +110,11 @@ class TutorProfile extends React.Component {
 
   onGoToScheduleTutor() {
     this.setState({ goTo: 'schedule-tutor' });
-    this.props.onSetAppointmenteType('paid');
     const { userInfo } = this.props;
+    const { tutor } = this.state;
+    delete tutor.bank_information;
+    this.props.storeTutorInfo(tutor);
+    this.props.onSetAppointmenteType('paid');
     if (!userInfo.first_name) {
       this.handleOpenModal();
     } else {

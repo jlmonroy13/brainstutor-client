@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import Gravatar from 'react-gravatar';
 import moment from 'moment-timezone';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 class ScheduleItem extends Component {
   constructor() {
@@ -14,8 +14,9 @@ class ScheduleItem extends Component {
   }
 
   onClickAcceptAction() {
-    const { schedule, onSetScheduleAction } = this.props;
-    onSetScheduleAction({ action: 'confirmed', scheduleId: schedule.id });
+    const { schedule, schedule: { modality }, onSetScheduleAction } = this.props;
+    const action = modality === 'paid' ? 'accepted_awaiting_payment' : 'confirmed';
+    onSetScheduleAction({ action, scheduleId: schedule.id });
   }
 
   onClickRejectAction() {
@@ -24,8 +25,9 @@ class ScheduleItem extends Component {
   }
 
   onClickRescheduleAction() {
-    const { schedule, onSetScheduleAction } = this.props;
-    onSetScheduleAction({ action: 'awaiting_tutor', scheduleId: schedule.id });
+    const { schedule, onSetAppointmenteType } = this.props;
+    onSetAppointmenteType(schedule.modality);
+    browserHistory.push(`/estudiantes/agendar-tutoria/${schedule.id}`);
   }
 
   render() {
@@ -40,23 +42,39 @@ class ScheduleItem extends Component {
           </div>
         </td>
         <td className={`schedule-list__row ${role === 'student' ? '' : 'schedule-list__row--teacher' }`}>
-          <p className="schedule-list__description-txt">{ schedule.modality === 'free' ? 'Entrevista Gratuita' : ''}</p>
+          <p className="schedule-list__description-txt">{ schedule.modality === 'free' ? 'Entrevista Gratuita' : 'Tutoria'}</p>
           <p className="schedule-list__description-txt">Cálculo Diferencial</p>
         </td>
         <td className={`schedule-list__row ${role === 'student' ? '' : 'schedule-list__row--teacher' }`}>
           <img className="schedule-list__icon" src={require('../assets/images/calendar-icon.png')} />
           <span className="schedule-list__description-highlight">{
-            schedule.status === 'awaiting_tutor' ?
-              role === 'student' ? 'Esperando confirmación del tutor' : 'Esperando tu confirmación'
-            :
-              schedule.status === 'confirmed' ? 'Tutoría confirmada' : 'Tutoría rechazada'
+            role === 'student' ?
+              schedule.status === 'awaiting_tutor' ?
+                'Esperando confirmación del tutor'
+              : schedule.status === 'accepted_awaiting_payment' ? 
+                'Esperando tu pago'
+                : schedule.status === 'rejected' ? 
+                  'Tutoría Rechazada'
+                  : 'Tutoría confirmada' 
+            : role === 'teacher' ?
+              schedule.status === 'awaiting_tutor' ?
+                'Esperando tu confirmación'
+              : schedule.status === 'accepted_awaiting_payment' ? 
+                'Esperando el pago del estudiante'
+                : schedule.status === 'rejected' ? 
+                  'Tutoría Rechazada'
+                  : 'Tutoría confirmada'
+            : ''
           }</span>
         </td>
         { role === 'student' ?
           <td className={`schedule-list__row ${role === 'student' ? '' : 'schedule-list__row--teacher' }`}>
-            {schedule.status !== 'confirmed' ?
-              <Link className="button button--blue" to={`/estudiantes/agendar-tutoria/${schedule.id}`}>Volver a Agendar</Link>
-              : ''}
+            {schedule.status === 'accepted_awaiting_payment' ?
+              <button className="button button--light-green">Pagar Tutoria</button>
+              :  schedule.status !== 'confirmed' ?
+                <button className="button button--blue" onClick={this.onClickRescheduleAction} >Volver a Agendar</button>
+                :
+            ''}
           </td>
         :
           <td className={`schedule-list__row ${role === 'student' ? '' : 'schedule-list__row--teacher' }`}>
@@ -92,6 +110,7 @@ ScheduleItem.propTypes = {
   schedule: PropTypes.object,
   role: PropTypes.string,
   onSetScheduleAction: PropTypes.func,
+  onSetAppointmenteType: PropTypes.func,
 };
 
 export default ScheduleItem;

@@ -5,6 +5,7 @@ import Alert from 'react-s-alert';
 import Gravatar from 'react-gravatar';
 import ReactModal from 'react-modal';
 import { browserHistory } from 'react-router';
+import moment from 'moment-timezone';
 
 class KnowYourTutor extends React.Component {
   constructor(props) {
@@ -29,12 +30,15 @@ class KnowYourTutor extends React.Component {
       minute: params.id ? oldMinute : '00',
       message: '',
       isModalOpened: false,
+      duration: '',
+      endAt: '',
     };
 
     this.onRenderDates = this.onRenderDates.bind(this);
     this.onChangeForm = this.onChangeForm.bind(this);
     this.onSubmitForm = this.onSubmitForm.bind(this);
     this.onClickAccept = this.onClickAccept.bind(this);
+    this.onChangeScheduleTime = this.onChangeScheduleTime.bind(this);
   }
 
   onRenderDates() {
@@ -48,6 +52,20 @@ class KnowYourTutor extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onChangeScheduleTime(e) {
+    const time = e.target.value;
+    const { date, hour, minute } = this.state;
+    const startAt = `${date}T${hour}:${minute}:00-05:00`;
+    let endAt = '';
+    if(date) {
+      endAt = moment(startAt).tz(moment.tz.guess()).add(time, 'm').format();
+      this.setState({ duration: time, endAt});
+    } else {
+      Alert.error('Primero debes seleccionar fecha y hora de inicio.');
+    }
+    
+  }
+
   onClickAccept() {
     this.props.onSettingScheduleCreated(false);
     browserHistory.push('/estudiantes/tutorias-agendadas');
@@ -55,18 +73,20 @@ class KnowYourTutor extends React.Component {
 
   onSubmitForm(e) {
     e.preventDefault();
-    const { date, hour, minute, message,  } = this.state;
-    const { teacherId, studentId, onUpdateScheduleMeeting, onScheduleMeeting, params } = this.props;
+    const { date, hour, minute, message, endAt, duration } = this.state;
+    const { teacherId, studentId, onUpdateScheduleMeeting, onScheduleMeeting, params, appointmentType } = this.props;
     const data = {
       teacherId,
       studentId,
       startAt: `${date}T${hour}:${minute}:00-05:00`,
-      modality: 'free',
+      modality: appointmentType || 'free',
       message,
+      endAt: endAt || '',
       id: params.id || '',
+      duration,
     };
-    if(!date, !hour, !minute) {
-      Alert.error('Debers seleccionar fecha y hora.');
+    if(!date, !hour, !minute, (!duration && appointmentType !== 'free' && appointmentType !== '')) {
+      Alert.error('Debes seleccionar fecha y hora.');
     } else {
       if(params.id) {
         onUpdateScheduleMeeting(data);
@@ -77,17 +97,29 @@ class KnowYourTutor extends React.Component {
   }
 
   render() {
-    const { params: { id }, wasCreatedSchedule, firstName, lastName, email } = this.props;
+    const { params: { id }, wasCreatedSchedule, firstName, lastName, email, appointmentType } = this.props;
     return (
       <div>
         <div className="hero__blue">
-          <h1 className="hero__blue-title">{id ? '¿Tienes problemas con la fecha de tu cita?' : 'Conoce a tu tutor en una entrevista de 15 minutos'}</h1>
-          <span className="hero__blue-subtitle">{id ? 'Puedes cambiarla en el siguente formulario.' : 'Es gratis, sin ningún compromiso.'}</span>
+          <h1 className="hero__blue-title">{
+            appointmentType === 'paid' ?
+              'Solicita una hora que se ajuste a ti'
+            : id ? '¿Tienes problemas con la fecha de tu cita?' : 'Conoce a tu tutor en una entrevista de 15 minutos'
+          }</h1>
+          <span className="hero__blue-subtitle">{
+            appointmentType === 'paid' ?
+              'Esta solicitud será enviada a tu tutor para ser confirmada.'
+            : id ? 'Puedes cambiarla en el siguente formulario.' : 'Es gratis, sin ningún compromiso.'
+          }</span>
         </div>
         <div className="box__form">
           <div className="box__form-header">
             <img className="box__form-header-icon" src={require('../assets/images/screen-user-icon.png')} />
-            <span className="box__form-header-title">{id ? 'Tu Agenda' : 'Tu entrevista gratuita'}</span>
+            <span className="box__form-header-title">{
+              appointmentType === 'paid' ?
+                'Tú tutoría'
+              : id ? 'Tu Agenda' : 'Tu entrevista gratuita'
+            }</span>
           </div>
           <div className="box__form-body">
             <form onSubmit={this.onSubmitForm} autoComplete="off">
@@ -135,7 +167,6 @@ class KnowYourTutor extends React.Component {
                   <option value="20">20</option>
                   <option value="21">21</option>
                   <option value="22">22</option>
-                  <option value="23">23</option>
                 </select>
               </div>
               <span> : </span>
@@ -154,6 +185,25 @@ class KnowYourTutor extends React.Component {
                   <option value="50">50</option>
                 </select>
               </div>
+              { appointmentType === 'paid' ?
+                <div className="box__form-select-group box__form-select-group--first">
+                  <label className="main-form__label">Duración de la tutoria</label>
+                  <select
+                    className="main-form__input"
+                    value={this.state.duration}
+                    onChange={this.onChangeScheduleTime}
+                    name="date"
+                  >
+                    <option value="">Selecciona el tiempo de tutoria</option>
+                    <option value="30">30 Minutos (Media Hora)</option>
+                    <option value="60">60 Minutos (1 Hora)</option>
+                    <option value="90">90 Minutos (1 hora y media)</option>
+                    <option value="120">120 Minutos (2 horas)</option>
+                    <option value="150">150 Minutos (2 horas y media)</option>
+                    <option value="180">180 Minutos (3 Horas)</option>
+                  </select>
+                </div>
+              : ''}
               <label className="main-form__label">Mensaje</label>
               <textarea
                 className="main-form__textarea"
@@ -201,6 +251,7 @@ KnowYourTutor.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
   email: PropTypes.string,
+  appointmentType: PropTypes.string,
   wasCreatedSchedule: PropTypes.bool,
   teacherId: PropTypes.number,
   studentId: PropTypes.number,

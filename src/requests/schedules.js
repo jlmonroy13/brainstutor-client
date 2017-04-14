@@ -3,9 +3,9 @@ import Alert from 'react-s-alert';
 import { } from '../requests/users';
 
 const requestScheduleMeeting = (data) => {
-  const { teacherId, studentId, startAt, modality, message } = data;
+  const { teacherId, studentId, startAt, modality, message, endAt, duration } = data;
   return brains
-    .post(`/students/schedules?schedule[teacher_id]=${teacherId}&schedule[student_id]=${studentId}&schedule[start_at]=${startAt}&schedule[modality]=${modality}&schedule[message]=${message}`)
+    .post(`/students/schedules?schedule[teacher_id]=${teacherId}&schedule[student_id]=${studentId}&schedule[start_at]=${startAt}&schedule[modality]=${modality}&schedule[message]=${message}&schedule[end_date]=${endAt}&schedule[duration]=${duration}`)
     .catch(catchRequestError);
 };
 

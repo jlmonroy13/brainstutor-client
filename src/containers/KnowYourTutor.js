@@ -22,7 +22,8 @@ const mapStateToProps = (state) => {
   let scheduleTutor = state.scheduleTutor;
   scheduleTutor = scheduleTutor.first_name ? scheduleTutor : getLocalStorage();
   const { id: studentId } = state.userInfo;
-	const { first_name: firstName, last_name: lastName, id: teacherId, email } = scheduleTutor;
+	const { first_name: firstName, last_name: lastName, id: teacherId, email} = scheduleTutor;
+  const { appointmentType } = state.scheduleTutor;
   const dates = create10Dates();
   const { wasCreatedSchedule } = state.scheduleTutor;
 
@@ -35,6 +36,7 @@ const mapStateToProps = (state) => {
     email,
     scheduleCreated,
     wasCreatedSchedule,
+    appointmentType,
   };
 };
 

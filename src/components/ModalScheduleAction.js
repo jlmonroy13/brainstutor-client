@@ -53,11 +53,11 @@ class ModalScheduleAction extends Component {
       >
         <div className="Modal__content">
           <div className="Modal__header">
-            <h2 className="Modal__header-title">{action === 'confirmed' ? 'Aceptar Tutoria' : 'Rechazar Tutoria' }</h2>
+            <h2 className="Modal__header-title">{action === 'confirmed' || action === 'accepted_awaiting_payment' ? 'Aceptar Tutoria' : 'Rechazar Tutoria' }</h2>
             <span className="Modal__btn-close" onClick={this.handleCloseModal}>&#120;</span>
           </div>
           <div className="Modal__body Modal__body--center">
-            {action === 'confirmed' ?
+            {action === 'confirmed' || action === 'accepted_awaiting_payment' ?
               <p>¿Estas seguro que quieres aceptar esta tutoria?</p>
             :
               <div className="push--bottom">
