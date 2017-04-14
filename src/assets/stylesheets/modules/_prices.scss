@@ -29,7 +29,7 @@
   border-radius: 50%;
   font-size: 14px;
   margin: 5% auto;
-} p{
+} .p-price{
 	font-size: 15px;
 	font-family: $font-family-sans-serif;
 	padding: 0% 11%;
@@ -62,7 +62,7 @@
 }
 
 .grid__item{
-	button{
+	.button-price{
 		font-size: 12px;
 		font-family: $font-family-serif;
 	  background-color: #d6d9d9;
@@ -76,20 +76,20 @@
 	}
 }
 
-.grid__item button h5{
+.grid__item .button-price .h5-price{
 	font-size: 32px;
 	line-height: 1;
 }
 
 .section-premium{
-	button{
+	.button-price{
 		background-color: #25a49c;
 	}
 }
 
 
 .section-gratis{
-	button{
+	.button-price{
 		background-color: #27b366;
 	}
 }
@@ -97,7 +97,7 @@
 .one-third{
 	.hero__tutor-selector-icon{
 		max-width: 40px;
-	}	p{
+	}	.p-price{
 			margin: 15px 15px;
 	}
 }
@@ -126,10 +126,10 @@
 	max-width: 87px;
 }
 .payUDetails{
-	p{
+	.p-price{
 		color: white;
 		padding: 0;
-	}h2{
+	}.h2-prices{
 		margin-bottom: 10px;
 	}
 }
@@ -155,7 +155,7 @@
 	margin-right: 2%;
 }
     
-.siderule span{
+.siderule .span-price{
 	background: #fff;
   position: relative;
   z-index: 1;
@@ -186,7 +186,7 @@
   padding-top: 5px;
 } 
 
-.priceDetail p{
+.priceDetail .p-price{
 	padding-top: 5px;
 	margin-bottom: 0;
 }
@@ -200,7 +200,7 @@
 	margin-top: 21%;
 }
 
-.pricesList li{
+.pricesList .li-price{
 	margin-bottom: 10px;
 }
 

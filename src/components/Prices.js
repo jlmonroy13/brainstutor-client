@@ -13,37 +13,37 @@ const Prices = () => {
 						<div className="gratisContainer">
 							<h1 className="gratisTitle">GRATIS</h1>
 						</div>
-						<p>87% de nuestros clientes empiezan conociendo un tutor gratis.</p>
+						<p className="p-price">87% de nuestros clientes empiezan conociendo un tutor gratis.</p>
 					</div>
 					<div>
 						<ul className="pricesList">
-							<li>
+							<li className="li-price">
 								<div className="priceDetail">
-									<p>Lorem ipsum dolor sit amet elit.</p>
+									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
 								</div>
 								<div className="priceDetailcheck">
 									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
 								</div>
 							</li>
-							<li>
+							<li className="li-price">
 								<div className="priceDetail">
-									<p>Lorem ipsum dolor sit amet elit.</p>
+									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
 								</div>
 								<div className="priceDetailcheck">
 									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
 								</div>
 							</li>
-							<li>
+							<li className="li-price">
 								<div className="priceDetail">
-									<p>Lorem ipsum dolor sit amet elit.</p>
+									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
 								</div>
 								<div className="priceDetailcheck">
 									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
 								</div>
 							</li>
-							<li>
+							<li className="li-price">
 								<div className="priceDetail">
-									<p>Lorem ipsum dolor sit amet elit.</p>
+									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
 								</div>
 								<div className="priceDetailcheck">
 									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
@@ -51,8 +51,8 @@ const Prices = () => {
 							</li>
 						</ul>
 					</div>
-					<button>
-						<h5>Empezar</h5>
+					<button className="button-price">
+						<h5 className="h5-price">Empezar</h5>
 					</button>
 				</div>
 				<div className="grid__item one-half section-premium">
@@ -60,37 +60,37 @@ const Prices = () => {
 						<div className="gratisContainer">
 							<h1 className="gratisTitle">PLAN PREMIUM</h1>
 						</div>
-						<p>Cuenta con múltiples beneficios, acceso a videos y contenido especial.</p>
+						<p className="p-price">Cuenta con múltiples beneficios, acceso a videos y contenido especial.</p>
 					</div>
 					<div>
 						<ul className="pricesList">
-							<li>
+							<li className="li-price">
 								<div className="priceDetail">
-									<p>Lorem ipsum dolor sit amet elit.</p>
+									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
 								</div>
 								<div className="priceDetailcheck">
 									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
 								</div>
 							</li>
-							<li>
+							<li className="li-price">
 								<div className="priceDetail">
-									<p>Lorem ipsum dolor sit amet elit.</p>
+									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
 								</div>
 								<div className="priceDetailcheck">
 									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
 								</div>
 							</li>
-							<li>
+							<li className="li-price">
 								<div className="priceDetail">
-									<p>Lorem ipsum dolor sit amet elit.</p>
+									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
 								</div>
 								<div className="priceDetailcheck">
 									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
 								</div>
 							</li>
-							<li>
+							<li className="li-price">
 								<div className="priceDetail">
-									<p>Lorem ipsum dolor sit amet elit.</p>
+									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
 								</div>
 								<div className="priceDetailcheck">
 									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
@@ -98,8 +98,8 @@ const Prices = () => {
 							</li>
 						</ul>
 					</div>
-					<button>
-						<h5>Empezar</h5>
+					<button className="button-price">
+						<h5 className="h5-price">Empezar</h5>
 					</button>
 				</div>
 			</div>
@@ -107,15 +107,15 @@ const Prices = () => {
 				<h1>¿Que incluye?</h1>
 				<div className="grid__item one-third">
 					<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-					<p>Tutorias Uno a Uno.</p>
+					<p className="p-price">Tutorias Uno a Uno.</p>
 				</div>
 				<div className="grid__item one-third">
 					<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-					<p>Sesiónes grabadas.</p>
+					<p className="p-price">Sesiónes grabadas.</p>
 				</div>
 				<div className="grid__item one-third">
 					<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-					<p>Entorno de aprendizaje interactivo.</p>
+					<p className="p-price">Entorno de aprendizaje interactivo.</p>
 				</div>
 			</div>
 			<div className="text-center">
@@ -130,7 +130,7 @@ const Prices = () => {
 					</div>
 					<div className="payUDetails">
 						<h2 className="font2"><b>Payments secured by PayU</b></h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						<p className="p-price">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 						tempor incididunt.</p>
 					</div>
 				</div>
@@ -138,13 +138,13 @@ const Prices = () => {
 			<div className="pricesQuestions">
 				<div className="container favQuestions text-center">
 					<h4 className="siderule">
-						<span>Preguntas frecuentes</span>
+						<span className="span-price">Preguntas frecuentes</span>
 					</h4>
 					<div className="grid no-space push--bottom grid--middle text-center">
 						<div className="grid__item one-half">
 							<div className="favPricesbox">
 								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								<p className="p-price">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -154,7 +154,7 @@ const Prices = () => {
 						<div className="grid__item one-half">
 							<div className="favPricesbox">
 								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								<p className="p-price">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -168,7 +168,7 @@ const Prices = () => {
 						<div className="grid__item one-half">
 							<div className="favPricesbox">
 								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								<p className="p-price">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -178,7 +178,7 @@ const Prices = () => {
 						<div className="grid__item one-half">
 							<div className="favPricesbox">
 								<h6><strong>How much does tuition with Brains cost?</strong></h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								<p className="p-price">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -192,7 +192,7 @@ const Prices = () => {
 						<div className="grid__item one-half">
 							<div className="favPricesbox">
 								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								<p className="p-price">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -202,7 +202,7 @@ const Prices = () => {
 						<div className="grid__item one-half">
 							<div className="favPricesbox">
 								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								<p className="p-price">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
