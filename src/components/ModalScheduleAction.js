@@ -27,7 +27,9 @@ class ModalScheduleAction extends Component {
       role,
       action,
       scheduleId,
-      onUpdatingScheduleStatus
+      onUpdatingScheduleStatus,
+      status,
+      selectedPage,
     } = this.props;
 
     const data = {
@@ -36,7 +38,7 @@ class ModalScheduleAction extends Component {
       message: this.state.message,
     };
 
-    onUpdatingScheduleStatus(role, data);
+    onUpdatingScheduleStatus(role, data, status, selectedPage);
   }
 
   render() {
@@ -91,6 +93,8 @@ ModalScheduleAction.propTypes = {
   action: PropTypes.string,
   onSetScheduleAction: PropTypes.func,
   onUpdatingScheduleStatus: PropTypes.func,
+  status: PropTypes.string,
+  selectedPage: PropTypes.number,
 };
 
 export default ModalScheduleAction;

@@ -2,7 +2,7 @@
 	background-color: $gray-bckgr;
 	&__box {
 		background-color: #fff;
-		margin: $base-spacing-unit 0 $base-spacing-unit*5;
+		margin: $base-spacing-unit 0 $base-spacing-unit*2;
 	}
 	&__menu {
 		&-btn {
@@ -11,14 +11,22 @@
 			padding-bottom: $half-spacing-unit;
 			background-color: #fff;
 			border-radius: 0;
+			outline: none;
 			@include rem(17);
 			&:hover {
+				color: #000;
+			}
+			&:active,
+			&:hover,
+			&:focus {
+				outline: none;
 				color: #000;
 			}
 			&.disable {
 				background-color: $gray-highlight;
 				&:hover {
 					color: #fff;
+					outline: none;
 				}
 			}
 		}

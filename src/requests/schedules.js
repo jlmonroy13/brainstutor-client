@@ -12,7 +12,7 @@ const requestScheduleMeeting = (data) => {
 const updateScheduleMeeting = (data) => {
   const { startAt, id, message } = data;
   return brains
-    .put(`/students/schedules/${id}?&schedule[start_at]=${startAt}&schedule[message]=${message}&schedule[status]=awaiting_tutor`)
+    .put(`/students/schedules/${id}?schedule[start_at]=${startAt}&schedule[message]=${message}&schedule[status]=awaiting_tutor`)
     .catch(catchRequestError);
 };
 
@@ -22,9 +22,9 @@ const getSchedule = (scheduleId) => {
     .catch(catchRequestError);
 };
 
-const fetchScheduleList = (type) => {
+const fetchScheduleList = (type, status, page) => {
   return brains
-    .get(`/${type}s/schedules`)
+    .get(`/${type}s/schedules?status=${status}&page=${page}`)
     .catch(catchRequestError);
 };
 

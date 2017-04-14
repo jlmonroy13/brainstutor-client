@@ -1,5 +1,9 @@
 const initialState = {
-	scheduleList: [],
+	scheduleList: {
+		list: [],
+		totalPages: '',
+		currentPage: '',
+	},
 	scheduleAction: {
 		action: '',
 		scheduleId: '',
@@ -24,7 +28,11 @@ export default function scheduleTutorReducer(state = initialState, action) {
 		case 'SET_SCHEDULE_LIST':
 			return {
 				...state,
-				scheduleList: action.payload,
+				scheduleList: {
+					list: action.payload.schedules,
+					totalPages: action.payload.meta.pagination.total_pages,
+					currentPage: action.payload.meta.pagination.current_page,
+				},
 			};
 		case 'SET_SCHEDULE_ACTION':
 			return {

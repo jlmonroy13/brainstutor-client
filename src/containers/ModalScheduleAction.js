@@ -20,8 +20,8 @@ const mapDispatchToProps = dispatch => ({
   onSetScheduleAction: (data) => {
     dispatch(setScheduleAction(data));
   },
-  onUpdatingScheduleStatus: (type, data) => {
-    dispatch(updatingScheduleStatus(type, data));
+  onUpdatingScheduleStatus: (type, data, status, page) => {
+    dispatch(updatingScheduleStatus(type, data, status, page));
   },
 });
 

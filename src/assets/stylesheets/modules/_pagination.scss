@@ -1,0 +1,22 @@
+.pagination {
+	margin: $base-spacing-unit auto $base-spacing-unit*5;
+	display: block;
+	text-align: center;
+	&__item {
+		padding: $half-spacing-unit;
+		color: #fff;
+		background-color: $blue;
+		border: 1px solid $blue;
+		border-radius: 4px;
+		margin-right: $half-spacing-unit;
+		cursor: pointer;
+		&:last-child {
+			margin-right: 0;
+		}
+		&.active {
+			background-color: $green;
+			border: 1px solid #fff;
+			color: #fff;
+		}
+	} 
+}

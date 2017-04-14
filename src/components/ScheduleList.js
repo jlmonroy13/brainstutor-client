@@ -7,12 +7,22 @@ class ScheduleList extends Component {
   constructor() {
     super();
 
+    this.state = {
+      tab: 'upcoming',
+      status: 'awaiting_tutor',
+      selectedPage: 1,
+    };
+
     this.onRenderSchedules = this.onRenderSchedules.bind(this);
+    this.onChangeFilter = this.onChangeFilter.bind(this);
+    this.onOpenCompleted = this.onOpenCompleted.bind(this);
+    this.onOpenUpcoming = this.onOpenUpcoming.bind(this);
+    this.renderPagination = this.renderPagination.bind(this);
   }
 
   componentWillMount() {
     const { onFetchScheduleList, userInfo } = this.props;
-    onFetchScheduleList(userInfo.role);
+    onFetchScheduleList(userInfo.role, 'awaiting_tutor', 1);
   }
 
   onRenderSchedules(schedule) {
@@ -26,9 +36,46 @@ class ScheduleList extends Component {
     );
   }
 
+  onChangeFilter(e) {
+    const { onFetchScheduleList, userInfo } = this.props;
+    this.setState({ status: e.target.value });
+    onFetchScheduleList(userInfo.role, e.target.value, 1);
+  }
+
+  renderPagination(page) {
+    const { currentPage, onFetchScheduleList, userInfo } = this.props;
+    const { status } = this.state;
+    const activeClass = page === currentPage ? 'active' : '';
+    const onChangeSchedulesPage = (page) => () => {
+      onFetchScheduleList(userInfo.role, status, page);
+      this.state({ selectedPage: page });
+    };
+
+    return (
+      <span
+        className={`pagination__item ${activeClass}`}
+        onClick={onChangeSchedulesPage(page)}
+        key={page}
+      >{page}</span>
+    );
+  }
+
+  onOpenCompleted() {
+    const { onFetchScheduleList, userInfo } = this.props;
+    this.setState({ tab: 'completed', status: 'completed' });
+    onFetchScheduleList(userInfo.role, 'completed', 1);   
+  }
+
+  onOpenUpcoming() {
+    const { onFetchScheduleList, userInfo } = this.props;
+    this.setState({ tab: 'upcoming', status: 'awaiting_tutor' });
+    onFetchScheduleList(userInfo.role, 'awaiting_tutor', 1);
+  }
+
   render() {
     const scheduleList = this.props.scheduleList || [];
-    const { userInfo: { role } } = this.props;
+    const { userInfo: { role }, totalPages } = this.props;
+    const { tab, status, selectedPage } = this.state;
     const gridClass = role === 'student' ? 'three-quarters' : 'five-sixths';
 
     return (
@@ -59,9 +106,40 @@ class ScheduleList extends Component {
             <div className={`grid__item ${gridClass}`}>
               <div className="schedule-list__box">
                 <div className="schedule-list__menu">
-                  <button className="button schedule-list__menu-btn">Próximas</button>
-                  <button className="button schedule-list__menu-btn disable">Completadas</button>
+                  <button 
+                    className={tab === 'upcoming' ? 'button schedule-list__menu-btn' : 'button schedule-list__menu-btn disable'}
+                    onClick={this.onOpenUpcoming}
+                  >Próximas</button>
+                  <button 
+                    className={tab === 'completed' ? 'button schedule-list__menu-btn' : 'button schedule-list__menu-btn disable'}
+                    onClick={this.onOpenCompleted}
+                  >Completadas</button>
                 </div>
+                { tab === 'upcoming' ?
+                  <select
+                    className="hero__tutor-selector hero__tutor-selector--medium push--top push--left"
+                    onChange={this.onChangeFilter}
+                    value={status}
+                  >
+                    <option value="">Selecciona un filtro</option>
+                    <option value="awaiting_tutor">Esperando Tutor</option>
+                    <option value="accepted_awaiting_payment">Esperando Confirmación del Pago</option>
+                    <option value="confirmed">Confirmadas</option>
+                  </select>
+                :
+                  <select
+                    className="hero__tutor-selector push--top push--left"
+                    onChange={this.onChangeFilter}
+                    value={status}
+                  >
+                    <option value="">Selecciona un filtro</option>
+                    <option value="completed">Completadas</option>
+                    <option value="canceled">Canceladas</option>
+                    <option value="rejected">Rechazadas</option>
+                    <option value="expired">Vencidas</option>
+                  </select>
+                }
+                  
                 <div className="schedule-list__body">
                   <table className="schedule-list__table">
                     <tbody>
@@ -70,11 +148,17 @@ class ScheduleList extends Component {
                   </table>
                 </div>
               </div>
+              <div className="pagination">
+                {totalPages.map(this.renderPagination)}
+              </div>
             </div>
           </div>
         </div>
         <Footer />
-        <ModalScheduleActionContainer />
+        <ModalScheduleActionContainer 
+          status={status}
+          selectedPage={selectedPage}
+        />
       </div>
     );
   }
@@ -85,6 +169,8 @@ ScheduleList.propTypes = {
   userInfo: PropTypes.object,
   scheduleList: PropTypes.array,
   scheduleAction: PropTypes.object,
+  currentPage: PropTypes.number,
+  totalPages: PropTypes.array,
 };
 
 export default ScheduleList;

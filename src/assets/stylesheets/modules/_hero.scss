@@ -64,8 +64,12 @@
     &-selector {
       height: 50px;
       width: 240px;
+      outline: none;
       &--large {
         width: 440px;
+      }
+      &--medium {
+        width: 340px;
       }
       &-container {
         position: absolute;

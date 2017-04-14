@@ -56,14 +56,14 @@ const setSchedule = data => ({
 	payload: data,
 });
 
-const updatingScheduleStatus = (type, data) => {
+const updatingScheduleStatus = (type, data, status, page) => {
 	return (dispatch) => {
 		dispatch(setStatusRequestTrue());
 		updateScheduleStatus(type, data)
 			.then(successupdatingScheduleStatus);
 
 		function successupdatingScheduleStatus() {
-			dispatch(fetchingScheduleList(type));
+			dispatch(fetchingScheduleList(type, status, page));
 			Alert.success("¡La Tutoria ha sido actualizada!");
 			dispatch(setScheduleAction({ action: '', scheduleId: '' }));
 			dispatch(setStatusRequestFalse());
@@ -113,14 +113,14 @@ const gettingSchedule = (scheduleId, callback) => {
 	};
 };
 
-const fetchingScheduleList = (type) => {
+const fetchingScheduleList = (type, status, page) => {
 	return (dispatch) => {
 		dispatch(setStatusRequestTrue());
-		fetchScheduleList(type)
+		fetchScheduleList(type, status, page)
 			.then(successFetchScheduleList);
 
 		function successFetchScheduleList({data}) {
-			dispatch(setScheduleList(data.schedules));
+			dispatch(setScheduleList(data));
 			dispatch(setStatusRequestFalse());
 		}
 	};
