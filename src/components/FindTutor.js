@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 import Footer from './Footer';
-import ObjectUtils from '../utils/object';
 import subjects from '../consts/subjects';
 import Gravatar from 'react-gravatar';
 import { Link } from 'react-router';
@@ -18,12 +17,33 @@ class FindTutor extends React.Component {
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.renderPagination = this.renderPagination.bind(this);
+  }
+
+  componentWillMount() {
+    const { onGetTutorsRequest } = this.props;
+    onGetTutorsRequest(1);
+  }
+
+  renderPagination(page) {
+    const { currentPage, onGetTutorsRequest } = this.props;
+    const activeClass = page === currentPage ? 'active' : '';
+    const onChangeSchedulesPage = (page) => () => {
+      onGetTutorsRequest(page);
+    };
+
+    return (
+      <span
+        className={`pagination__item ${activeClass}`}
+        onClick={onChangeSchedulesPage(page)}
+        key={page}
+      >{page}</span>
+    );
   }
 
   onChange(event, { newValue }) {
     this.setState({
-      value: newValue
+      value: newValue,
     });
   }
 
@@ -56,9 +76,8 @@ class FindTutor extends React.Component {
   } 
 
   render() {
-    const { teachers } = this.props;
+    const { teachers, totalPages } = this.props;
     const { value, suggestions } = this.state;
-    const teacherArray = ObjectUtils.toArray(teachers);
 
     const inputProps = {
       placeholder: 'Buscar por materia',
@@ -117,7 +136,10 @@ class FindTutor extends React.Component {
         </div>
         <div className="container container--small">
           <div className="cards-container">
-            {teacherArray.map(renderTeacher)}
+            {teachers && teachers.map(renderTeacher)}
+            <div className="pagination">
+              {totalPages && totalPages.map(this.renderPagination)}
+            </div>
           </div>
         </div>
         <Footer />
@@ -127,7 +149,10 @@ class FindTutor extends React.Component {
 }
 
 FindTutor.propTypes = {
-  teachers: PropTypes.shape(),
+  teachers: PropTypes.array,
+  totalPages: PropTypes.array,
+  currentPage: PropTypes.number,
+  onGetTutorsRequest: PropTypes.func,
 };
 
 export default FindTutor;

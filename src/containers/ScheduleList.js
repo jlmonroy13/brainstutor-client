@@ -9,8 +9,8 @@ const mapStateToProps = (state) => {
   } = state;
   const arrayPages = [];
   for (let i = 0; i < totalPages; i++) {
-      arrayPages.push(i+1);
-    }
+    arrayPages.push(i+1);
+  }
 
   return {
     userInfo,

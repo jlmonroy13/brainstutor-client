@@ -41,15 +41,14 @@ const updateBankInfoRequest = (dataForm) => {
 	};
 };
 
-const getTutorsRequest = (callback) => {
+const getTutorsRequest = (page) => {
 	return (dispatch) => {
 		dispatch(setStatusRequestTrue());
-		showTeachers().then(successGetTutors);
+		showTeachers(page).then(successGetTutors);
 
-		function successGetTutors(tutors) {
+		function successGetTutors(response) {
 			dispatch(setStatusRequestFalse());
-			dispatch(setTeachers(tutors.data.teachers));
-			callback();
+			dispatch(setTeachers(response.data));
 		}
 	};
 };

@@ -22,12 +22,12 @@
 	}
 	&__body {
 		padding: $base-spacing-unit;
-		min-height: 280px;
+		min-height: 230px;
 	}
 	&__image {
 		background-color: #fff;
-		width: 240px;
-		height: 270px;
+		width: 200px;
+		height: 230px;
 		position: absolute;
 		top: -30px;
 		left: 70px;
@@ -42,5 +42,5 @@
 }
 
 .cards-container {
-	padding: $base-spacing-unit*3 0 $base-spacing-unit*5;
+	padding: $base-spacing-unit*3 0 $base-spacing-unit;
 }

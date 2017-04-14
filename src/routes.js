@@ -25,7 +25,6 @@ import Prices from './components/Prices';
 import StudentsDashboard from './components/StudentsDashboard';
 import TutorsDashboard from './components/TutorsDashboard';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
-import { getTutorsRequest } from './actions/teacher';
 import { gettingSchedule } from './actions/scheduleTutor';
 import moment from 'moment-timezone';
 
@@ -132,10 +131,9 @@ const onEnterTutorProfile = store => {
 
 const onEnterFindTutor = store => {
   return (nextState, replace, callback) => {
-    const { dispatch, getState } = store;
+    const { getState } = store;
     const { userInfo } = getState();
     verifyToken(userInfo, store, callback);
-    dispatch(getTutorsRequest(callback));
   };
 };
 

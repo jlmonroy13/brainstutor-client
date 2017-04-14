@@ -53,9 +53,9 @@ const showUser = (id, type) => {
     .catch(catchRequestError);
 };
 
-const showTeachers = () => (
+const showTeachers = (page) => (
   brainsAuthentication
-    .get(`/teachers`)
+    .get(`/teachers?page=${page}`)
     .catch(catchRequestError)
 );
 
