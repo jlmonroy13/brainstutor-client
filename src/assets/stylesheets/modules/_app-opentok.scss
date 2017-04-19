@@ -1,19 +1,5 @@
 .App {
-  margin-bottom: $base-spacing-unit*10;
-}
-.App-header {
-  background-color: #222;
-  height: 40px;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-
-.App-header h1 {
-  font-size: 16px;
-  font-weight: 200;
+  padding: $base-spacing-unit 0;
 }
 
 .App-logo {
@@ -24,7 +10,7 @@
 .App-main {
   position: relative;
   width: 75vw;
-  height: calc(75vw * .6);
+  height: calc(75vw * .5);
   margin: 10px auto;
   border: 1px solid lightblue;
 }
@@ -90,7 +76,7 @@
   height: 100%;
   position: relative;
   color: white;
-  background: rgba(27, 134, 144, 0.4);
+  background: rgba($dark-green, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,6 +103,11 @@
   color: white;
   font-family: sans-serif;
   font-size: medium;
+  transition: 0.3s
+  &:hover {
+    color: rgba($dark-green, 0.8) !important;
+    background: #fff !important;
+  }
 }
 
 .App-mask .message.button:focus:active,  .message.button:focus, .message.button:active {
@@ -176,4 +167,17 @@
 
 .App-video-container .video-container.active-gt2.active-odd .OT_subscriber:first-child {
   flex-basis: 100%;
+}
+
+.App-chat-container {
+  margin-bottom: $base-spacing-unit*4;
+}
+
+.ots-text-chat .ots-send-message-box button {
+  background-color: $blue;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    background-color: $green;
+  }
 }

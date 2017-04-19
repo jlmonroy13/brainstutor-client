@@ -1,19 +1,18 @@
 import React from 'react';
 import Spinner from 'react-spinner';
 import classNames from 'classnames';
+import Alert from 'react-s-alert';
 
 import otCore from 'opentok-accelerator-core';
-
-import Footer from './Footer';
 
 const otCoreOptions = {
   credentials: {
     apiKey: '45820962',
-    sessionId: '1_MX40NTgyMDk2Mn5-MTQ5MjU3MjMwNDY5OX5lT2dkU21McUJwVFRwN0IxdVRRTC9HOXh-fg',
-    token: 'T1==cGFydG5lcl9pZD00NTgyMDk2MiZzaWc9NTc1ZTg2MzQzNTdlZDFlZmEzZDVkYTJkN2M1NzQ3MDczMzBiN2E3ZjpzZXNzaW9uX2lkPTFfTVg0ME5UZ3lNRGsyTW41LU1UUTVNalUzTWpNd05EWTVPWDVsVDJka1UyMU1jVUp3VkZSd04wSXhkVlJSVEM5SE9YaC1mZyZjcmVhdGVfdGltZT0xNDkyNTcyMzU4Jm5vbmNlPTAuNDU5MDY0OTYzNDc3MzIyMyZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNDkyNTc1OTU5',
+    sessionId: '1_MX40NTgyMDk2Mn5-MTQ5MjYwMzQwNDMzMn5kMXBRc3pMa1RnU2hPL09FeWM4N0ZiK3V-fg',
+    token: 'T1==cGFydG5lcl9pZD00NTgyMDk2MiZzaWc9YWU3NDc3NjllYzA2NmEyMTYxYmFmN2RhY2ViNjZmMmNhMTIxMGJlMjpzZXNzaW9uX2lkPTFfTVg0ME5UZ3lNRGsyTW41LU1UUTVNall3TXpRd05ETXpNbjVrTVhCUmMzcE1hMVJuVTJoUEwwOUZlV000TjBaaUszVi1mZyZjcmVhdGVfdGltZT0xNDkyNjAzNDI4Jm5vbmNlPTAuNzQ1NDY0NzA3MDE2NzUzNyZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNDkyNjg5ODI3JmNvbm5lY3Rpb25fZGF0YT1uYW1lJTNEJTIyam9yZ2UlMjI=',
   },
   // A container can either be a query selector or an HTML Element
-  streamContainers(pubSub, type, data, streamId) {
+  streamContainers(pubSub, type) {
     return {
       publisher: {
         camera: '#cameraPublisherContainer',
@@ -96,7 +95,7 @@ const connectingMask = () =>
 
 const startCallMask = start =>
   <div className="App-mask">
-    <button className="message button clickable" onClick={start}>Click to Start Call </button>
+    <button className="message button clickable" onClick={start}>Empezar la llamada</button>
   </div>;
 
 class OpentokSession extends React.Component {
@@ -137,9 +136,9 @@ class OpentokSession extends React.Component {
 
   startCall() {
     this.testing.startCall()
-      .then(({ publisher, publishers, subscribers, meta }) => {
+      .then(({ publishers, subscribers, meta }) => {
         this.setState({ publishers, subscribers, meta, active: true });
-      }).catch(error => console.log(error));
+      }).catch(error => Alert.error(error));
   }
 
   endCall() {
@@ -173,10 +172,6 @@ class OpentokSession extends React.Component {
     return (
       <div>
         <div className="App">
-          <div className="App-header">
-            <img src={require('../assets/images/form-icon.png')} className="App-logo" alt="logo" />
-            <h1>OpenTok Accelerator Core</h1>
-          </div>
           <div className="App-main">
             <div className="App-video-container">
               { !connected && connectingMask() }
@@ -194,7 +189,6 @@ class OpentokSession extends React.Component {
             <div id="chat" className="App-chat-container" />
           </div>
         </div>
-        <Footer />
       </div>
     );
   }
