@@ -17,6 +17,7 @@ import ScheduleListContainer from './containers/ScheduleList';
 import HomePage from './components/HomePage';
 import NotFoundPage from './components/NotFoundPage';
 import SignupIndex from './components/SignupIndex';
+import OpentokSession from './components/OpentokSession';
 import LogInIndex from './components/LogInIndex';
 import AfterSignupTeacher from './components/AfterSignupTeacher';
 import StepToStepInfo from './components/StepToStepInfo';
@@ -283,6 +284,10 @@ export default store => (
     <Route
       path="/precios"
       component={Prices}
+    />
+    <Route
+      path="/opentok"
+      component={OpentokSession}
     />
     <Route
       path="/estudiantes/agendar-tutoria/:id"
