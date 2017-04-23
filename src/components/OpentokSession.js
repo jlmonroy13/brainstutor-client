@@ -2,62 +2,9 @@ import React from 'react';
 import Spinner from 'react-spinner';
 import classNames from 'classnames';
 import Alert from 'react-s-alert';
+import opentokSettings from '../consts/opentokSettings';
 
 import otCore from 'opentok-accelerator-core';
-
-const otCoreOptions = {
-  credentials: {
-    apiKey: '45820962',
-    sessionId: '1_MX40NTgyMDk2Mn5-MTQ5MjYwMzQwNDMzMn5kMXBRc3pMa1RnU2hPL09FeWM4N0ZiK3V-fg',
-    token: 'T1==cGFydG5lcl9pZD00NTgyMDk2MiZzaWc9YWU3NDc3NjllYzA2NmEyMTYxYmFmN2RhY2ViNjZmMmNhMTIxMGJlMjpzZXNzaW9uX2lkPTFfTVg0ME5UZ3lNRGsyTW41LU1UUTVNall3TXpRd05ETXpNbjVrTVhCUmMzcE1hMVJuVTJoUEwwOUZlV000TjBaaUszVi1mZyZjcmVhdGVfdGltZT0xNDkyNjAzNDI4Jm5vbmNlPTAuNzQ1NDY0NzA3MDE2NzUzNyZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNDkyNjg5ODI3JmNvbm5lY3Rpb25fZGF0YT1uYW1lJTNEJTIyam9yZ2UlMjI=',
-  },
-  // A container can either be a query selector or an HTML Element
-  streamContainers(pubSub, type) {
-    return {
-      publisher: {
-        camera: '#cameraPublisherContainer',
-        screen: '#screenPublisherContainer',
-      },
-      subscriber: {
-        camera: '#cameraSubscriberContainer',
-        screen: '#screenSubscriberContainer',
-      },
-    }[pubSub][type];
-  },
-  controlsContainer: '#controls',
-  packages: ['textChat', 'screenSharing', 'annotation'],
-  communication: {
-    callProperites: null, // Using default
-  },
-  textChat: {
-    name: ['David', 'Paul', 'Emma', 'George', 'Amanda'][Math.random() * 5 | 0], // eslint-disable-line no-bitwise
-    waitingMessage: 'Messages will be delivered when other users arrive',
-    container: '#chat',
-  },
-  screenSharing: {
-    extensionID: 'plocfffmbcclpdifaikiikgplfnepkpo',
-    annotation: true,
-    externalWindow: false,
-    dev: true,
-    screenProperties: {
-      insertMode: 'append',
-      width: '100%',
-      height: '100%',
-      showControls: false,
-      style: {
-        buttonDisplayMode: 'off',
-      },
-      videoSource: 'window',
-      fitMode: 'contain' // Using default
-    },
-  },
-  annotation: {
-    absoluteParent: {
-      publisher: '.App-video-container',
-      subscriber: '.App-video-container'
-    }
-  },
-};
 
 /**
  * Build classes for container elements based on state
@@ -117,7 +64,7 @@ class OpentokSession extends React.Component {
   }
 
   componentDidMount() {
-    this.testing = new otCore(otCoreOptions);
+    this.testing = new otCore(opentokSettings);
     // this.testing.init(otCoreOptions);
     this.testing.connect().then(() => this.setState({ connected: true }));
     const events = [
