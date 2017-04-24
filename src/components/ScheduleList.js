@@ -25,6 +25,10 @@ class ScheduleList extends Component {
     onFetchScheduleList(userInfo.role, 'awaiting_tutor', 1);
   }
 
+  componentDidMount() {
+    window.Intercom('shutdown');
+  }
+
   onRenderSchedules(schedule) {
     const { userInfo: { role } } = this.props;
     return (
@@ -63,7 +67,7 @@ class ScheduleList extends Component {
   onOpenCompleted() {
     const { onFetchScheduleList, userInfo } = this.props;
     this.setState({ tab: 'completed', status: 'completed' });
-    onFetchScheduleList(userInfo.role, 'completed', 1);   
+    onFetchScheduleList(userInfo.role, 'completed', 1);
   }
 
   onOpenUpcoming() {
@@ -106,11 +110,11 @@ class ScheduleList extends Component {
             <div className={`grid__item ${gridClass}`}>
               <div className="schedule-list__box">
                 <div className="schedule-list__menu">
-                  <button 
+                  <button
                     className={tab === 'upcoming' ? 'button schedule-list__menu-btn' : 'button schedule-list__menu-btn disable'}
                     onClick={this.onOpenUpcoming}
                   >Próximas</button>
-                  <button 
+                  <button
                     className={tab === 'completed' ? 'button schedule-list__menu-btn' : 'button schedule-list__menu-btn disable'}
                     onClick={this.onOpenCompleted}
                   >Completadas</button>
@@ -139,7 +143,7 @@ class ScheduleList extends Component {
                     <option value="expired">Vencidas</option>
                   </select>
                 }
-                  
+
                 <div className="schedule-list__body">
                   <table className="schedule-list__table">
                     <tbody>
@@ -155,7 +159,7 @@ class ScheduleList extends Component {
           </div>
         </div>
         <Footer />
-        <ModalScheduleActionContainer 
+        <ModalScheduleActionContainer
           status={status}
           selectedPage={selectedPage}
         />

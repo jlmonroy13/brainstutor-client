@@ -4,6 +4,7 @@ import subjects from '../consts/subjects';
 import Gravatar from 'react-gravatar';
 import { Link } from 'react-router';
 import Autosuggest from 'react-autosuggest';
+import yotpoScript from '../consts/yotpoScript';
 
 class FindTutor extends React.Component {
   constructor(props) {
@@ -23,6 +24,13 @@ class FindTutor extends React.Component {
   componentWillMount() {
     const { onGetTutorsRequest } = this.props;
     onGetTutorsRequest(1);
+  }
+
+  componentDidMount() {
+    if(window.Intercom !== undefined) { window.Intercom('shutdown'); }
+    let s1 = document.createElement('script');
+    s1.innerHTML = yotpoScript;
+    document.body.appendChild(s1);
   }
 
   renderPagination(page) {
@@ -73,7 +81,7 @@ class FindTutor extends React.Component {
 
   getSuggestionValue(suggestion) {
     return suggestion.name;
-  } 
+  }
 
   render() {
     const { teachers, totalPages } = this.props;
@@ -108,7 +116,18 @@ class FindTutor extends React.Component {
                     Ingeniera egresada de la Universidad de Medellín texto, texto texto texto, texto texto texto, texto texto, Ingeniera egresada de la Universidad de Medellín texto, texto texto texto, texto texto texto, texto texto
                   </p>
                 </div>
-              </div>  
+              </div>
+              <div 
+                className="yotpo bottomLine"
+                data-appkey="J492TK9MJ4aY4s2Xv8C1frKF33LmHbRTCKQjgNBL"
+                data-domain="localhost:3000"
+                data-product-id={teacher.id}
+                data-product-models="Products model information"
+                data-name={teacher.first_name + '' + teacher.last_name}
+                data-url={`localhost:3000/perfil-tutor/${teacher.id}`}
+                data-description={teacher.description}
+                data-bread-crumbs="Product categories"
+              />
             </div>
           </div>
         </Link>
@@ -145,7 +164,7 @@ class FindTutor extends React.Component {
         <Footer />
       </div>
     );
-  }  
+  }
 }
 
 FindTutor.propTypes = {

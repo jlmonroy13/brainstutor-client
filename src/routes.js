@@ -28,7 +28,6 @@ import { getUserInfo, setAuthInProcess } from './actions/authentication';
 import { gettingSchedule } from './actions/scheduleTutor';
 import moment from 'moment-timezone';
 
-
 const getLocalStorage = () => {
   const localData = localStorage.getItem('BrainsUserInfo');
   if (localData) return JSON.parse(localData);
@@ -142,6 +141,7 @@ const onEnterFindTutor = store => {
   return (nextState, replace, callback) => {
     const { getState } = store;
     const { userInfo } = getState();
+    // if(window.Yotpo !== undefined) { window.Yotpo(''); }
     verifyToken(userInfo, store, callback);
   };
 };
@@ -172,7 +172,7 @@ const onEnterTutorSignupProcess = store => {
   };
 };
 
-export default store => (
+const routes = store => (
   <Route path="/" component={App}>
     <IndexRoute
       component={HomePage}
@@ -297,3 +297,6 @@ export default store => (
     <Route path="*" component={NotFoundPage} />
   </Route>
 );
+
+routes.displayName = 'routes';
+export default routes;

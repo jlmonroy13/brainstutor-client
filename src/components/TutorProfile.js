@@ -6,6 +6,8 @@ import ReactModal from 'react-modal';
 import TextFieldGroup from './TextFieldGroup';
 import Alert from 'react-s-alert';
 import { browserHistory } from 'react-router';
+import yotpoScript from '../consts/yotpoScript';
+
 
 class TutorProfile extends React.Component {
   constructor(props) {
@@ -141,6 +143,9 @@ class TutorProfile extends React.Component {
   render() {
     const { tutor, isSignUp, textMessage } = this.state;
     const { profile } = tutor;
+    let s1 = document.createElement('script');
+    s1.innerHTML = yotpoScript;
+    document.body.appendChild(s1);
 
     return (
       <div>
@@ -161,6 +166,15 @@ class TutorProfile extends React.Component {
                     <h2>Acerca de mi</h2>
                     <p>{profile && profile.about}</p>
                   </div>
+                </div>
+                <div className="profile push--top">
+                  <div
+                    className="yotpo yotpo-main-widget"
+                    data-product-id={tutor.id}
+                    data-name={`${tutor.first_name} ${tutor.last_name}`}
+                    data-url={`localhost:3000/perfil-tutor/${tutor.id}`}
+                    data-description={`${tutor.description}`}
+                  />
                 </div>
               </div>
               <div className="grid__item two-fifths">

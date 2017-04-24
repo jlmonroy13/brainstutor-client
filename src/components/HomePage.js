@@ -1,7 +1,12 @@
 import React from 'react';
 import Footer from './Footer';
+import intercomScripts from '../consts/intercomScripts';
 
 const HomePage = () => {
+  let s1 = document.createElement('script');
+  s1.innerHTML = intercomScripts;
+  document.body.appendChild(s1);
+
   return (
     <div>
       <div className="hero">

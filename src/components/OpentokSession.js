@@ -64,6 +64,7 @@ class OpentokSession extends React.Component {
   }
 
   componentDidMount() {
+    window.Intercom('shutdown');
     this.testing = new otCore(opentokSettings);
     // this.testing.init(otCoreOptions);
     this.testing.connect().then(() => this.setState({ connected: true }));
