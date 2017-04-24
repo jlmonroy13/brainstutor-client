@@ -74,7 +74,8 @@ class ScheduleItem extends Component {
               :  schedule.status !== 'confirmed' ?
                 <button className="button button--blue" onClick={this.onClickRescheduleAction} >Volver a Agendar</button>
                 :
-            ''}
+            <button className="button button--dark-green">Entrar al salón de clases</button>
+        }
           </td>
         :
           <td className={`schedule-list__row ${role === 'student' ? '' : 'schedule-list__row--teacher' }`}>
@@ -93,11 +94,13 @@ class ScheduleItem extends Component {
                   onClick={this.onClickRescheduleAction}
                 >Enviar mensaje</button>
               </div>
-            :
+            : schedule.status === 'confirmed' ?
+              <button className="button button--dark-green">Entrar al salón de clases</button>
+              :
               <button
                 className="button button--transparent-blue"
                 onClick={this.onClickRescheduleAction}
-              >Enviar mensaje</button>
+              >Enviar mensaje</button> 
             }
           </td>
         }
