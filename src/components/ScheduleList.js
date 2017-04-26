@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import Footer from './Footer';
 import ScheduleItemContainer from '../containers/ScheduleItem';
 import ModalScheduleActionContainer from '../containers/ModalScheduleAction';
+import ModalBeforeOpenTokContainer from '../containers/ModalBeforeOpenTok';
 
 class ScheduleList extends Component {
   constructor() {
@@ -155,6 +156,7 @@ class ScheduleList extends Component {
           </div>
         </div>
         <Footer />
+        <ModalBeforeOpenTokContainer />
         <ModalScheduleActionContainer 
           status={status}
           selectedPage={selectedPage}

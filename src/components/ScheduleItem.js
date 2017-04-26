@@ -11,6 +11,7 @@ class ScheduleItem extends Component {
     this.onClickAcceptAction = this.onClickAcceptAction.bind(this);
     this.onClickRejectAction = this.onClickRejectAction.bind(this);
     this.onClickRescheduleAction = this.onClickRescheduleAction.bind(this);
+    this.onEnterRoom = this.onEnterRoom.bind(this);
   }
 
   onClickAcceptAction() {
@@ -30,8 +31,14 @@ class ScheduleItem extends Component {
     browserHistory.push(`/estudiantes/agendar-tutoria/${schedule.id}`);
   }
 
+  onEnterRoom() {
+    const { onGetSessionStatus, role, schedule } = this.props;
+    onGetSessionStatus(role, schedule.id);
+  }
+
   render() {
     const { role, schedule } = this.props;
+    console.warn(schedule, role);
     return (
       <tr>
         <td className={`schedule-list__row ${role === 'student' ? '' : 'schedule-list__row--teacher' }`}>
@@ -51,17 +58,17 @@ class ScheduleItem extends Component {
             role === 'student' ?
               schedule.status === 'awaiting_tutor' ?
                 'Esperando confirmación del tutor'
-              : schedule.status === 'accepted_awaiting_payment' ? 
+              : schedule.status === 'accepted_awaiting_payment' ?
                 'Esperando tu pago'
-                : schedule.status === 'rejected' ? 
+                : schedule.status === 'rejected' ?
                   'Tutoría Rechazada'
-                  : 'Tutoría confirmada' 
+                  : 'Tutoría confirmada'
             : role === 'teacher' ?
               schedule.status === 'awaiting_tutor' ?
                 'Esperando tu confirmación'
-              : schedule.status === 'accepted_awaiting_payment' ? 
+              : schedule.status === 'accepted_awaiting_payment' ?
                 'Esperando el pago del estudiante'
-                : schedule.status === 'rejected' ? 
+                : schedule.status === 'rejected' ?
                   'Tutoría Rechazada'
                   : 'Tutoría confirmada'
             : ''
@@ -74,7 +81,10 @@ class ScheduleItem extends Component {
               :  schedule.status !== 'confirmed' ?
                 <button className="button button--blue" onClick={this.onClickRescheduleAction} >Volver a Agendar</button>
                 :
-            <button className="button button--dark-green">Entrar al salón de clases</button>
+            <button
+              className="button button--dark-green"
+              onClick={this.onEnterRoom}
+            >Entrar al salón de clases</button>
         }
           </td>
         :
@@ -91,16 +101,17 @@ class ScheduleItem extends Component {
                 >Rechazar</button>
                 <button
                   className="button button--transparent-blue"
-                  onClick={this.onClickRescheduleAction}
                 >Enviar mensaje</button>
               </div>
             : schedule.status === 'confirmed' ?
-              <button className="button button--dark-green">Entrar al salón de clases</button>
+              <button
+                className="button button--dark-green"
+                onClick={this.onEnterRoom}
+              >Entrar al salón de clases</button>
               :
               <button
                 className="button button--transparent-blue"
-                onClick={this.onClickRescheduleAction}
-              >Enviar mensaje</button> 
+              >Enviar mensaje</button>
             }
           </td>
         }
@@ -114,6 +125,7 @@ ScheduleItem.propTypes = {
   role: PropTypes.string,
   onSetScheduleAction: PropTypes.func,
   onSetAppointmenteType: PropTypes.func,
+  onGetSessionStatus: PropTypes.func,
 };
 
 export default ScheduleItem;

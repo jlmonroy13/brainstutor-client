@@ -35,6 +35,12 @@ const updateScheduleStatus = (type, data) => {
     .catch(catchRequestError);
 };
 
+const ReqGetSessionStatus = (type, id) => {
+  return brains
+    .get(`/${type}s/schedules/${id}/session`)
+    .catch(catchRequestError);
+};
+
 
 function catchRequestError({ response }) {
   const errorMsg = response.data.error && response.data.error.user_authentication[0];
@@ -47,4 +53,5 @@ export {
   updateScheduleStatus,
   updateScheduleMeeting,
   getSchedule,
+  ReqGetSessionStatus,
 };
