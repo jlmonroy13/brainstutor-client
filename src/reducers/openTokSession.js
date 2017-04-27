@@ -1,10 +1,11 @@
 const defaultState = {
-  isModalOpen: true,
+  isModalOpen: false,
   data: {
     apiKey: '',
     sessionId: '',
     token: '',
     error: '',
+    meetingId: '',
   },
 };
 

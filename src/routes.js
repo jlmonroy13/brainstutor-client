@@ -286,7 +286,7 @@ export default store => (
       component={Prices}
     />
     <Route
-      path="/opentok"
+      path="/opentok/:id"
       component={OpentokSession}
     />
     <Route

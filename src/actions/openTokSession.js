@@ -32,6 +32,7 @@ const getSessionStatus = (type, id) => {
 
     function successFetchScheduleList({data}) {
       dispatch(setStatusRequestFalse());
+      data.meetingId = id;
       dispatch(setSessionData(data));
       dispatch(setSessionModalState(true));
     }

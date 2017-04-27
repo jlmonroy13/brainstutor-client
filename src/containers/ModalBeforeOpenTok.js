@@ -6,17 +6,17 @@ import { getSessionStatus, setSessionModalState } from '../actions/openTokSessio
 const mapStateToProps = (state) => {
 	const { openTokSession: { isModalOpen, data } } = state;
   return {
-  	isModalOpen,
-  	data,
+		isModalOpen,
+		data,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
 	onGetSessionStatus: (type, id) => {
-	  dispatch(getSessionStatus(type, id));
+		dispatch(getSessionStatus(type, id));
 	},
 	onSetSessionModalState: (state) => {
-	  dispatch(setSessionModalState(state));
+		dispatch(setSessionModalState(state));
 	},
 });
 

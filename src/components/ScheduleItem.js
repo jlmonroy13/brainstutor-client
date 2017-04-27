@@ -38,7 +38,7 @@ class ScheduleItem extends Component {
 
   render() {
     const { role, schedule } = this.props;
-    console.warn(schedule, role);
+
     return (
       <tr>
         <td className={`schedule-list__row ${role === 'student' ? '' : 'schedule-list__row--teacher' }`}>
