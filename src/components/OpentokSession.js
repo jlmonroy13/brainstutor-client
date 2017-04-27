@@ -1,9 +1,7 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Spinner from 'react-spinner';
 import classNames from 'classnames';
 import Alert from 'react-s-alert';
-import opentokSettings from '../consts/opentokSettings';
-
 import otCore from 'opentok-accelerator-core';
 
 /**
@@ -64,6 +62,8 @@ class OpentokSession extends React.Component {
   }
 
   componentDidMount() {
+    const { opentokSettings, onSetSessionModalState } = this.props;
+    onSetSessionModalState(false);
     this.testing = new otCore(opentokSettings);
     // this.testing.init(otCoreOptions);
     this.testing.connect().then(() => this.setState({ connected: true }));
@@ -140,5 +140,10 @@ class OpentokSession extends React.Component {
     );
   }
 }
+
+OpentokSession.propTypes = {
+  opentokSettings: PropTypes.object,
+  onSetSessionModalState: PropTypes.func,
+};
 
 export default OpentokSession;

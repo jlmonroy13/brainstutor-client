@@ -34,6 +34,7 @@ const getSessionStatus = (type, id) => {
       dispatch(setStatusRequestFalse());
       data.meetingId = id;
       dispatch(setSessionData(data));
+      localStorage.setItem('openTokBrains', JSON.stringify(data));
       dispatch(setSessionModalState(true));
     }
   };
@@ -42,4 +43,5 @@ const getSessionStatus = (type, id) => {
 export {
   getSessionStatus,
   setSessionModalState,
+  setSessionData,
 };

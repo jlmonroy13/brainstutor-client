@@ -14,10 +14,10 @@ import TutorProfileContainer from './containers/TutorProfile';
 import FindTutorContainer from './containers/FindTutor';
 import KnowYourTutorContainer from './containers/KnowYourTutor';
 import ScheduleListContainer from './containers/ScheduleList';
+import OpentokSessionContainer from './containers/OpentokSession';
 import HomePage from './components/HomePage';
 import NotFoundPage from './components/NotFoundPage';
 import SignupIndex from './components/SignupIndex';
-import OpentokSession from './components/OpentokSession';
 import LogInIndex from './components/LogInIndex';
 import AfterSignupTeacher from './components/AfterSignupTeacher';
 import StepToStepInfo from './components/StepToStepInfo';
@@ -26,6 +26,7 @@ import StudentsDashboard from './components/StudentsDashboard';
 import TutorsDashboard from './components/TutorsDashboard';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 import { gettingSchedule } from './actions/scheduleTutor';
+import { setSessionData } from './actions/openTokSession';
 import moment from 'moment-timezone';
 
 
@@ -172,6 +173,18 @@ const onEnterTutorSignupProcess = store => {
   };
 };
 
+const onEnterOpenTokSession = store => {
+  return (nextState, replace, callback) => {
+    const { dispatch, getState } = store;
+    const { userInfo, openTokSession: { data } } = getState();
+    let localData = localStorage.getItem('openTokBrains');
+    localData = localData ? JSON.parse(localData) : {};
+
+    if(!data.apiKey) dispatch(setSessionData(localData));
+    verifyToken(userInfo, store, callback);
+  };
+};
+
 export default store => (
   <Route path="/" component={App}>
     <IndexRoute
@@ -286,8 +299,9 @@ export default store => (
       component={Prices}
     />
     <Route
-      path="/opentok/:id"
-      component={OpentokSession}
+      path="/salon-de-clases/:id"
+      component={OpentokSessionContainer}
+      onEnter={onEnterOpenTokSession(store)}
     />
     <Route
       path="/estudiantes/agendar-tutoria/:id"

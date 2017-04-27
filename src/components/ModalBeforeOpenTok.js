@@ -28,7 +28,7 @@ class ModalBeforeOpenTok extends Component {
             <span className="Modal__btn-close" onClick={this.handleCloseModal}>&#120;</span>
           </div>
           <div className="Modal__body Modal__body--center">
-            {data.error ? 
+            {data.error ?
               <div>
                 <p className="push-half--bottom">{data.error.substr(0, 41)}</p>
                 <p>{data.error.substr(41)}</p>
@@ -42,7 +42,7 @@ class ModalBeforeOpenTok extends Component {
                   className="push--bottom inline-block underline"
                 >Instalar Extensión Brains-Tutors Sharing</a>
                 <div>
-                  <Link className="button button--blue" to={`/opentok/${data.meetingId}`}>Ir a la tutoria</Link>
+                  <Link className="button button--blue" to={`/salon-de-clases/${data.meetingId}`}>Ir a la tutoria</Link>
                 </div>
               </div>
             }
