@@ -182,8 +182,9 @@ function setTokenAndUserInfo(userData, dispatch, userRole) {
 		loginAt: moment.tz(moment.tz.guess()).format(),
 	};
 	delete userInfo.user_id;
-	dispatch(setUserInfo(userInfo));
-	localStorage.setItem('BrainsUserInfo', JSON.stringify({ ...userInfo, ...localData }));
+	const user = userInfo.student&&userInfo.student.id ? {...userInfo, ...userInfo.student} : userInfo;
+	dispatch(setUserInfo(user));
+	localStorage.setItem('BrainsUserInfo', JSON.stringify({ ...user, ...localData }));
 }
 
 export {

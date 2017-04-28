@@ -52,12 +52,15 @@ const validateTokenExpiration = (localData, today, pathname, callback) => {
 };
 
 const verifyToken = (userInfo, store, callback) => {
+  console.warn(userInfo);
+  const userData = userInfo.student&&userInfo.student.id ? {...userInfo, ...userInfo.student} : userInfo;
+  console.warn(userData);
   const today = moment.tz(moment.tz.guess());
   const localData = getLocalStorage();
   const { dispatch, getState } = store;
   const { routing:{ locationBeforeTransitions: { pathname } } } = getState();
-  const token = userInfo&&userInfo.token||localData&&localData.token;
-  const id = localData&&localData.id;
+  const token = userData&&userData.token||localData&&localData.token||localData&&localData.student&&localData.student.token;
+  const id = localData&&localData.id||localData&&localData.student&&localData.student.id;
   const role = localData&&localData.role;
   if (!token && pathname !== '/' && pathname !== '/ver-tutores' && pathname.indexOf('/perfil-tutor/') == -1) {
     browserHistory.push('/');
@@ -67,18 +70,18 @@ const verifyToken = (userInfo, store, callback) => {
 
   validateTokenExpiration(localData, today, pathname, callback);
 
-  if (userInfo&&!userInfo.first_name&&token)  {
+  if (userData&&!userData.first_name&&token)  {
     dispatch(getUserInfo(id, role, callback));
     return;
   }
-  if (userInfo && userInfo.status && userInfo.status !== 'complete' && pathname !== '/' && pathname !== '/tutores/home' && pathname !== '/tutores/inicio') {
+  if (userData && userData.status && userData.status !== 'complete' && pathname !== '/' && pathname !== '/tutores/home' && pathname !== '/tutores/inicio') {
     dispatch(setAuthInProcess(true));
     callback();
-  } else if (userInfo && userInfo.status !== 'complete' && pathname === '/tutores/home') {
+  } else if (userData && userData.status !== 'complete' && pathname === '/tutores/home') {
     dispatch(getUserInfo(id, role, callback));
     dispatch(setAuthInProcess(true));
     return;
-  } else if (userInfo && userInfo.status === 'complete' && pathname === '/tutores/home') {
+  } else if (userData && userData.status === 'complete' && pathname === '/tutores/home') {
     dispatch(setAuthInProcess(false));
     browserHistory.push('/tutores/inicio');
     callback();
