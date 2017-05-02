@@ -2,9 +2,11 @@ import React, { PropTypes } from 'react';
 import Gravatar from 'react-gravatar';
 import TextFieldGroup from './TextFieldGroup';
 import Alert from 'react-s-alert';
+import { MultiSelect } from 'react-selectize';
+import subjectsLocal from '../consts/subjects';
 
 function validateForm(e) {
-	if(e.email && e.firstName && e.lastName && e.university && e.dob && e.level && e.phone && e.about && e.country && e.city && e.gender && e.address) {
+	if(e.email && e.firstName && e.lastName && e.university && e.dob && e.level && e.phone && e.about && e.country && e.city && e.gender && e.address &&e.subjects.length>0) {
 		return true;
 	}
 	return false;
@@ -34,14 +36,21 @@ class UpdateUser extends React.Component {
 			gender,
 			address,
 			rate,
+			subjects: [],
 		};
 
 		this.onChangeForm = this.onChangeForm.bind(this);
 		this.onSubmitForm = this.onSubmitForm.bind(this);
+		this.onChangeSubjects = this.onChangeSubjects.bind(this);
 	}
 
 	onChangeForm(e) {
 		this.setState({ [e.target.name]: e.target.value });
+	}
+
+	onChangeSubjects(data) {
+		const subjects = data.map(subject => subject.value);
+		this.setState({subjects});
 	}
 
 	onSubmitForm(e) {
@@ -55,6 +64,8 @@ class UpdateUser extends React.Component {
 
 	render() {
 		const { type, onLoading } = this.props;
+		const { subjects: subjectsState } = this.state;
+		const subjects = subjectsState.map(subject => ({value: subject, label: subject}));
 		const text = `Actualizar datos ${this.props.type}`;
 		const colorClass = type === "Estudiante" ? 'dark-green' : 'blue';
 		return (
@@ -201,7 +212,16 @@ class UpdateUser extends React.Component {
 								</div>
 							</div>
 						</div>
-						<div className="push-half--ends">
+						<div className="push-half--bottom">
+							<span className="main-form__label">Asignaturas</span>
+							{type !== 'Estudiante' ?
+								<MultiSelect
+									options={subjectsLocal.map(subject=>({label: subject, value: subject}))}
+									value={subjects}
+									placeholder="Selecciona tus asignaturas"
+									onValuesChange={this.onChangeSubjects}
+								/>
+							: null}
 							<label className="main-form__label">Acerca de ti</label>
 							<textarea
 								className="main-form__textarea"

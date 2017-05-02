@@ -34,3 +34,10 @@
     }
   }
 }
+.react-selectize {
+  margin: 0;
+  width: 100% !important;
+  .react-selectize-control {
+    border: none !important;
+  }
+}

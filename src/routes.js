@@ -52,9 +52,7 @@ const validateTokenExpiration = (localData, today, pathname, callback) => {
 };
 
 const verifyToken = (userInfo, store, callback) => {
-  console.warn(userInfo);
   const userData = userInfo.student&&userInfo.student.id ? {...userInfo, ...userInfo.student} : userInfo;
-  console.warn(userData);
   const today = moment.tz(moment.tz.guess());
   const localData = getLocalStorage();
   const { dispatch, getState } = store;

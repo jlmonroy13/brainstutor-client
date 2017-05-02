@@ -1,25 +1,3 @@
-const subjects = [
-  {
-    name: 'Física Mecánica',
-  },
-  {
-    name: 'Cálculo Integral',
-  },
-  {
-    name: 'Cálculo Vectorial',
-  },
-  {
-    name: 'Cálculo Diferencial',
-  },
-  {
-    name: 'Algebra',
-  },
-  {
-    name: 'Física Moderna',
-  },
-  {
-    name: 'Circuitos Eléctricos',
-  },
-];
+const subjectsLocal = ['Física Mecánica', 'Cálculo Integral', 'Cálculo Vectorial', 'Cálculo Diferencial', 'Álgebra Lineal', 'Física Moderna', 'Circuitos Eléctricos'];
 
-export default subjects;
+export default subjectsLocal;
