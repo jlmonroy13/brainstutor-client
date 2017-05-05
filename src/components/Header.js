@@ -30,7 +30,7 @@ class Header extends React.Component {
 		const teacherMenu = (
 			<Menu className="dropdown-header__menu" onClick={logOutFn} >
 				<MenuItem key="1"><Link className="dropdown-header__link" to="/tutores/perfil">Perfil</Link></MenuItem>
-				<MenuItem key="2">Cuenta Bancaria</MenuItem>
+				<MenuItem key="2"><Link className="dropdown-header__link" to="/tutores/informacion-bancaria">Cuenta Bancaria</Link></MenuItem>
 				<MenuItem key="3">Salir</MenuItem>
 			</Menu>
 		);

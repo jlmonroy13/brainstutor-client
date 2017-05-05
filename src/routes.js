@@ -152,8 +152,8 @@ const onEnterBankInfo = store => {
   return () => {
     const { dispatch, getState } = store;
     const { userInfo } = getState();
-    if (Object.keys(userInfo).length === 0 && userInfo.constructor === Object) browserHistory.push('/tutores/home');
-    dispatch(setAuthInProcess(true));
+    if(Object.keys(userInfo).length === 0 && userInfo.constructor === Object) browserHistory.push('/tutores/home');
+    if(userInfo.status !== 'complete') dispatch(setAuthInProcess(true));
   };
 };
 
