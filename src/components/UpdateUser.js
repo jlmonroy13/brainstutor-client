@@ -20,6 +20,7 @@ class UpdateUser extends React.Component {
 			last_name: lastName,
 			email,
 			profile: { university, dob, level, phone, about, country, city, gender, address, rate },
+			subjects,
 		} = this.props.userInfo;
 
 		this.state = {
@@ -36,7 +37,7 @@ class UpdateUser extends React.Component {
 			gender,
 			address,
 			rate,
-			subjects: [],
+			subjects,
 		};
 
 		this.onChangeForm = this.onChangeForm.bind(this);
@@ -68,6 +69,7 @@ class UpdateUser extends React.Component {
 		const subjects = subjectsState.map(subject => ({value: subject, label: subject}));
 		const text = `Actualizar datos ${this.props.type}`;
 		const colorClass = type === "Estudiante" ? 'dark-green' : 'blue';
+		console.warn(subjects);
 		return (
 			<div className="section__auth">
 				<img className="full-width push--bottom" src={require('../assets/images/hero-authentication.jpg')} />
