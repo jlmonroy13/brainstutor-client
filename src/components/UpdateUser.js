@@ -69,7 +69,6 @@ class UpdateUser extends React.Component {
 		const subjects = subjectsState.map(subject => ({value: subject, label: subject}));
 		const text = `Actualizar datos ${this.props.type}`;
 		const colorClass = type === "Estudiante" ? 'dark-green' : 'blue';
-		console.warn(subjects);
 		return (
 			<div className="section__auth">
 				<img className="full-width push--bottom" src={require('../assets/images/hero-authentication.jpg')} />

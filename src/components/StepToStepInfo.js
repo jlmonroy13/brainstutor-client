@@ -3,6 +3,22 @@ import Footer from './Footer';
 import { Link } from 'react-router';
 
 const StepToStepInfo = () => {
+  const wistia1Styles = {
+    padding: '56.25% 0 0 0', 
+    position: 'relative',
+    left: '60px',
+  };
+  const wistia2Styles = {
+    height: '100%',
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+  };
+  const wistia3Styles = {
+    height: '100%',
+    width: '100%',
+  };
   return (
     <div>
       <div className="hero__step-to-step">
@@ -14,13 +30,13 @@ const StepToStepInfo = () => {
               <span className="hero__step-to-step-subtitle">Como funciona nuestra plataforma</span>
             </div>
             <div className="grid__item one-half">
-              <iframe
-                width="640"
-                height="360"
-                src="https://www.youtube.com/embed/2ApkwovNqpY"
-                frameBorder="0"
-                allowFullScreen
-              />
+              <div className="wistia_responsive_padding" style={wistia1Styles}>
+                <div className="wistia_responsive_wrapper" style={wistia2Styles}>
+                  <div className="wistia_embed wistia_async_031ny7tr3t videoFoam=true" style={wistia3Styles}>
+                    &nbsp;
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
