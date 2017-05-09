@@ -1,5 +1,22 @@
 .section {
   padding: $base-spacing-unit*2 0;
+  position: relative;
+  &__tab {
+    position: absolute;
+    top: -47px;
+    left: 20px;
+    font-family: $font-family-serif;
+    display: inline-block;
+    color: #fff;
+    background-color: $green;
+    @include rem(18);
+    padding: $half-spacing-unit $base-spacing-unit;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    &--blue {
+      background-color: $blue;
+    }
+  }
   &--gray {
     background-color: $gray-bckgr;
   }
@@ -60,6 +77,7 @@
       max-width: 360px;
       margin: auto;
       background-color: $gray-highlight;
+      position: relative;
       @include rem(4, 'border-radius');
       &--index {
         position: relative;
@@ -71,6 +89,11 @@
       }
       &--large {
         max-width: 700px;
+        margin-bottom: $half-spacing-unit;
+        box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      &--with-tab {
+        margin-top: $half-spacing-unit*6;
       }
     }
     &-hero {

@@ -1,0 +1,100 @@
+.schedule {
+  &-checkbox {
+    &__group {
+      display: inline-block;
+      @include rem(15px, 'margin-right');
+      &:last-child {
+        margin: 0;
+      }
+      input[type=checkbox] {
+        position: absolute;
+        visibility: hidden;
+        &:checked ~ .schedule-checkbox__label {
+          &:before {
+            opacity: 1;
+          }
+          &:after {
+            opacity: 0;
+          }
+        }
+      }
+    }
+    &__label {
+      color: $gray;
+      cursor: pointer;
+      @include rem(65px, 'height');
+      @include rem(65px, 'width');
+      display: inline-block;
+      position: relative;
+      z-index: 99;
+      &:before {
+        @include rem(65px, 'height');
+        @include rem(65px, 'width');
+        border-radius: 50%;
+        background-image: url("../images/check.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        content: '';
+        left: 0;
+        position: absolute;
+        top: 2px;
+        transition: 0.2s linear;
+        opacity: 0;
+        transition: 0.2s linear;
+      }
+      &:after {
+        @include rem(65px, 'height');
+        @include rem(65px, 'width');
+        border-radius: 50%;
+        background-color: #fff;
+        content: '';
+        left: 0;
+        position: absolute;
+        top: 2px;
+        opacity: 1;
+        transition: 0.2s linear;
+      }
+    }
+  }
+  &-circle {
+    display: inline-block;
+    border-radius: 50%;
+    background-color: $green;
+    @include rem(65px, 'height');
+    @include rem(65px, 'width');
+    position: relative;
+    @include rem(15px, 'margin-right');
+    top: 2px;
+    &__container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &__text {
+      margin: 0;
+      line-height: 0.9;
+      color: #fff;
+      @include rem(12px);
+      font-weight: 700;
+    }
+  }
+  &-line {
+    border-bottom: 1px solid rgba($gray-text, 0.1);
+    padding: 5px 0 3px;
+    &:last-child {
+      border: none;
+      margin-bottom: $base-spacing-unit;
+    }
+  }
+  &-day {
+    width: 65px;
+    display: inline-block;
+    @include rem(15px, 'margin-right');
+    text-align: center;
+    font-weight: 700;
+    &:first-child {
+      @include rem(90px, 'margin-left');
+    }
+  }
+}
