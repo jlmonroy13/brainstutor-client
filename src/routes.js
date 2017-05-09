@@ -79,6 +79,10 @@ const verifyToken = (userInfo, store, callback) => {
     dispatch(getUserInfo(id, role, callback));
     dispatch(setAuthInProcess(true));
     return;
+  } else if (userData && userData.status === 'complete' && pathname === '/tutores/perfil') {
+    dispatch(getUserInfo(id, role, callback));
+    dispatch(setAuthInProcess(true));
+    return;
   } else if (userData && userData.status === 'complete' && pathname === '/tutores/home') {
     dispatch(setAuthInProcess(false));
     browserHistory.push('/tutores/inicio');

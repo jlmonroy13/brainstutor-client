@@ -24,9 +24,13 @@ const updateUser = (id, profileId, userData, type) => {
     address,
     rate,
     subjects,
+    morning,
+    night,
+    afternoon,
+    evening,
   } = userData;
   return brains
-    .put(`${type}s/${id}?${type}[email]=${email}&${type}[first_name]=${firstName}&${type}[subjects]=${JSON.stringify(subjects)}&${type}[last_name]=${lastName}&${type}[profile_attributes[university]]=${university}&${type}[profile_attributes[dob]]=${dob}&${type}[profile_attributes[level]]=${level}&${type}[profile_attributes[phone]]=${phone}&${type}[profile_attributes[about]]=${about}&${type}[profile_attributes[city]]=${city}&${type}[profile_attributes[country]]=${country}&${type}[profile_attributes[gender]]=${gender}&${type}[profile_attributes[address]]=${address}&${type}[profile_attributes[id]]=${profileId}&${type}[profile_attributes[rate]]=${rate}`)
+    .put(`${type}s/${id}?${type}[email]=${email}&${type}[first_name]=${firstName}&${type}[subjects]=${subjects}&${type}[last_name]=${lastName}&${type}[profile_attributes[university]]=${university}&${type}[profile_attributes[dob]]=${dob}&${type}[profile_attributes[level]]=${level}&${type}[profile_attributes[phone]]=${phone}&${type}[profile_attributes[about]]=${about}&${type}[profile_attributes[city]]=${city}&${type}[profile_attributes[country]]=${country}&${type}[profile_attributes[gender]]=${gender}&${type}[profile_attributes[address]]=${address}&${type}[profile_attributes[id]]=${profileId}&${type}[profile_attributes[rate]]=${rate}&${type}[availability_attributes[morning]]=${JSON.stringify(morning)}&${type}[availability_attributes[afternoon]]=${JSON.stringify(afternoon)}&${type}[availability_attributes[night]]=${JSON.stringify(night)}&${type}[availability_attributes[evening]]=${JSON.stringify(evening)}`)
     .catch(catchRequestError);
 };
 

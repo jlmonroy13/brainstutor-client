@@ -42,6 +42,7 @@
     "opentok-screen-sharing": "1.0.25",
     "opentok-solutions-css": "*",
     "opentok-text-chat": "1.0.29",
+    "ramda": "0.23.0",
     "rc-dropdown": "1.4.10",
     "rc-menu": "5.0.9",
     "react": "15.4.2",

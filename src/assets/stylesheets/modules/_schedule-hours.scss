@@ -26,7 +26,6 @@
       @include rem(65px, 'width');
       display: inline-block;
       position: relative;
-      z-index: 99;
       &:before {
         @include rem(65px, 'height');
         @include rem(65px, 'width');
