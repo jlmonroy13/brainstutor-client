@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Footer from './Footer';
 import Alert from 'react-s-alert';
+import universities from '../consts/universities';
 
 class HowToBeTutor extends React.Component {
   constructor(props) {
@@ -28,6 +29,9 @@ class HowToBeTutor extends React.Component {
   }
 
   render() {
+    const renderUOptions = (u) => {
+      return <option value={u} key={u}>{u}</option>;
+    };
     return (
       <div>
         <div className="hero__tutor">
@@ -43,9 +47,7 @@ class HowToBeTutor extends React.Component {
                 value={this.state.university}
               >
                 <option value="">Elige tu Universidad</option>
-                <option value="Pascual Bravo">Pascual Bravo</option>
-                <option value="ITM(Instituto Tecnológico Metropolitano)">ITM(Instituto Tecnológico Metropolitano)</option>
-                <option value="Colegio Mayor de Antioquia">Colegio Mayor de Antioquia</option>
+                {universities.map(renderUOptions)}
               </select>
               <img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon.png')} />
               <span onClick={this.onSave} className="hero__tutor-selector-button">¡Registrate aquí!</span>

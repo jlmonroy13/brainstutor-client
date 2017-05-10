@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import TextFieldGroup from './TextFieldGroup';
 import Alert from 'react-s-alert';
+import universities from '../consts/universities';
 
 class Signup extends React.Component {
 	constructor(props) {
@@ -44,6 +45,9 @@ class Signup extends React.Component {
 		const { type, onLoading } = this.props;
 		const text = `Registro ${this.props.type}`;
 		const colorClass = type === "Estudiante" ? 'dark-green' : 'blue';
+		const renderUOptions = (u) => {
+			return <option value={u} key={u}>{u}</option>;
+    };
 		return (
 			<div className="section__auth">
 				<img className="full-width push--bottom" src={require('../assets/images/hero-authentication.jpg')} />
@@ -81,9 +85,7 @@ class Signup extends React.Component {
 									name="university"
 								>
 									<option value="">Elige tu Universidad</option>
-									<option value="Pascual Bravo">Pascual Bravo</option>
-									<option value="ITM(Instituto Tecnológico Metropolitano)">ITM(Instituto Tecnológico Metropolitano)</option>
-									<option value="Colegio Mayor de Antioquia">Colegio Mayor de Antioquia</option>
+									{universities.map(renderUOptions)}
 								</select>
 							</div>
 						: ''}
