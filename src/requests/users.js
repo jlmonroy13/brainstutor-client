@@ -78,8 +78,15 @@ const logOut = () => {
 };
 
 function catchRequestError({ response }) {
-  const errorMsg = response.data.error && response.data.error.user_authentication[0];
-  Alert.error(errorMsg);
+  console.warn(response);
+  let errorMsg = response.data.error && response.data.error.user_authentication[0];
+  if(!errorMsg) {
+    errorMsg = response.data.errors.map((err) => {
+      Alert.error(err.title);
+    });
+  } else {
+    Alert.error(errorMsg);
+  }
 }
 
 export {

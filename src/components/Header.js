@@ -74,6 +74,9 @@ class Header extends React.Component {
 		return (
 			<nav className={`header ${headerClass}`}>
 				<IndexLink to="/" className={`main-logo header__logo ${imageClass}`} />
+				{authInProcess && firstName ? 
+					<button className="button button--blue header__button header__button--alone button--abs-right" onClick={onLogOut}>Salir</button>
+				: null}
 				{!authInProcess ?
 					<div className="navbar navbar--right">
 						<div className="inline-block push--right soft--right">

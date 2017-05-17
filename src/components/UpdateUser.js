@@ -8,7 +8,7 @@ import subjectsLocal from '../consts/subjects';
 import universities from '../consts/universities';
 
 function validateForm(e) {
-	if(e.email && e.firstName && e.lastName && e.university && e.dob && e.level && e.phone && e.about && e.country && e.city && e.gender && e.address &&e.subjects.length>0) {
+	if(e.email && e.firstName && e.lastName && e.university && e.dob && e.level && e.phone && e.about && e.country && e.city && e.gender && e.subjects.length>0) {
 		return true;
 	}
 	return false;
@@ -281,14 +281,6 @@ class UpdateUser extends React.Component {
 							</div>
 						</div>
 						<div className="push-half--bottom">
-							<TextFieldGroup
-								value={this.state.address}
-								onChange={this.onChangeForm}
-								type="text"
-								field="address"
-								label="Dirección"
-							/>
-							
 							<label className="main-form__label">Acerca de ti</label>
 							<textarea
 								className="main-form__textarea"

@@ -51,7 +51,7 @@ class UpdateBankInfo extends React.Component {
 
   render() {
     const { onLoading } = this.props;
-    const accountNumber = this.state.accountNumber.toString();
+    const accountNumber = this.state.accountNumber && this.state.accountNumber.toString();
     return (
       <div className="section__auth">
         <img className="full-width push--bottom" src={require('../assets/images/hero-authentication.jpg')} />
