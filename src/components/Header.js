@@ -100,7 +100,7 @@ class Header extends React.Component {
 										<Link className="button button--blue header__button" to="/ingresar">Ingresar</Link>
 										<Link
 											className="button button--dark-green header__button"
-											to="/estudiantes/registrarse"
+											to="/registro"
 										>Registrarse</Link>
 									</span>
 								:
@@ -119,7 +119,7 @@ class Header extends React.Component {
 						:
 							<span>
 								<Link className="button button--blue header__button" to="/ingresar">Ingresar</Link>
-								<Link className="button button--dark-green header__button" to="/estudiantes/registrarse">Registrarse</Link>
+								<Link className="button button--dark-green header__button" to="/registro">Registrarse</Link>
 							</span>
 						}
 					</div>

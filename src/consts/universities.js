@@ -1,4 +1,4 @@
-const universities = [
+let universities = [
 	'Pascual Bravo',
 	'ITM(Instituto Tecnológico Metropolitano)',
 	'Colegio Mayor de Antioquia',
@@ -14,5 +14,7 @@ const universities = [
 	'Universidad Pontificia Bolivariana (Medellín)',
 	'Universidad Santo Tomás (USTA) (Medellín)',
 ];
+
+universities = universities.sort();
 
 export default universities;

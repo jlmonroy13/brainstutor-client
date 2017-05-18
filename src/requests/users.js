@@ -78,7 +78,6 @@ const logOut = () => {
 };
 
 function catchRequestError({ response }) {
-  console.warn(response);
   let errorMsg = response.data.error && response.data.error.user_authentication[0];
   if(!errorMsg) {
     errorMsg = response.data.errors.map((err) => {
