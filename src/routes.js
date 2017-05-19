@@ -79,7 +79,7 @@ const verifyToken = (userInfo, store, callback) => {
     dispatch(getUserInfo(id, role, callback));
     dispatch(setAuthInProcess(true));
     return;
-  } else if (userData && userData.status === 'complete' && pathname === '/tutores/perfil') {
+  } else if (userData && userData.status === 'complete' && (pathname === '/tutores/perfil' || pathname === '/tutores/informacion-bancaria')) {
     dispatch(getUserInfo(id, role, callback));
     dispatch(setAuthInProcess(true));
     return;
@@ -153,10 +153,10 @@ const onEnterFindTutor = store => {
 };
 
 const onEnterBankInfo = store => {
-  return () => {
+  return (nextState, replace, callback) => {
     const { dispatch, getState } = store;
     const { userInfo } = getState();
-    if(Object.keys(userInfo).length === 0 && userInfo.constructor === Object) browserHistory.push('/tutores/home');
+    verifyToken(userInfo, store, callback);
     if(userInfo.status !== 'complete') dispatch(setAuthInProcess(true));
   };
 };

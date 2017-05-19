@@ -141,7 +141,11 @@ class TutorProfile extends React.Component {
   render() {
     const { tutor, isSignUp, textMessage } = this.state;
     const { profile } = tutor;
-
+    const subjectsString = tutor.subjects && tutor.subjects.reduce((acc, item) => {
+      acc = `${item}, ${acc}`;
+      return acc;
+    }, '');
+    const subjects = subjectsString && subjectsString.slice(0, subjectsString.length-2);
     return (
       <div>
         <div className="profile__container">
@@ -153,7 +157,14 @@ class TutorProfile extends React.Component {
                     <Gravatar email={tutor.email} size={150} className="profile__main-image" />
                     <div className="profile__main-description">
                       <h1 className="profile__main-title">{`${tutor.first_name} ${tutor.last_name}`}</h1>
-                      <p className="profile__main-subtitle">Profesión: {tutor.role} - {profile && profile.university}</p>
+                      <span className="profile__main-subtitle-bold">Modalidad: </span>
+                      <p className="profile__main-subtitle">
+                        {`${profile && profile.level} - ${profile && profile.university}`}
+                      </p>
+                      <span className="profile__main-subtitle-bold">Materias: </span>
+                      <p className="profile__main-subtitle">
+                        {`${subjects}.`}
+                      </p>
                       <span className="profile__main-top-corner">${profile && profile.rate}</span>
                     </div>
                   </div>

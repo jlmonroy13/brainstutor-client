@@ -17,8 +17,14 @@
 		background-color: $dark-blue;
 		color: #fff;
 		@include rem(30);
-		padding: 15px $base-spacing-unit*2;
-		text-align: right;
+		padding: 15px $base-spacing-unit*2 15px 290px;
+		text-align: left;
+		&-price {
+			float: right;
+			@include rem(25);
+			position: relative;
+			top: 4px;
+		}
 	}
 	&__body {
 		padding: $base-spacing-unit;
@@ -38,6 +44,17 @@
 	&__description {
 		max-width: 450px;
 		color: $gray-text;
+		display: -webkit-box;
+		-webkit-line-clamp: 4;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	&__subjects {
+		color: $gray-text;
+		&-title {
+			font-weight: 700;
+			margin-right: $half-spacing-unit/2;
+		}
 	}
 }
 

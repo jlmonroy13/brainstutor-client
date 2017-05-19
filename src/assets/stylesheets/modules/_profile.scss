@@ -23,10 +23,15 @@
 		}
 		&-subtitle {
 			color: #000;
-			margin: 0 0 $half-spacing-unit;
+			margin: 0;
 			@include rem(16);
 			color: rgba($gray-label, 0.7);
 			text-transform: capitalize;
+			max-width: 400px;
+			&-bold {
+				font-weight: 700;
+				margin-right: $half-spacing-unit/2;
+			}
 		}
 		&-image {
 			vertical-align: top;

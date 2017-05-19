@@ -67,7 +67,7 @@ class FindTutor extends React.Component {
     const inputLength = inputValue.length;
 
     return inputLength === 0 ? [] : subjects.filter(lang =>
-      lang.name.toLowerCase().slice(0, inputLength) === inputValue
+      lang.name && lang.name.toLowerCase().slice(0, inputLength) === inputValue
     );
   }
 
@@ -92,11 +92,18 @@ class FindTutor extends React.Component {
     );
 
     function renderTeacher(teacher) {
+      const { profile } = teacher;
+      const subjectsString = teacher.subjects.reduce((acc, item) => {
+        acc = `${item}, ${acc}`;
+        return acc;
+      }, '');
+      const subjects = subjectsString.slice(0, subjectsString.length-2);
       return (
         <Link to={`/perfil-tutor/${teacher.id}`} key={teacher.id}>
           <div className="card">
             <div className="card__header">
-              <p className="flush">{teacher.first_name + '' + teacher.last_name} / { teacher.role }</p>
+              <span>{teacher.first_name + ' ' + teacher.last_name}</span> 
+              <span className="card__header-price">{`$${profile.rate}`}</span>
             </div>
             <div className="card__body">
               <div className="grid">
@@ -104,9 +111,8 @@ class FindTutor extends React.Component {
                   <Gravatar email={teacher.email} className="card__image" size={250} />
                 </div>
                 <div className="grid__item three-fifths">
-                  <p className="card__description">
-                    Ingeniera egresada de la Universidad de Medellín texto, texto texto texto, texto texto texto, texto texto, Ingeniera egresada de la Universidad de Medellín texto, texto texto texto, texto texto texto, texto texto
-                  </p>
+                  <p className="card__description">{profile.about}</p>
+                  <p className="card__subjects"><span className="card__subjects-title">Materias: </span> {`${subjects}.`}</p>
                 </div>
               </div>  
             </div>

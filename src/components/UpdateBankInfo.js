@@ -40,9 +40,9 @@ class UpdateBankInfo extends React.Component {
   onSubmitForm(e) {
     const { accountNumber } = this.state;
     e.preventDefault();
-    if (validateForm(this.state) && accountNumber.toString().length === 11) {
+    if (validateForm(this.state) && accountNumber.length <= 11 && accountNumber.length >= 8) {
       this.props.userUpdateBankInfo(this.state);
-    } else if(!(accountNumber.toString().length === 11)) {
+    } else if(!(accountNumber.length <= 11 && accountNumber.length >= 8)) {
       Alert.error(`El número de cuenta debe ser de 11 digitos`);
     } else {
       Alert.error(`Todos los campos deben ser completados`);
@@ -51,7 +51,6 @@ class UpdateBankInfo extends React.Component {
 
   render() {
     const { onLoading } = this.props;
-    const accountNumber = this.state.accountNumber && this.state.accountNumber.toString();
     return (
       <div className="section__auth">
         <img className="full-width push--bottom" src={require('../assets/images/hero-authentication.jpg')} />
@@ -73,7 +72,7 @@ class UpdateBankInfo extends React.Component {
               label="Tipo de Cuenta"
             />
             <TextFieldGroup
-              value={accountNumber}
+              value={this.state.accountNumber}
               onChange={this.onChangeForm}
               type="text"
               field="accountNumber"
