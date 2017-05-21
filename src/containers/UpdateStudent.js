@@ -4,23 +4,18 @@ import { userUpdateProfileRequest } from '../actions/authentication';
 
 
 const mapStateToProps = (state) => {
-	const type = 'Tutor';
+	const type = 'Student';
 	const { userInfo } = state;
-  const { availability: { morning, afternoon, evening, night } } = userInfo;
   return {
     type,
     userInfo,
     onLoading: userInfo.onLoading,
-    morning,
-    afternoon,
-    evening,
-    night,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
 	userUpdateProfile: (formData) => {
-		dispatch(userUpdateProfileRequest(formData, 'teacher'));
+		dispatch(userUpdateProfileRequest(formData, 'student'));
 	},
 });
 

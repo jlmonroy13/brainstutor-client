@@ -3,12 +3,12 @@ import { Route, IndexRoute, browserHistory } from 'react-router';
 import App from './components/App';
 import SignupStudentsContainer from './containers/SignupStudents';
 import SignupTutorsContainer from './containers/SignupTutors';
-import StudentProfileContainer from './containers/StudentProfile';
 import LogInStudentsContainer from './containers/LogInStudents';
 import LogInTutorsContainer from './containers/LogInTutors';
 import HowToBeTutorContainer from './containers/HowToBeTutor';
 import SignupTutorsProcessContainer from './containers/SignupTutorsProcess';
 import UpdateTutorContainer from './containers/UpdateTutor';
+import UpdateStudentContainer from './containers/UpdateStudent';
 import UpdateBankInfoContainer from './containers/UpdateBankInfo';
 import TutorProfileContainer from './containers/TutorProfile';
 import FindTutorContainer from './containers/FindTutor';
@@ -252,7 +252,7 @@ export default store => (
     />
     <Route
       path="/perfil-estudiante"
-      component={StudentProfileContainer}
+      component={UpdateStudentContainer}
       onEnter={onEnterProfile(store)}
     />
     <Route
