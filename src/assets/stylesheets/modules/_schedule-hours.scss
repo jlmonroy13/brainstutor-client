@@ -53,6 +53,19 @@
         opacity: 1;
         transition: 0.2s linear;
       }
+      &--small {
+        @include rem(60px, 'height');
+        @include rem(60px, 'width');
+        cursor: initial;
+        &:before {
+          @include rem(60px, 'height');
+          @include rem(60px, 'width');
+        }
+        &:after {
+          @include rem(60px, 'height');
+          @include rem(60px, 'width');
+        }
+      }
     }
   }
   &-circle {
@@ -77,6 +90,10 @@
       @include rem(12px);
       font-weight: 700;
     }
+    &--small {
+      @include rem(60px, 'height');
+      @include rem(60px, 'width');
+    }
   }
   &-line {
     border-bottom: 1px solid rgba($gray-text, 0.1);
@@ -94,6 +111,12 @@
     font-weight: 700;
     &:first-child {
       @include rem(90px, 'margin-left');
+    }
+    &--small {
+      @include rem(10px, 'margin-right');
+      &:first-child {
+        @include rem(73px, 'margin-left');
+      }
     }
   }
 }

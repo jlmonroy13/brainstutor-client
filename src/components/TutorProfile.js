@@ -6,6 +6,7 @@ import ReactModal from 'react-modal';
 import TextFieldGroup from './TextFieldGroup';
 import Alert from 'react-s-alert';
 import { browserHistory } from 'react-router';
+import Availability from './Availability';
 
 class TutorProfile extends React.Component {
   constructor(props) {
@@ -140,7 +141,18 @@ class TutorProfile extends React.Component {
 
   render() {
     const { tutor, isSignUp, textMessage } = this.state;
-    const { profile } = tutor;
+    const { profile, availability } = tutor;
+
+    let morningAvailability = [false,false,false,false,false,false,false];
+    let afternoonAvailability = [false,false,false,false,false,false,false];
+    let eveningAvailability = [false,false,false,false,false,false,false];
+    let nightAvailability = [false,false,false,false,false,false,false];
+
+    availability && availability.morning && availability.morning.forEach((day) => { morningAvailability[day] = true; });
+    availability && availability.afternoon && availability.afternoon.forEach((day) => { afternoonAvailability[day] = true; });
+    availability && availability.evening && availability.evening.forEach((day) => { eveningAvailability[day] = true; });
+    availability && availability.night && availability.night.forEach((day) => { nightAvailability[day] = true; });
+
     const subjectsString = tutor.subjects && tutor.subjects.reduce((acc, item) => {
       acc = `${item}, ${acc}`;
       return acc;
@@ -173,6 +185,14 @@ class TutorProfile extends React.Component {
                     <p>{profile && profile.about}</p>
                   </div>
                 </div>
+                <Availability 
+                  onChangeHours={this.onChangeHours}
+                  morningAvailability={morningAvailability}
+                  afternoonAvailability={afternoonAvailability}
+                  eveningAvailability={eveningAvailability}
+                  nightAvailability={nightAvailability}
+                  smallClass={'--small'}
+                />
               </div>
               <div className="grid__item two-fifths">
                 <div className="box-message">
