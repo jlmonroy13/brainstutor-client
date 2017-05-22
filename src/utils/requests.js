@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const brainsAuthentication = axios.create({
-  baseURL: 'https://brainsapi.herokuapp.com/',
+  baseURL: 'http://brains-production.sa-east-1.elasticbeanstalk.com',
 });
 
 const brains = axios.create({
-  baseURL: 'https://brainsapi.herokuapp.com/',
+  baseURL: 'http://brains-production.sa-east-1.elasticbeanstalk.com',
 });
 
 brains.interceptors.request.use(config => (
