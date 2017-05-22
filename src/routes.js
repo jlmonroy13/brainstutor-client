@@ -15,6 +15,7 @@ import FindTutorContainer from './containers/FindTutor';
 import KnowYourTutorContainer from './containers/KnowYourTutor';
 import ScheduleListContainer from './containers/ScheduleList';
 import OpentokSessionContainer from './containers/OpentokSession';
+import MessageListContainer from './containers/MessageList';
 import HomePage from './components/HomePage';
 import NotFoundPage from './components/NotFoundPage';
 import SignupIndex from './components/SignupIndex';
@@ -312,6 +313,10 @@ export default store => (
       path="/estudiantes/agendar-tutoria/:id"
       component={KnowYourTutorContainer}
       onEnter={onEnterKnowYourTutorId(store)}
+    />
+    <Route
+      path="/mensajes"
+      component={MessageListContainer}
     />
     <Route path="*" component={NotFoundPage} />
   </Route>
