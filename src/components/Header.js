@@ -42,7 +42,7 @@ class Header extends React.Component {
 						<span>
 							<Link className="button button--link-upper button--link-gray" to="/estudiantes/inicio">Inicio</Link>
 							<Link className="button button--link-upper button--link-gray" to="/ver-tutores">Ver tutores</Link>
-							<Link className="button button--link-upper button--link-gray" to="/">Mensajes</Link>
+							<Link className="button button--link-upper button--link-gray" to="/mensajes">Mensajes</Link>
 							<Link className="button button--link-upper button--link-gray" to="/estudiantes/tutorias-agendadas">Tutorias agendadas</Link>
 						</span>
 					);
@@ -54,7 +54,7 @@ class Header extends React.Component {
 							:
 								<Link className="button button--link-upper button--link-gray" to="/tutores/home">Inicio</Link>
 							}
-							<Link className="button button--link-upper button--link-gray" to="/">Mensajes</Link>
+							<Link className="button button--link-upper button--link-gray" to="/mensajes">Mensajes</Link>
 							<Link className="button button--link-upper button--link-gray" to="/tutores/tutorias-agendadas">Tutorias agendadas</Link>
 							<Link className="button button--link-upper button--link-gray" to="/">Mis reportes</Link>
 						</span>
