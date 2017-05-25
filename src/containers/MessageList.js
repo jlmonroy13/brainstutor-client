@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 import MessageList from '../components/MessageList';
 
 const mapStateToProps = (state) => {
-	const type = 'Tutor';
-	const { onLoading } = state.userInfo;
+	const { messages, userInfo: { id: userId, role: userRole } } = state;
   return {
-    type,
-    onLoading,
+		messages,
+		userId,
+		userRole,
   };
 };
 

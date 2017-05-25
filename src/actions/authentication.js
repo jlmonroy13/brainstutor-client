@@ -9,6 +9,7 @@ import {
 } from '../requests/users';
 import { pendingTask, begin, end } from 'react-redux-spinner';
 import moment from 'moment-timezone';
+import { reqCreateMessage } from './messages';
 
 const setUserInfo = userInfo => ({
 	type: 'SET_USER_INFO',
@@ -55,7 +56,8 @@ const userSignupRequest = (dataForm, type, origin='') => {
 				const id = response.data.user_id||response.data.id;
 				dispatch(getUserInfo(id, type));
 				if (!appointmentType) {
-					Alert.success('Tu mensaje ha sido enviado.');
+					const { receiverId, textMessage } = dataForm;
+					dispatch(reqCreateMessage(receiverId, textMessage));
 				} else if (appointmentType === 'free') {
 					browserHistory.push('/estudiantes/conoce-tu-tutor');
 				} else if (appointmentType === 'paid') {
@@ -134,7 +136,8 @@ const userLogInRequest = (dataForm, userRole, origin='') => {
 					}
 				} else {
 					if (!appointmentType) {
-						Alert.success('Tu mensaje ha sido enviado.');
+						const { receiverId, textMessage } = dataForm;
+						dispatch(reqCreateMessage(receiverId, textMessage));
 					} else if (appointmentType === 'free') {
 						browserHistory.push('/estudiantes/conoce-tu-tutor');
 					} else if (appointmentType === 'paid') {

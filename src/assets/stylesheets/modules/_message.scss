@@ -1,0 +1,44 @@
+.message {
+	&-list {
+		background-color: rgba($gray-bckgr, 0.4);
+		padding-top: $base-spacing-unit*3;
+	}
+	&-header {
+		position: absolute;
+		top: -60px;
+		left: 0;
+		margin: 0;
+	}
+	&-item {
+		border-bottom: 1px solid rgba($gray-light, 0.3);
+		padding: $base-spacing-unit;
+	}
+	&-image {
+		display: inline-block;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		background-color: green;
+		vertical-align: middle;
+		margin-right: $base-spacing-unit;
+	}
+	&-description {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	&-title {
+		font-style: italic;
+		margin-bottom: 0;
+		&--bold {
+			font-style: normal;
+			font-weight: 700;
+		}
+	}
+	&-text {
+		max-width: 700px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 0;
+	}
+}

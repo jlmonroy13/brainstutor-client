@@ -53,7 +53,8 @@ class TutorProfile extends React.Component {
     e.preventDefault();
     const { email, password } = this.state;
     if (email && password) {
-      this.props.userLogInRequest(this.state);
+      const receiverId = this.props.params.id;
+      this.props.userLogInRequest({...this.state, receiverId});
       this.handleCloseModal();
     } else {
       Alert.error(`Debes llenar todos los campos`);
@@ -73,7 +74,8 @@ class TutorProfile extends React.Component {
   onSubmitFormSignup(e) {
     e.preventDefault();
     if (this.state.password === this.state.passwordConfirmation && this.validateEmptyFields()) {
-      this.props.userSignupRequest(this.state);
+      const receiverId = this.props.params.id;
+      this.props.userSignupRequest(...this.state, receiverId);
       this.handleCloseModal();
     } else  if (!this.validateEmptyFields()) {
       Alert.error(`Todos los campos deben ser completados.`);
@@ -84,13 +86,15 @@ class TutorProfile extends React.Component {
 
   onSendTextMessage() {
     const { textMessage } = this.state;
-    const { userInfo } = this.props;
+    const { userInfo, onCreateMessage } = this.props;
+    const receiverId = this.props.params.id;
     if (!textMessage) {
       Alert.error(`¡Escribe un mensaje!`);
     } else if (textMessage && !userInfo.first_name) {
       this.handleOpenModal();
     } else {
-      Alert.success(`Tu mensaje ha sido enviado`);
+      onCreateMessage(receiverId, textMessage);
+      this.setState({ textMessage: '' });
     }
   }
 
@@ -206,6 +210,7 @@ class TutorProfile extends React.Component {
                       className="main-form__textarea main-form__textarea--border push--bottom"
                       value={textMessage}
                       onChange={(e) => this.setState({ textMessage: e.target.value })}
+                      placeholder="Preguntale a tu tutor... Ejemplo: Tengo exámen de cálculo este fin de semana, ¿Tienes disponibilidad para este viernes?"
                     />
                     <button
                       className="button button--dark-green button--block button--large"
@@ -325,6 +330,7 @@ TutorProfile.propTypes = {
   userSignupRequest: PropTypes.func.isRequired,
   storeTutorInfo: PropTypes.func.isRequired,
   onSetAppointmenteType: PropTypes.func.isRequired,
+  onCreateMessage: PropTypes.func.isRequired,
 };
 
 export default TutorProfile;

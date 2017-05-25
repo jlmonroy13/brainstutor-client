@@ -269,9 +269,11 @@ class UpdateUser extends React.Component {
 												name="rate"
 											>
 												<option value="">Selecciona un valor</option>
+												<option value="30000">$30.000</option>
+												<option value="35000">$35.000</option>
+												<option value="40000">$40.000</option>
 												<option value="45000">$45.000</option>
 												<option value="50000">$50.000</option>
-												<option value="55000">$55.000</option>
 											</select>
 										:
 											<select
@@ -281,6 +283,7 @@ class UpdateUser extends React.Component {
 												name="rate"
 											>
 												<option value="">Selecciona un valor</option>
+												<option value="30000">$30.000</option>
 												<option value="35000">$35.000</option>
 												<option value="40000">$40.000</option>
 											</select>

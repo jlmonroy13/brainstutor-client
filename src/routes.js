@@ -28,6 +28,7 @@ import TutorsDashboard from './components/TutorsDashboard';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 import { gettingSchedule } from './actions/scheduleTutor';
 import { setSessionData } from './actions/openTokSession';
+import { reqGetChats } from './actions/messages';
 import moment from 'moment-timezone';
 
 
@@ -179,6 +180,15 @@ const onEnterTutorSignupProcess = store => {
   };
 };
 
+const onEnterMessageList = store => {
+  return (nextState, replace, callback) => {
+    const { dispatch, getState } = store;
+    const { userInfo } = getState();
+    verifyToken(userInfo, store, callback);
+    dispatch(reqGetChats());
+  };
+};
+
 const onEnterOpenTokSession = store => {
   return (nextState, replace, callback) => {
     const { dispatch, getState } = store;
@@ -317,6 +327,13 @@ export default store => (
     <Route
       path="/mensajes"
       component={MessageListContainer}
+      onEnter={onEnterMessageList(store)}
+    />Enter={onEnterKnowYourTutorId(store)}
+    />
+    <Route
+      path="/mensajes/:id"
+      component={MessageListContainer}
+      onEnter={onEnterMessageList(store)}
     />
     <Route path="*" component={NotFoundPage} />
   </Route>
