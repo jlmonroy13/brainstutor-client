@@ -2,6 +2,12 @@
 	&-list {
 		background-color: rgba($gray-bckgr, 0.4);
 		padding-top: $base-spacing-unit*3;
+		&--less-padding {
+			padding-top: $base-spacing-unit;
+		}
+		&--height {
+			@include calc(min-height, "100vh - 168px");
+		}
 	}
 	&-header {
 		position: absolute;
@@ -12,6 +18,10 @@
 	&-item {
 		border-bottom: 1px solid rgba($gray-light, 0.3);
 		padding: $base-spacing-unit;
+		cursor: pointer;
+		display: block;
+		color: $gray-text;
+		transition: 0.5s;
 	}
 	&-image {
 		display: inline-block;

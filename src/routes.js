@@ -16,6 +16,7 @@ import KnowYourTutorContainer from './containers/KnowYourTutor';
 import ScheduleListContainer from './containers/ScheduleList';
 import OpentokSessionContainer from './containers/OpentokSession';
 import MessageListContainer from './containers/MessageList';
+import ChatContainer from './containers/Chat';
 import HomePage from './components/HomePage';
 import NotFoundPage from './components/NotFoundPage';
 import SignupIndex from './components/SignupIndex';
@@ -28,7 +29,7 @@ import TutorsDashboard from './components/TutorsDashboard';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 import { gettingSchedule } from './actions/scheduleTutor';
 import { setSessionData } from './actions/openTokSession';
-import { reqGetChats } from './actions/messages';
+import { reqGetChats, reqGetMessages } from './actions/chat';
 import moment from 'moment-timezone';
 
 
@@ -135,6 +136,16 @@ const onEnterKnowYourTutorId = store => {
     const id = pathname.substr(29);
     if(!userInfo.id) browserHistory.push('/estudiantes/tutorias-agendadas');
     dispatch(gettingSchedule(id, callback));
+  };
+};
+
+const onEnterChat = store => {
+  return (nextState, replace, callback) => {
+    const { dispatch, getState } = store;
+    const { userInfo, routing: { locationBeforeTransitions: { pathname }} } = getState();
+    const id = pathname.substr(6);
+    if(!userInfo.id) browserHistory.push('/mensajes');
+    dispatch(reqGetMessages(id, callback));
   };
 };
 
@@ -331,9 +342,9 @@ export default store => (
     />Enter={onEnterKnowYourTutorId(store)}
     />
     <Route
-      path="/mensajes/:id"
-      component={MessageListContainer}
-      onEnter={onEnterMessageList(store)}
+      path="/chat/:id"
+      component={ChatContainer}
+      onEnter={onEnterChat(store)}
     />
     <Route path="*" component={NotFoundPage} />
   </Route>

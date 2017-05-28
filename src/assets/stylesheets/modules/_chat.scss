@@ -1,0 +1,51 @@
+.chat {
+	padding: $base-spacing-unit*2 $base-spacing-unit*3 $base-spacing-unit $base-spacing-unit;
+	position: relative;
+	&__message {
+		width: 100%;
+		background-color: $gray-lighter;
+		padding: $half-spacing-unit $base-spacing-unit;
+		border-radius: 8px;
+		@include rem(42, 'margin-bottom');
+		box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.2);
+		position: relative;
+		&--ligther-color {
+			background-color: #fff;
+			border: 1px solid rgba($gray, 0.3);
+		}
+		&-title {
+			position: absolute;
+			top: -22px;
+			left: 5px;
+			@include rem(14);
+			&--green {
+				color: $green;
+				font-weight: 700;
+			}
+			&--blue {
+				color: $blue;
+				font-weight: 700;
+			}
+		}
+	}
+	&__footer{
+		border-top: 1px solid rgba($gray, 0.3);
+		margin: 0 0 $base-spacing-unit*5;
+		padding: $base-spacing-unit;
+		&-textarea {
+			resize: none;
+			display: inline-block;
+			vertical-align: bottom;
+			width: 88%;
+			margin-right: $half-spacing-unit;
+			border-radius: 8px;
+			border: 1px solid rgba($gray, 0.3);
+			outline: none;
+			padding: 5px 10px;
+		}
+		&-button {
+			display: inline-block;
+			vertical-align: bottom;
+		}
+	}
+}

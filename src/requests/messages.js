@@ -13,6 +13,12 @@ const requestGetChats = () => {
     .catch(catchRequestError);
 };
 
+const requestGetMessages = (chatId) => {
+  return brains
+    .get(`/messages?chat_id=${chatId}`)
+    .catch(catchRequestError);
+};
+
 function catchRequestError({ response }) {
   const errorMsg = response.data.error && response.data.error.user_authentication[0];
   Alert.error(errorMsg);
@@ -21,4 +27,5 @@ function catchRequestError({ response }) {
 export {
   requestCreateMessage,
   requestGetChats,
+  requestGetMessages,
 };

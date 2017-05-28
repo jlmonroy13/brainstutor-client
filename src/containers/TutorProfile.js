@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import TutorProfile from '../components/TutorProfile';
 import { userLogInRequest, userSignupRequest } from '../actions/authentication';
 import { setTutorInfo, setAppointmenteType } from '../actions/scheduleTutor';
-import { reqCreateMessage } from '../actions/messages';
+import { reqCreateMessage } from '../actions/chat';
 
 const mapStateToProps = (state) => {
 	const type = 'Tutor';
