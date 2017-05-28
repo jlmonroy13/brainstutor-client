@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import Footer from './Footer';
 import Gravatar from 'react-gravatar';
+import { Link } from 'react-router';
 
 class MessageList extends Component {
 	constructor() {
@@ -14,17 +15,17 @@ class MessageList extends Component {
 		const role = userRole === 'teacher' ? 'Estudiante' : 'Tutor';
 		const email = userId === message.recipient_id ? message.sender_email : message.recipient_email;
 		return (
-			<div className="message-item" key={message.id}>
+			<Link to={`/chat/${message.id}`} className="message-item" key={message.id}>
 				<Gravatar email={email} className="message-image" />
 				<div className="message-description">
 					<p className="message-title"><span className="message-title message-title--bold">{name}</span> {role}</p>
 					<p className="message-text">{message.last_message}</p>
 				</div>
-			</div>
+			</Link>
 		);
 	}
 	render() {
-		const { messages } = this.props;
+		const { chatsList } = this.props;
 		return (
 			<div>
 				<div className="message-list">
@@ -33,7 +34,7 @@ class MessageList extends Component {
 							<div className="schedule-list__box">
 								<div className="schedule-list__body hard">
 									<h2 className="message-header">Mensajes</h2>
-									{messages.map(this.renderChats)}
+									{chatsList.map(this.renderChats)}
 								</div>
 							</div>
 							<div className="pagination" />
@@ -47,9 +48,9 @@ class MessageList extends Component {
 }
 
 MessageList.propTypes = {
-	messages: PropTypes.array,
+	chatsList: PropTypes.array,
 	userRole: PropTypes.string,
-	userId: PropTypes.number,
+	userId: PropTypes.number, 
 };
 
 export default MessageList;

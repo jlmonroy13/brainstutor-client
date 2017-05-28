@@ -9,7 +9,7 @@ import {
 } from '../requests/users';
 import { pendingTask, begin, end } from 'react-redux-spinner';
 import moment from 'moment-timezone';
-import { reqCreateMessage } from './messages';
+import { reqCreateMessage } from './chat';
 
 const setUserInfo = userInfo => ({
 	type: 'SET_USER_INFO',

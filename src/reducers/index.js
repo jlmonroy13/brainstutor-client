@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import userInfo from './authentication';
 import teachers from './teachers';
-import messages from './messages';
+import chat from './chat';
 import scheduleTutor from './scheduleTutor';
 import openTokSession from './openTokSession';
 import { routerReducer } from 'react-router-redux';
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   pendingTasks,
   scheduleTutor,
   openTokSession,
-  messages,
+  chat,
 });
 
 export default rootReducer;
