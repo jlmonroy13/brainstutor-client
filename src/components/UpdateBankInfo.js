@@ -40,10 +40,10 @@ class UpdateBankInfo extends React.Component {
   onSubmitForm(e) {
     const { accountNumber } = this.state;
     e.preventDefault();
-    if (validateForm(this.state) && accountNumber.length <= 11 && accountNumber.length >= 8) {
+    if (validateForm(this.state) && accountNumber.length <= 12 && accountNumber.length >= 8) {
       this.props.userUpdateBankInfo(this.state);
-    } else if(!(accountNumber.length <= 11 && accountNumber.length >= 8)) {
-      Alert.error(`El número de cuenta debe ser de 11 digitos`);
+    } else if(!(accountNumber.length <= 12 && accountNumber.length >= 8)) {
+      Alert.error(`El número de cuenta debe ser máximo de 12 digitos`);
     } else {
       Alert.error(`Todos los campos deben ser completados`);
     }
