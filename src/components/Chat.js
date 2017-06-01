@@ -26,7 +26,7 @@ class Chat extends Component {
     return (
       <div className={`chat__message chat__message${messageClass}`} key={message.id}>
         <span className="chat__message-title"><span className={`chat__message-title${colorClass}`}>{name}</span> - {createdAt}</span>
-        <p>{message.body}</p>
+        <p className="flush--bottom">{message.body}</p>
       </div>
     );
   }
