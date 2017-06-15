@@ -21,8 +21,8 @@ const mapDispatchToProps = dispatch => ({
 	userLogInRequest: (formData) => {
 		dispatch(userLogInRequest(formData, 'student'));
 	},
-	onGetTutorsRequest: (page) => {
-		dispatch(getTutorsRequest(page));
+	onGetTutorsRequest: (page, subjects) => {
+		dispatch(getTutorsRequest(page, subjects));
 	},
 });
 

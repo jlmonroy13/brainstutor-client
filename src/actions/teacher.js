@@ -41,10 +41,10 @@ const updateBankInfoRequest = (dataForm) => {
 	};
 };
 
-const getTutorsRequest = (page) => {
+const getTutorsRequest = (page, subjects) => {
 	return (dispatch) => {
 		dispatch(setStatusRequestTrue());
-		showTeachers(page).then(successGetTutors);
+		showTeachers(page, subjects).then(successGetTutors);
 
 		function successGetTutors(response) {
 			dispatch(setStatusRequestFalse());

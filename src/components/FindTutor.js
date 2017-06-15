@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import Footer from './Footer';
 import subjects from '../consts/subjects';
+import getCleanedString from '../utils/string';
 import Gravatar from 'react-gravatar';
 import { Link } from 'react-router';
 import Autosuggest from 'react-autosuggest';
@@ -16,20 +17,22 @@ class FindTutor extends React.Component {
 
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+    this.getSuggestionValue = this.getSuggestionValue.bind(this);
     this.onChange = this.onChange.bind(this);
     this.renderPagination = this.renderPagination.bind(this);
+    this.searchTutor = this.searchTutor.bind(this);
   }
 
   componentWillMount() {
     const { onGetTutorsRequest } = this.props;
-    onGetTutorsRequest(1);
+    onGetTutorsRequest(1, []);
   }
 
   renderPagination(page) {
     const { currentPage, onGetTutorsRequest } = this.props;
     const activeClass = page === currentPage ? 'active' : '';
     const onChangeSchedulesPage = (page) => () => {
-      onGetTutorsRequest(page);
+      onGetTutorsRequest(page, []);
     };
 
     return (
@@ -39,6 +42,12 @@ class FindTutor extends React.Component {
         key={page}
       >{page}</span>
     );
+  }
+
+  searchTutor() {
+    const { onGetTutorsRequest } = this.props;
+    const { value } = this.state; 
+    onGetTutorsRequest(1, [value]);
   }
 
   onChange(event, { newValue }) {
@@ -65,13 +74,17 @@ class FindTutor extends React.Component {
   getSuggestions(value) {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
+    const subjectsObj = subjects.map((subject) => ({ name: subject }));
 
-    return inputLength === 0 ? [] : subjects.filter(lang =>
-      lang.name && lang.name.toLowerCase().slice(0, inputLength) === inputValue
+    return inputLength === 0 ? [] : subjectsObj.filter(lang =>
+      (lang.name && getCleanedString(lang.name.toLowerCase().slice(0, inputLength)) === inputValue) ||
+      (lang.name && lang.name.toLowerCase().slice(0, inputLength) === inputValue)
     );
   }
 
   getSuggestionValue(suggestion) {
+    const { onGetTutorsRequest } = this.props;
+    onGetTutorsRequest(1, [suggestion.name]);
     return suggestion.name;
   } 
 
@@ -138,7 +151,7 @@ class FindTutor extends React.Component {
             renderSuggestion={renderSuggestion}
             inputProps={inputProps}
           />
-          <span className="hero__tutor-selector-button">Buscar</span>
+          <span className="hero__tutor-selector-button" onClick={this.searchTutor}>Buscar</span>
         </div>
         <div className="container container--small">
           <div className="cards-container">

@@ -6,15 +6,16 @@ import { userUpdateProfileRequest } from '../actions/authentication';
 const mapStateToProps = (state) => {
 	const type = 'Tutor';
 	const { userInfo } = state;
-  const { availability: { morning, afternoon, evening, night } } = userInfo;
+  const { availability } = userInfo;
+
   return {
     type,
     userInfo,
     onLoading: userInfo.onLoading,
-    morning,
-    afternoon,
-    evening,
-    night,
+    morning: availability ? availability.morning : [],
+    afternoon: availability ? availability.afternoon : [],
+    evening: availability ? availability.evening : [],
+    night: availability ? availability.night : [],
   };
 };
 

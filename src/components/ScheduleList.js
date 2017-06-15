@@ -82,25 +82,7 @@ class ScheduleList extends Component {
     return (
       <div>
         <div className="hero__blue">
-          <h1 className="hero__blue-title">Tutorias Agendadas</h1>
-          <div className="grid grid--center">
-            <div className="grid__item one-half">
-              <div className="grid">
-                <div className="grid__item one-half">
-                  <button
-                    className="button button--light-green button--block button--large"
-                    onClick={this.onGoToKnowUTutor}
-                  >Conoce a tu tutor</button>
-                </div>
-                <div className="grid__item one-half">
-                  <button
-                    className="button button--blue button--block button--large"
-                    onClick={this.onGoToScheduleTutor}
-                  >Agendar Tutoria</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <h1 className="hero__blue-title flush--bottom">Tutorias Agendadas</h1>
         </div>
         <div className="schedule-list">
           <div className="grid grid--center">
