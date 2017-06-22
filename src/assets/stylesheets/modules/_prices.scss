@@ -20,6 +20,7 @@
 
 .pricesTitle{
 	margin: 7% 15%;
+	text-align: center;
 }
 
 .circle {
@@ -84,13 +85,20 @@
 .section-premium{
 	.button-price{
 		background-color: #25a49c;
+		position: relative;
+		top: 5px;
+		cursor: pointer;
+		display: inline-block;
 	}
 }
-
 
 .section-gratis{
 	.button-price{
 		background-color: #27b366;
+		position: relative;
+		top: 12px;
+		cursor: pointer;
+		display: inline-block;
 	}
 }
 
@@ -101,8 +109,8 @@
 			margin: 15px 15px;
 	}
 }
-.payUsection{
-	background: #0b375b;
+.paySection{
+	background: #4A494A;
 	padding: 30px 10px;
 	height: 10em;
 }
@@ -122,8 +130,9 @@
   float: right;
 }
 
-.payUlogo{
-	max-width: 87px;
+.payLogo{
+	display: block;
+	margin: auto;
 }
 .payUDetails{
 	.p-price{
@@ -189,11 +198,19 @@
 .priceDetail .p-price{
 	padding-top: 5px;
 	margin-bottom: 0;
+	text-align: left;
+	@include rem(18px);
+	margin-bottom: 20px;
 }
 
 
 .priceDetailcheck .hero__tutor-selector-icon{
 	max-width: 20px;
+	margin-bottom: 20px;
+}
+
+.priceDetailcheck--mb-50 {
+	margin-bottom: 50px;
 }
 
 .pricesList{

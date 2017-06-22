@@ -1,12 +1,12 @@
 import React from 'react';
 import Footer from './Footer';
+import { Link } from 'react-router';
 
 
 const Prices = () => {
 	return (
 	<div className="container-fluid pricesFont">
-		<h3 className="pricesTitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua.</h3>
+		<h3 className="pricesTitle">Encuentra tutorias de alta calidad a precios asequibles. Solo pagaras por las horas reservadas.</h3>
 			<div className="grid no-space push--bottom grid--middle text-center">
 				<div className="grid__item one-half section-gratis">
 					<div className="circle">
@@ -15,11 +15,11 @@ const Prices = () => {
 						</div>
 						<p className="p-price">87% de nuestros clientes empiezan conociendo un tutor gratis.</p>
 					</div>
-					<div>
+					<div className="pricesList__container">
 						<ul className="pricesList">
 							<li className="li-price">
 								<div className="priceDetail">
-									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
+									<p className="p-price">Revisa el perfil de los tutores.</p>
 								</div>
 								<div className="priceDetailcheck">
 									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
@@ -27,7 +27,7 @@ const Prices = () => {
 							</li>
 							<li className="li-price">
 								<div className="priceDetail">
-									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
+									<p className="p-price">Reserva la hora de tu tutoria.</p>
 								</div>
 								<div className="priceDetailcheck">
 									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
@@ -35,15 +35,7 @@ const Prices = () => {
 							</li>
 							<li className="li-price">
 								<div className="priceDetail">
-									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
-								</div>
-								<div className="priceDetailcheck">
-									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-								</div>
-							</li>
-							<li className="li-price">
-								<div className="priceDetail">
-									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
+									<p className="p-price">10 minutos para conocer a tu tutor.</p>
 								</div>
 								<div className="priceDetailcheck">
 									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
@@ -51,22 +43,22 @@ const Prices = () => {
 							</li>
 						</ul>
 					</div>
-					<button className="button-price">
-						<h5 className="h5-price">Empezar</h5>
-					</button>
+					<Link className="button-price" to="/estudiantes/registrarse">
+						<h5 className="h5-price">Empieza Ahora</h5>
+					</Link>
 				</div>
 				<div className="grid__item one-half section-premium">
 					<div className="circle">
 						<div className="gratisContainer">
-							<h1 className="gratisTitle">PLAN PREMIUM</h1>
+							<h1 className="gratisTitle">Tutoria Online</h1>
 						</div>
-						<p className="p-price">Cuenta con múltiples beneficios, acceso a videos y contenido especial.</p>
+						<p className="p-price">El 80% de nuestros tutores cobra entre $30.000 - $45.000 COP.</p>
 					</div>
-					<div>
+					<div className="pricesList__container">
 						<ul className="pricesList">
 							<li className="li-price">
 								<div className="priceDetail">
-									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
+									<p className="p-price">Sesiones grabadas.</p>
 								</div>
 								<div className="priceDetailcheck">
 									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
@@ -74,7 +66,7 @@ const Prices = () => {
 							</li>
 							<li className="li-price">
 								<div className="priceDetail">
-									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
+									<p className="p-price">Profesores especializados por materia.</p>
 								</div>
 								<div className="priceDetailcheck">
 									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
@@ -82,58 +74,21 @@ const Prices = () => {
 							</li>
 							<li className="li-price">
 								<div className="priceDetail">
-									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
-								</div>
-								<div className="priceDetailcheck">
-									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-								</div>
-							</li>
-							<li className="li-price">
-								<div className="priceDetail">
-									<p className="p-price">Lorem ipsum dolor sit amet elit.</p>
+									<p className="p-price">Entorno de aprendizaje Interactivo.</p>
 								</div>
 								<div className="priceDetailcheck">
 									<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
 								</div>
 							</li>
 						</ul>
-					</div>
-					<button className="button-price">
-						<h5 className="h5-price">Empezar</h5>
-					</button>
-				</div>
-			</div>
-			<div className="grid no-space push--bottom grid--middle text-center">
-				<h1>¿Que incluye?</h1>
-				<div className="grid__item one-third">
-					<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-					<p className="p-price">Tutorias Uno a Uno.</p>
-				</div>
-				<div className="grid__item one-third">
-					<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-					<p className="p-price">Sesiónes grabadas.</p>
-				</div>
-				<div className="grid__item one-third">
-					<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-					<p className="p-price">Entorno de aprendizaje interactivo.</p>
-				</div>
-			</div>
-			<div className="text-center">
-				<img className="hero__tutor-selector-icon" src={require('../assets/images/check-icon-complete.png')} />
-				<p className="feedbackText">Sesión de feedback.</p>
-			</div>
-
-			<div className="payUsection">
-				<div>
-					<div className="payUlogoDiv" align="right">
-						<img className="payUlogo" src={require('../assets/images/payu-logo.png')} />
-					</div>
-					<div className="payUDetails">
-						<h2 className="font2"><b>Payments secured by PayU</b></h2>
-						<p className="p-price">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt.</p>
+						<Link className="button-price" to="/ver-tutores">
+							<h5 className="h5-price">Ver tutores</h5>
+						</Link>
 					</div>
 				</div>
+			</div>
+			<div className="paySection">
+				<img className="payLogo" src='https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/epayco/epayco_pago_seguro_black.png' />
 			</div>
 			<div className="pricesQuestions">
 				<div className="container favQuestions text-center">
@@ -143,22 +98,14 @@ const Prices = () => {
 					<div className="grid no-space push--bottom grid--middle text-center">
 						<div className="grid__item one-half">
 							<div className="favPricesbox">
-								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
-								<p className="p-price">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-								cillum dolore eu fugiat nulla pariatur.</p>
+								<h6><strong>¿Cuanto cuesta una tutoría en BrainsTutor?</strong></h6>
+								<p className="p-price">Cada tutor establece el costo de su tutoria pero el 80% de nuestros tutores cobran entre $30.000 - $45.000 COP por hora. Puedes ver cuanto cobra cada tutor en su perfil y conocerlo antes de decidirte a tomar una tutoria paga.</p>
 							</div>
 						</div>
 						<div className="grid__item one-half">
 							<div className="favPricesbox">
-								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
-								<p className="p-price">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-								cillum dolore eu fugiat nulla pariatur.</p>
+								<h6><strong>¿Como puedo pagar por las tutorías?</strong></h6>
+								<p className="p-price">Contamos con el sistema de pago a través de la plataforma ePayco la cual permite hacer pagos con tarjetas de credito, debido(PSE) y pagos en efectivo con Baloto o Efective(Estos dos úlitmos solo en Colombia).</p>
 							</div>
 						</div>
 					</div>
@@ -167,46 +114,14 @@ const Prices = () => {
 					<div className="grid no-space push--bottom grid--middle text-center">
 						<div className="grid__item one-half">
 							<div className="favPricesbox">
-								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
-								<p className="p-price">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-								cillum dolore eu fugiat nulla pariatur. </p>
+								<h6><strong>¿El registro en la plataforma es gratuito?</strong></h6>
+								<p className="p-price">El registro a BrainsTutor es totalmente gratis. Al registrarte puedes acceder a las tutorias gratuitas de 10 minutos para conocer a tu tutor, y asi poder estar seguro que si es el tutor indicado para resolver todas tus dudas.</p>
 							</div>
 						</div>
 						<div className="grid__item one-half">
 							<div className="favPricesbox">
-								<h6><strong>How much does tuition with Brains cost?</strong></h6>
-								<p className="p-price">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-								cillum dolore eu fugiat nulla pariatur. </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div className="container favQuestions">
-					<div className="grid no-space push--bottom grid--middle text-center">
-						<div className="grid__item one-half">
-							<div className="favPricesbox">
-								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
-								<p className="p-price">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-								cillum dolore eu fugiat nulla pariatur.</p>
-							</div>
-						</div>
-						<div className="grid__item one-half">
-							<div className="favPricesbox">
-								<h6><strong>How much does tuition with MyTutor cost?</strong></h6>
-								<p className="p-price">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-								cillum dolore eu fugiat nulla pariatur. </p>
+								<h6><strong>¿Por qué no todos los tutores cobran el mismo precio?</strong></h6>
+								<p className="p-price">BrainsTutor provee una guia en la cual los tutores pueden establecer el precio por su tutoria. Ese precio refleja la experiencia y el conocimiento de cada tutor.</p>
 							</div>
 						</div>
 					</div>
