@@ -109,7 +109,7 @@ const StepToStepInfo = () => {
         <div className="container">
           <h1 className="hero__universities-title">Conoce nuestros tutores</h1>
           <p className="hero__universities-description">Escogemos los mejores tutores de las universidades del pais para brindarte tutorias de excelente calidad</p>
-          <Link className="button button--dark-green button--large button--larger" to="ver-tutores">Ver Tutores</Link>
+          <Link className="button button--dark-green button--large button--larger" to="/ver-tutores">Ver Tutores</Link>
         </div>
       </div>
       <div className="section section--gray section--padding-btm">

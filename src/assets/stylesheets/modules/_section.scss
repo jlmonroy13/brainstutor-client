@@ -220,6 +220,13 @@
     &__questions {
       &-text {
         margin: 0 0 0 5rem;
+        &--bold {
+          font-weight: 700;
+        }
+        &--ans {
+          padding-left: 1rem;
+          margin-bottom: 1rem;
+        }
       }
     }
     &__steps {

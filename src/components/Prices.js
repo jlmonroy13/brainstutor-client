@@ -88,7 +88,7 @@ const Prices = () => {
 				</div>
 			</div>
 			<div className="paySection">
-				<img className="payLogo" src='https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/epayco/epayco_pago_seguro_black.png' />
+				<img className="payLogo" src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/epayco/epayco_pago_seguro_black.png" />
 			</div>
 			<div className="pricesQuestions">
 				<div className="container favQuestions text-center">

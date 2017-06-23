@@ -111,9 +111,14 @@ class HowToBeTutor extends React.Component {
               <div>
                 <img className="section-tutor__icon section-tutor__icon--small push--left" src={require('../assets/images/question-icon.png')} />
                 <h2 className="section-tutor__title section-tutor__title--medium">Preguntas Frecuentes:</h2>
-                <p className="section-tutor__questions-text">-¿Cómo puedo acceder a la plataforma?</p>
-                <p className="section-tutor__questions-text">-¿Cómo puedo acceder a la plataforma?</p>
-                <p className="section-tutor__questions-text">-¿Cómo puedo acceder a la plataforma?</p>
+                <p className="section-tutor__questions-text section-tutor__questions-text--bold">-¿Que materias puedo ofrecer como tutor en BrainsTutor?</p>
+                <p className="section-tutor__questions-text section-tutor__questions-text--ans">En BrainsTutor puedes ofrecer materias de cualquier Ingeniería desde el ciclo básico hasta el ciclo profesional. Lo ideal sería que ofrecieras asignaturas en las cuales tengas un excelente dominio del tema y mucho experiencia.</p>
+                <p className="section-tutor__questions-text section-tutor__questions-text--bold">-¿Cómo puedo aplicar para ser tutor?</p>
+                <p className="section-tutor__questions-text section-tutor__questions-text--ans">Registrate en nuestra plataforma como tutor y revisaremos tu perfil, recibiras respuesta un dia hábil despúes de tu registro en donde te diremos si tu perfil esta acorde para ser tutor en BrainsTutor.</p>
+                <p className="section-tutor__questions-text section-tutor__questions-text--bold">-¿Cuales son los requerimientos para ser tutor?</p>
+                <p className="section-tutor__questions-text section-tutor__questions-text--ans">Nuestros tutores deben ser profesores o monitores de Universidades de Colombia.</p>
+                <p className="section-tutor__questions-text section-tutor__questions-text--bold">-¿Cuanto tiempo pasa para que agenden una tutoria?</p>
+                <p className="section-tutor__questions-text section-tutor__questions-text--ans">Las tutorias dependen de la temporada del año, van haber ciertos meses donde se demore mucho más tiempo para agendarte una tutoria, sin embargo, la mayoria de nuestros tutores se les agenda tutorias un par de semanas después de haber sido aceptado como tutor de BrainsTutor.</p>
               </div>
             </section>
           </div>
