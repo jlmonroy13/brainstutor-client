@@ -5,6 +5,7 @@ import getCleanedString from '../utils/string';
 import Gravatar from 'react-gravatar';
 import { Link } from 'react-router';
 import Autosuggest from 'react-autosuggest';
+import getDollarPrice from '../utils/price';
 
 class FindTutor extends React.Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class FindTutor extends React.Component {
 
     this.state = {
       value: '',
-      suggestions: []
+      suggestions: [],
+      country: ''
     };
 
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
@@ -26,6 +28,8 @@ class FindTutor extends React.Component {
   componentWillMount() {
     const { onGetTutorsRequest } = this.props;
     onGetTutorsRequest(1, []);
+    const country = window.geoplugin_countryName();
+    this.setState({ country });
   }
 
   renderPagination(page) {
@@ -90,7 +94,7 @@ class FindTutor extends React.Component {
 
   render() {
     const { teachers, totalPages } = this.props;
-    const { value, suggestions } = this.state;
+    const { value, suggestions, country } = this.state;
 
     const inputProps = {
       placeholder: 'Buscar por materia',
@@ -111,12 +115,14 @@ class FindTutor extends React.Component {
         return acc;
       }, '');
       const subjects = subjectsString.slice(0, subjectsString.length-2);
+      const priceCountry = country === 'Colombia' ? `$${profile.rate}` : `$${getDollarPrice(profile.rate)}`;
+
       return (
         <Link to={`/perfil-tutor/${teacher.id}`} key={teacher.id}>
           <div className="card">
             <div className="card__header">
               <span>{teacher.first_name + ' ' + teacher.last_name}</span> 
-              <span className="card__header-price">{`$${profile.rate}`}</span>
+              <span className="card__header-price">{priceCountry}</span>
             </div>
             <div className="card__body">
               <div className="grid">
