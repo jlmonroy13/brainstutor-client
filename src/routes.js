@@ -25,11 +25,12 @@ import AfterSignupTeacher from './components/AfterSignupTeacher';
 import StepToStepInfo from './components/StepToStepInfo';
 import Prices from './components/Prices';
 import StudentsDashboard from './components/StudentsDashboard';
-import TutorsDashboard from './components/TutorsDashboard';
+import TutorsDashboardContainer from './containers/TutorsDashboard';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 import { gettingSchedule } from './actions/scheduleTutor';
 import { setSessionData } from './actions/openTokSession';
 import { reqGetChats, reqGetMessages } from './actions/chat';
+import { getDashboardRequest } from './actions/teacher';
 import moment from 'moment-timezone';
 
 
@@ -200,6 +201,15 @@ const onEnterMessageList = store => {
   };
 };
 
+const onEnterDashboard = store => {
+  return (nextState, replace, callback) => {
+    const { dispatch, getState } = store;
+    const { userInfo } = getState();
+    verifyToken(userInfo, store, callback);
+    dispatch(getDashboardRequest());
+  };
+};
+
 const onEnterOpenTokSession = store => {
   return (nextState, replace, callback) => {
     const { dispatch, getState } = store;
@@ -308,8 +318,8 @@ export default store => (
     />
     <Route
       path="/tutores/inicio"
-      component={TutorsDashboard}
-      onEnter={onEnterProfile(store)}
+      component={TutorsDashboardContainer}
+      onEnter={onEnterDashboard(store)}
     />
     <Route
       path="/estudiantes/tutorias-agendadas"

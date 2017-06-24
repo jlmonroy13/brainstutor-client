@@ -64,6 +64,12 @@ const showTeachers = (page, subjects) => (
     .catch(catchRequestError)
 );
 
+const getTeacherDashboard = () => (
+  brains
+    .get(`/teachers/dashboards`)
+    .catch(catchRequestError)
+);
+
 const logIn = (userData, role) => {
   const { email, password } = userData;
   return brainsAuthentication
@@ -96,4 +102,5 @@ export {
   logIn,
   logOut,
   updateBankInfo,
+  getTeacherDashboard,
 };

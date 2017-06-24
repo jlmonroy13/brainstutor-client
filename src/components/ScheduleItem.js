@@ -38,14 +38,13 @@ class ScheduleItem extends Component {
 
   render() {
     const { role, schedule } = this.props;
-
     return (
       <tr>
         <td className={`schedule-list__row ${role === 'student' ? '' : 'schedule-list__row--teacher' }`}>
-          <Gravatar  className="schedule-list__photo" email={role === 'student' ? schedule.teacher_email : schedule.student_email} size={50} />
+          <Gravatar className="schedule-list__photo" email={role === 'student' ? schedule.teacher_email||schedule.email : schedule.student_email||schedule.email} size={50} />
           <div className="schedule-list__description">
             <p className="schedule-list__description-txt">{moment(schedule.start_at.substring(0,10)).tz(moment.tz.guess()).format('ddd, MMMM Do YYYY')} - {schedule.start_at.substring(11,16)}</p>
-            <p className="schedule-list__description-txt"><Link className="schedule-list__link">{role === 'student' ? schedule.teacher_name : schedule.student_name}</Link></p>
+            <p className="schedule-list__description-txt"><Link className="schedule-list__link">{role === 'student' ? schedule.teacher_name||`${schedule.first_name} ${schedule.last_name}` : schedule.student_name||`${schedule.first_name} ${schedule.last_name}`}</Link></p>
           </div>
         </td>
         <td className={`schedule-list__row ${role === 'student' ? '' : 'schedule-list__row--teacher' }`}>

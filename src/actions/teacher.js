@@ -1,7 +1,7 @@
 import { browserHistory } from 'react-router';
 import Alert from 'react-s-alert';
 import { pendingTask, begin, end } from 'react-redux-spinner';
-import { updateBankInfo, showTeachers } from '../requests/users';
+import { updateBankInfo, showTeachers, getTeacherDashboard } from '../requests/users';
 
 const setTeacherUniversity = university => ({
 	type: 'SET_TEACHER_UNIVERSITY',
@@ -25,6 +25,11 @@ const setTeachers = (teachers) => ({
 	payload: teachers,
 });
 
+const setDashboard = (data) => ({
+	type: 'SET_DASHBOARD',
+	payload: data,
+});
+
 const updateBankInfoRequest = (dataForm) => {
 	return (dispatch, getState) => {
 		const { userInfo } = getState();
@@ -37,6 +42,19 @@ const updateBankInfoRequest = (dataForm) => {
 			dispatch(setStatusRequestFalse());
 			Alert.success('¡Tu información bancaria ha sido registrada!');
 			browserHistory.push('/tutores/home');
+		}
+	};
+};
+
+const getDashboardRequest = () => {
+	return (dispatch) => {
+		dispatch(setStatusRequestTrue());
+		getTeacherDashboard()
+			.then(successgetDashboardRequest);
+
+		function successgetDashboardRequest(response) {
+			dispatch(setStatusRequestFalse());
+			dispatch(setDashboard(response.data));
 		}
 	};
 };
@@ -57,4 +75,5 @@ export {
 	setTeacherUniversity,
 	updateBankInfoRequest,
 	getTutorsRequest,
+	getDashboardRequest,
 };

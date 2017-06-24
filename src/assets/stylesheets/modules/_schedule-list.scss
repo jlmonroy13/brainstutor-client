@@ -77,11 +77,16 @@
 		&:last-child{
 			text-align: left;
 		}
+		&__dashboard {
+			&:last-child {
+				text-align: right;
+			}
+		}
 	}
 	&__row {
 		&--teacher {
 			&:nth-child(2) {
-				width: 15%;
+				width: 25%;
 			}
 			&:nth-child(3) {
 				width: 20%;

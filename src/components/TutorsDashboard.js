@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import DashboardClient from './DashboardClient';
+import ScheduleItemContainer from '../containers/ScheduleItem';
+import ModalBeforeOpenTokContainer from '../containers/ModalBeforeOpenTok';
 
 class TutorsDashboard extends React.Component {
   constructor(props) {
@@ -6,9 +9,34 @@ class TutorsDashboard extends React.Component {
     this.state = {
       university: '',
     };
+    this.onRenderDashboardClient = this.onRenderDashboardClient.bind(this);
+    this.onRenderDashboardSchedule = this.onRenderDashboardSchedule.bind(this);
+  }
+
+  onRenderDashboardClient(client) {
+    const { role } = this.props;
+    return (
+      <DashboardClient 
+        client={client}
+        key={client.id}
+        role={role}
+      />
+    );
+  }
+
+  onRenderDashboardSchedule(schedule) {
+    const { role } = this.props;
+    return (
+      <ScheduleItemContainer
+        schedule={schedule}
+        role={role}
+        key={schedule.id}
+      />
+    );
   }
 
   render() {
+    const { role, dashboard: { students, schedules } } = this.props;
     return (
       <div className="dashboard">
         <div className="container container--small">
@@ -18,8 +46,16 @@ class TutorsDashboard extends React.Component {
               <span className="dashboard__title">Proximas Tutorias</span>
             </div>
             <div className="box box--dashboard">
-              <p className="dashboard__subtitle">No tienes ninguna tutoria agendanda...</p>
-              <p className="dashboard__description">Ponte en contacto con un tutor y agenda un cita gratuita o una tutoria para hoy.</p>
+              { schedules && schedules.length ? 
+                <table className="schedule-list__table">
+                  <tbody>
+                    {schedules.map(this.onRenderDashboardSchedule)}
+                  </tbody>
+                </table>
+              : <div>
+                  <p className="dashboard__subtitle">No tienes ninguna tutoria agendanda...</p>
+                  <p className="dashboard__description">Ponte en contacto con un tutor y agenda un cita gratuita o una tutoria para hoy.</p>
+              </div>}
             </div>
             <div className="dashboard__box-title">
               <img className="dashboard__icon" src={require('../assets/images/mail2-icon.png')} />
@@ -31,16 +67,28 @@ class TutorsDashboard extends React.Component {
             </div>
             <div className="dashboard__box-title">
               <img className="dashboard__icon" src={require('../assets/images/star-icon.png')} />
-              <span className="dashboard__title">Mis Estudiantes</span>
+              <span className="dashboard__title">{role === 'teacher' ? 'Mis Estudiantes' : 'Mis Tutores'}</span>
             </div>
             <div className="box box--dashboard">
-              <span className="box__description">En este espacio encontraras los estudiantes a los que mas les has dado tutorias.</span>
+              { students && students.length ?
+                <table className="schedule-list__table">
+                  <tbody>
+                    {students.map(this.onRenderDashboardClient)}
+                  </tbody>
+                </table>
+              : <span className="box__description">En este espacio encontraras los estudiantes a los que mas les has dado tutorias.</span>}
             </div>
           </div>
         </div>
+        <ModalBeforeOpenTokContainer />
       </div>
     );
   }
 }
+
+TutorsDashboard.propTypes = {
+  role: PropTypes.string.isRequired,
+  dashboard: PropTypes.object.isRequired,
+};
 
 export default TutorsDashboard;
