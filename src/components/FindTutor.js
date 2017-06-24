@@ -28,7 +28,7 @@ class FindTutor extends React.Component {
   componentWillMount() {
     const { onGetTutorsRequest } = this.props;
     onGetTutorsRequest(1, []);
-    const country = window.geoplugin_countryName();
+    const country = 'Colombia';
     this.setState({ country });
   }
 
