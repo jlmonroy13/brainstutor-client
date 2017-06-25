@@ -82,6 +82,11 @@
 				text-align: right;
 			}
 		}
+		&--client {
+			&:first-child {
+				width: 55%;
+			}
+		}
 	}
 	&__row {
 		&--teacher {

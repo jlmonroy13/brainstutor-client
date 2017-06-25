@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import TutorsDashboard from '../components/TutorsDashboard';
+import UserDashboard from '../components/UserDashboard';
 
 const mapStateToProps = (state) => {
   const { userInfo: { role }, dashboard } = state;
@@ -12,4 +12,4 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   null,
-)(TutorsDashboard);
+)(UserDashboard);

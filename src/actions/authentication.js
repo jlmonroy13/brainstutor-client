@@ -10,6 +10,7 @@ import {
 import { pendingTask, begin, end } from 'react-redux-spinner';
 import moment from 'moment-timezone';
 import { reqCreateMessage } from './chat';
+import { getDashboardRequest } from './teacher';
 
 const setUserInfo = userInfo => ({
 	type: 'SET_USER_INFO',
@@ -159,17 +160,23 @@ const getUserInfo = (id, type, callback) => {
 		function successRequest(response) {
 			const { data } = response;
 			dispatch(setUserInfo(data[type]));
-			if (data[type].status === 'complete' && pathname !== '/tutores/home') {
+			if (data[type].status === 'complete' && pathname !== '/tutores/home' && pathname !== '/tutores/inicio' && pathname !== '/estudiantes/inicio') {
 				dispatch(setAuthInProcess(false));
+				callback();
 			} else if (data[type].status === 'complete' && pathname === '/tutores/home') {
 				browserHistory.push('/tutores/inicio');
+				callback();
+				dispatch(setAuthInProcess(false));
+			} else if (data[type].status === 'complete' && pathname === '/tutores/inicio' || pathname === '/estudiantes/inicio') {
+				dispatch(getDashboardRequest(data[type].role, callback));
 				dispatch(setAuthInProcess(false));
 			} else if (!data[type].status) {
 				dispatch(setAuthInProcess(false));
+				callback();
 			} else {
 				dispatch(setAuthInProcess(true));
+				callback();
 			}
-			callback();
 		}
 	};
 };

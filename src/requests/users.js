@@ -64,9 +64,9 @@ const showTeachers = (page, subjects) => (
     .catch(catchRequestError)
 );
 
-const getTeacherDashboard = () => (
+const getTeacherDashboard = (role) => (
   brains
-    .get(`/teachers/dashboards`)
+    .get(`/${role}s/dashboards`)
     .catch(catchRequestError)
 );
 

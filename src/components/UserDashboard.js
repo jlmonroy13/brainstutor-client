@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import DashboardClient from './DashboardClient';
+import DashboardClientContainer from '../containers/DashboardClient';
 import ScheduleItemContainer from '../containers/ScheduleItem';
 import ModalBeforeOpenTokContainer from '../containers/ModalBeforeOpenTok';
 
@@ -16,7 +16,7 @@ class TutorsDashboard extends React.Component {
   onRenderDashboardClient(client) {
     const { role } = this.props;
     return (
-      <DashboardClient 
+      <DashboardClientContainer 
         client={client}
         key={client.id}
         role={role}
@@ -36,7 +36,7 @@ class TutorsDashboard extends React.Component {
   }
 
   render() {
-    const { role, dashboard: { students, schedules } } = this.props;
+    const { role, dashboard: { students, schedules, teachers } } = this.props;
     return (
       <div className="dashboard">
         <div className="container container--small">
@@ -70,10 +70,10 @@ class TutorsDashboard extends React.Component {
               <span className="dashboard__title">{role === 'teacher' ? 'Mis Estudiantes' : 'Mis Tutores'}</span>
             </div>
             <div className="box box--dashboard">
-              { students && students.length ?
+              { students && students.length || teachers && teachers.length ?
                 <table className="schedule-list__table">
                   <tbody>
-                    {students.map(this.onRenderDashboardClient)}
+                    {students ? students.map(this.onRenderDashboardClient) : teachers.map(this.onRenderDashboardClient)}
                   </tbody>
                 </table>
               : <span className="box__description">En este espacio encontraras los estudiantes a los que mas les has dado tutorias.</span>}

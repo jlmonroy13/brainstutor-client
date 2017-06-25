@@ -24,14 +24,13 @@ import LogInIndex from './components/LogInIndex';
 import AfterSignupTeacher from './components/AfterSignupTeacher';
 import StepToStepInfo from './components/StepToStepInfo';
 import Prices from './components/Prices';
-import StudentsDashboard from './components/StudentsDashboard';
-import TutorsDashboardContainer from './containers/TutorsDashboard';
+import UserDashboardContainer from './containers/UserDashboard';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 import { gettingSchedule } from './actions/scheduleTutor';
 import { setSessionData } from './actions/openTokSession';
 import { reqGetChats, reqGetMessages } from './actions/chat';
-import { getDashboardRequest } from './actions/teacher';
 import moment from 'moment-timezone';
+import { getDashboardRequest } from './actions/teacher';
 
 
 const getLocalStorage = () => {
@@ -64,6 +63,7 @@ const verifyToken = (userInfo, store, callback) => {
   const token = userData&&userData.token||localData&&localData.token||localData&&localData.student&&localData.student.token;
   const id = localData&&localData.id||localData&&localData.student&&localData.student.id;
   const role = localData&&localData.role;
+
   if (!token && pathname !== '/' && pathname !== '/ver-tutores' && pathname.indexOf('/perfil-tutor/') == -1) {
     browserHistory.push('/');
     callback();
@@ -76,7 +76,7 @@ const verifyToken = (userInfo, store, callback) => {
     dispatch(getUserInfo(id, role, callback));
     return;
   }
-  if (userData && userData.status && userData.status !== 'complete' && pathname !== '/' && pathname !== '/tutores/home' && pathname !== '/tutores/inicio') {
+  if (userData && userData.status && userData.status !== 'complete' && pathname !== '/' && pathname !== '/tutores/home' && pathname !== '/tutores/inicio' && pathname !== '/estudiantes/inicio') {
     dispatch(setAuthInProcess(true));
     callback();
   } else if (userData && userData.status !== 'complete' && pathname === '/tutores/home') {
@@ -91,6 +91,10 @@ const verifyToken = (userInfo, store, callback) => {
     dispatch(setAuthInProcess(false));
     browserHistory.push('/tutores/inicio');
     callback();
+    return;
+  } else if (userData && userData.role && (pathname === '/tutores/inicio' || pathname === '/estudiantes/inicio')) {
+    dispatch(setAuthInProcess(false));
+    dispatch(getDashboardRequest(userData.role, callback));
     return;
   } else {
     dispatch(setAuthInProcess(false));
@@ -203,10 +207,9 @@ const onEnterMessageList = store => {
 
 const onEnterDashboard = store => {
   return (nextState, replace, callback) => {
-    const { dispatch, getState } = store;
+    const { getState } = store;
     const { userInfo } = getState();
     verifyToken(userInfo, store, callback);
-    dispatch(getDashboardRequest());
   };
 };
 
@@ -313,12 +316,12 @@ export default store => (
     />
     <Route
       path="/estudiantes/inicio"
-      component={StudentsDashboard}
-      onEnter={onEnterProfile(store)}
+      component={UserDashboardContainer}
+      onEnter={onEnterDashboard(store)}
     />
     <Route
       path="/tutores/inicio"
-      component={TutorsDashboardContainer}
+      component={UserDashboardContainer}
       onEnter={onEnterDashboard(store)}
     />
     <Route

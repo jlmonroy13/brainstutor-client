@@ -46,15 +46,16 @@ const updateBankInfoRequest = (dataForm) => {
 	};
 };
 
-const getDashboardRequest = () => {
+const getDashboardRequest = (role, callback) => {
 	return (dispatch) => {
 		dispatch(setStatusRequestTrue());
-		getTeacherDashboard()
+		getTeacherDashboard(role)
 			.then(successgetDashboardRequest);
 
 		function successgetDashboardRequest(response) {
 			dispatch(setStatusRequestFalse());
 			dispatch(setDashboard(response.data));
+			callback();
 		}
 	};
 };

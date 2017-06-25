@@ -76,7 +76,7 @@ class ScheduleItem extends Component {
         { role === 'student' ?
           <td className={`schedule-list__row ${role === 'student' ? '' : 'schedule-list__row--teacher' }`}>
             {schedule.status === 'accepted_awaiting_payment' ?
-              <a className="button button--light-green" target="_blank" href={`https://brainsapi.herokuapp.com/order/${schedule.order.number}`}>Pagar Tutoria</a>
+              <a className="button button--light-green" target="_blank" href={`https://brainsapi.herokuapp.com/order/${schedule.order&&schedule.order.number}`}>Pagar Tutoria</a>
               :  schedule.status !== 'confirmed' ?
                 <button className="button button--blue" onClick={this.onClickRescheduleAction} >Volver a Agendar</button>
                 :
