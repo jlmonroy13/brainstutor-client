@@ -96,6 +96,11 @@
 			&:nth-child(3) {
 				width: 20%;
 			}
+			&--large {
+				&:nth-child(2) {
+					width: 15%;
+				}
+			}
 		}
 	}
 	&__table {

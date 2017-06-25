@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 import Gravatar from 'react-gravatar';
-import moment from 'moment-timezone';
 import { Link, browserHistory } from 'react-router';
 
 class ScheduleItem extends Component {
@@ -37,17 +36,19 @@ class ScheduleItem extends Component {
   }
 
   render() {
-    const { role, schedule } = this.props;
+    const { role, schedule, pathname } = this.props;
+    const columnTableClass = pathname === '/tutores/tutorias-agendadas' ? 'schedule-list__row--teacher--large' : '';
+
     return (
       <tr>
         <td className={`schedule-list__row ${role === 'student' ? '' : 'schedule-list__row--teacher' }`}>
           <Gravatar className="schedule-list__photo" email={role === 'student' ? schedule.teacher_email||schedule.email : schedule.student_email||schedule.email} size={50} />
           <div className="schedule-list__description">
-            <p className="schedule-list__description-txt">{moment(schedule.start_at.substring(0,10)).tz(moment.tz.guess()).format('ddd, MMMM Do YYYY')} - {schedule.start_at.substring(11,16)}</p>
+            <p className="schedule-list__description-txt">{schedule.start_at}</p>
             <p className="schedule-list__description-txt"><Link className="schedule-list__link">{role === 'student' ? schedule.teacher_name||`${schedule.first_name} ${schedule.last_name}` : schedule.student_name||`${schedule.first_name} ${schedule.last_name}`}</Link></p>
           </div>
         </td>
-        <td className={`schedule-list__row ${role === 'student' ? '' : 'schedule-list__row--teacher' }`}>
+        <td className={`schedule-list__row ${role === 'student' ? '' : `schedule-list__row--teacher ${columnTableClass}` }`}>
           <p className="schedule-list__description-txt">{ schedule.modality === 'free' ? 'Entrevista Gratuita' : 'Tutoria'}</p>
           <p className="schedule-list__description-txt">Cálculo Diferencial</p>
         </td>
@@ -99,7 +100,7 @@ class ScheduleItem extends Component {
                   onClick={this.onClickRejectAction}
                 >Rechazar</button>
                 <button
-                  className="button button--transparent-blue"
+                  className={`button button--transparent-blue ${pathname !== '/tutores/tutorias-agendadas' ? 'push-half--top' : ''}`}
                 >Enviar mensaje</button>
               </div>
             : schedule.status === 'confirmed' ?
@@ -109,7 +110,7 @@ class ScheduleItem extends Component {
               >Entrar al salón de clases</button>
               :
               <button
-                className="button button--transparent-blue"
+                className={`button button--transparent-blue ${pathname !== '/tutores/tutorias-agendadas' ? 'push-half--top' : ''}`}
               >Enviar mensaje</button>
             }
           </td>
@@ -122,6 +123,7 @@ class ScheduleItem extends Component {
 ScheduleItem.propTypes = {
   schedule: PropTypes.object,
   role: PropTypes.string,
+  pathname: PropTypes.string,
   onSetScheduleAction: PropTypes.func,
   onSetAppointmenteType: PropTypes.func,
   onGetSessionStatus: PropTypes.func,

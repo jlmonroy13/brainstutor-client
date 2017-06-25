@@ -10,7 +10,7 @@ class ScheduleList extends Component {
 
     this.state = {
       tab: 'upcoming',
-      status: 'awaiting_tutor',
+      status: '',
       selectedPage: 1,
     };
 
@@ -23,7 +23,7 @@ class ScheduleList extends Component {
 
   componentWillMount() {
     const { onFetchScheduleList, userInfo } = this.props;
-    onFetchScheduleList(userInfo.role, 'awaiting_tutor', 1);
+    onFetchScheduleList(userInfo.role, '', 1);
   }
 
   onRenderSchedules(schedule) {
@@ -153,7 +153,10 @@ ScheduleList.propTypes = {
   userInfo: PropTypes.object,
   scheduleList: PropTypes.array,
   scheduleAction: PropTypes.object,
-  currentPage: PropTypes.number,
+  currentPage: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   totalPages: PropTypes.array,
 };
 

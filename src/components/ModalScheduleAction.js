@@ -88,7 +88,10 @@ class ModalScheduleAction extends Component {
 
 ModalScheduleAction.propTypes = {
   isOpen: PropTypes.bool,
-  scheduleId: PropTypes.number,
+  scheduleId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   role: PropTypes.string,
   action: PropTypes.string,
   onSetScheduleAction: PropTypes.func,

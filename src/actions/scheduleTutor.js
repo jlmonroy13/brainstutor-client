@@ -8,6 +8,7 @@ import {
 import { pendingTask, begin, end } from 'react-redux-spinner';
 import Alert from 'react-s-alert';
 import { browserHistory } from 'react-router';
+import { getDashboardRequest } from './teacher';
 
 
 const setStatusRequestFalse = () => ({
@@ -67,6 +68,7 @@ const updatingScheduleStatus = (type, data, status, page) => {
 			Alert.success("¡La Tutoria ha sido actualizada!");
 			dispatch(setScheduleAction({ action: '', scheduleId: '' }));
 			dispatch(setStatusRequestFalse());
+			dispatch(getDashboardRequest(type, null));
 		}
 	};
 };

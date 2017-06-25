@@ -55,7 +55,7 @@ const getDashboardRequest = (role, callback) => {
 		function successgetDashboardRequest(response) {
 			dispatch(setStatusRequestFalse());
 			dispatch(setDashboard(response.data));
-			callback();
+			if(callback !== null) callback();
 		}
 	};
 };

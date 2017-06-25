@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import DashboardClientContainer from '../containers/DashboardClient';
 import ScheduleItemContainer from '../containers/ScheduleItem';
 import ModalBeforeOpenTokContainer from '../containers/ModalBeforeOpenTok';
+import ModalScheduleActionContainer from '../containers/ModalScheduleAction';
 
 class TutorsDashboard extends React.Component {
   constructor(props) {
@@ -81,6 +82,10 @@ class TutorsDashboard extends React.Component {
           </div>
         </div>
         <ModalBeforeOpenTokContainer />
+        <ModalScheduleActionContainer 
+          status={''}
+          selectedPage={1}
+        />
       </div>
     );
   }

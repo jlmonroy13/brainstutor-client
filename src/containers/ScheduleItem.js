@@ -3,6 +3,15 @@ import ScheduleItem from '../components/ScheduleItem';
 import { setScheduleAction, setAppointmenteType } from '../actions/scheduleTutor';
 import { getSessionStatus } from '../actions/openTokSession';
 
+
+const mapStateToProps = (state) => {
+  const { routing: { locationBeforeTransitions: { pathname } }} = state;
+
+  return {
+    pathname,
+  };
+};
+
 const mapDispatchToProps = dispatch => ({
   onSetScheduleAction: (data) => {
     dispatch(setScheduleAction(data));
@@ -16,6 +25,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(ScheduleItem);

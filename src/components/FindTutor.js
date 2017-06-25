@@ -176,7 +176,10 @@ class FindTutor extends React.Component {
 FindTutor.propTypes = {
   teachers: PropTypes.array,
   totalPages: PropTypes.array,
-  currentPage: PropTypes.number,
+  currentPage: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   onGetTutorsRequest: PropTypes.func,
 };
 
