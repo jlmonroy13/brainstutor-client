@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import Footer from './Footer';
-import Gravatar from 'react-gravatar';
-import { Link } from 'react-router';
+import MessageItem from './MessageItem';
 
 class MessageList extends Component {
 	constructor() {
@@ -15,13 +14,12 @@ class MessageList extends Component {
 		const role = userRole === 'teacher' ? 'Estudiante' : 'Tutor';
 		const email = userId === message.recipient_id ? message.sender_email : message.recipient_email;
 		return (
-			<Link to={`/chat/${message.id}`} className="message-item" key={message.id}>
-				<Gravatar email={email} className="message-image" />
-				<div className="message-description">
-					<p className="message-title"><span className="message-title message-title--bold">{name}</span> {role}</p>
-					<p className="message-text">{message.last_message}</p>
-				</div>
-			</Link>
+			<MessageItem 
+				message={message}
+				email={email}
+				role={role}
+				name={name}
+			/>
 		);
 	}
 	render() {

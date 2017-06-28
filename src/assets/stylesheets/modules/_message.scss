@@ -22,6 +22,7 @@
 		display: block;
 		color: $gray-text;
 		transition: 0.5s;
+		position: relative;
 	}
 	&-image {
 		display: inline-block;
@@ -50,5 +51,12 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     margin-bottom: 0;
+	}
+	&-corner {
+		position: absolute;
+		top: 25px;
+		right: 0;
+		color: $blue;
+		@include rem(14);
 	}
 }

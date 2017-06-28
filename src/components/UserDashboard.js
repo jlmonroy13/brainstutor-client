@@ -3,6 +3,7 @@ import DashboardClientContainer from '../containers/DashboardClient';
 import ScheduleItemContainer from '../containers/ScheduleItem';
 import ModalBeforeOpenTokContainer from '../containers/ModalBeforeOpenTok';
 import ModalScheduleActionContainer from '../containers/ModalScheduleAction';
+import MessageItem from './MessageItem';
 
 class TutorsDashboard extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class TutorsDashboard extends React.Component {
     };
     this.onRenderDashboardClient = this.onRenderDashboardClient.bind(this);
     this.onRenderDashboardSchedule = this.onRenderDashboardSchedule.bind(this);
+    this.onRenderDashboardMessages = this.onRenderDashboardMessages.bind(this);
   }
 
   onRenderDashboardClient(client) {
@@ -36,8 +38,23 @@ class TutorsDashboard extends React.Component {
     );
   }
 
+  onRenderDashboardMessages(message) {
+    const { role: userRole } = this.props;
+    const name = `${message.first_name} ${message.last_name}`;
+    const role = userRole === 'teacher' ? 'Estudiante' : 'Tutor';
+
+    return (
+      <MessageItem 
+        message={message}
+        role={role}
+        name={name}
+        key={message.id}
+      />
+    );
+  }
+
   render() {
-    const { role, dashboard: { students, schedules, teachers } } = this.props;
+    const { role, dashboard: { students, schedules, teachers, messages } } = this.props;
     return (
       <div className="dashboard">
         <div className="container container--small">
@@ -63,8 +80,14 @@ class TutorsDashboard extends React.Component {
               <span className="dashboard__title">Nuevos Mensajes</span>
             </div>
             <div className="box box--dashboard">
-              <p className="dashboard__subtitle">No tienes ningún mensaje nuevo.</p>
-              <a href="">Ver todos los mensajes</a>
+              { messages && messages.length ?
+                <div>
+                  {messages.map(this.onRenderDashboardMessages)}
+                </div>
+              : <div>
+                  <p className="dashboard__subtitle">No tienes ninguna tutoria agendanda...</p>
+                  <p className="dashboard__description">Ponte en contacto con un tutor y agenda un cita gratuita o una tutoria para hoy.</p>
+              </div>}
             </div>
             <div className="dashboard__box-title">
               <img className="dashboard__icon" src={require('../assets/images/star-icon.png')} />

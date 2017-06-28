@@ -352,7 +352,6 @@ export default store => (
       path="/mensajes"
       component={MessageListContainer}
       onEnter={onEnterMessageList(store)}
-    />Enter={onEnterKnowYourTutorId(store)}
     />
     <Route
       path="/chat/:id"
