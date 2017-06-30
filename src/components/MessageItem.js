@@ -8,10 +8,10 @@ class MessageItem extends React.Component {
   }
 
   render() {
-    const { message, role, name } = this.props;
+    const { message, role, name, email } = this.props;
     return (
       <Link to={`/chat/${message.id}`} className="message-item">
-        <Gravatar email={message.email} className="message-image" />
+        <Gravatar email={email} className="message-image" />
         <div className="message-description">
           <p className="message-title"><span className="message-title message-title--bold">{name}</span> {role}</p>
           <p className="message-text">{message.last_message}</p>
@@ -24,6 +24,7 @@ class MessageItem extends React.Component {
 
 MessageItem.propTypes = {
   message: PropTypes.object.isRequired,
+  email: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };

@@ -49,6 +49,7 @@ const setScheduleAction = data => ({
 	payload: {
 		action: data.action,
 		scheduleId: data.scheduleId,
+		receiverId: data.receiverId,
 	}
 });
 

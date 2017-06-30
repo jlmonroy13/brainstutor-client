@@ -9,6 +9,7 @@ class ScheduleItem extends Component {
 
     this.onClickAcceptAction = this.onClickAcceptAction.bind(this);
     this.onClickRejectAction = this.onClickRejectAction.bind(this);
+    this.onClickSendMessageAction = this.onClickSendMessageAction.bind(this);
     this.onClickRescheduleAction = this.onClickRescheduleAction.bind(this);
     this.onEnterRoom = this.onEnterRoom.bind(this);
   }
@@ -16,12 +17,19 @@ class ScheduleItem extends Component {
   onClickAcceptAction() {
     const { schedule, schedule: { modality }, onSetScheduleAction } = this.props;
     const action = modality === 'paid' ? 'accepted_awaiting_payment' : 'confirmed';
-    onSetScheduleAction({ action, scheduleId: schedule.id });
+    onSetScheduleAction({ action, scheduleId: schedule.id, receiverId: '' });
   }
 
   onClickRejectAction() {
-    const { schedule, onSetScheduleAction } = this.props;
-    onSetScheduleAction({ action: 'rejected', scheduleId: schedule.id });
+    const { schedule, onSetScheduleAction, userInfo } = this.props;
+    const receiverId = userInfo === schedule.student_id ? schedule.teacher_id : schedule.student_id;
+    onSetScheduleAction({ action: 'rejected', scheduleId: schedule.id, receiverId});
+  }
+
+  onClickSendMessageAction() {
+    const { schedule, onSetScheduleAction, userInfo } = this.props;
+    const receiverId = userInfo === schedule.student_id ? schedule.teacher_id : schedule.student_id;
+    onSetScheduleAction({ action: 'message', scheduleId: schedule.id, receiverId});
   }
 
   onClickRescheduleAction() {
@@ -101,6 +109,7 @@ class ScheduleItem extends Component {
                 >Rechazar</button>
                 <button
                   className={`button button--transparent-blue ${pathname !== '/tutores/tutorias-agendadas' ? 'push-half--top' : ''}`}
+                  onClick={this.onClickSendMessageAction}
                 >Enviar mensaje</button>
               </div>
             : schedule.status === 'confirmed' ?
@@ -111,6 +120,7 @@ class ScheduleItem extends Component {
               :
               <button
                 className={`button button--transparent-blue ${pathname !== '/tutores/tutorias-agendadas' ? 'push-half--top' : ''}`}
+                onClick={this.onClickSendMessageAction}
               >Enviar mensaje</button>
             }
           </td>
@@ -124,6 +134,7 @@ ScheduleItem.propTypes = {
   schedule: PropTypes.object,
   role: PropTypes.string,
   pathname: PropTypes.string,
+  userInfo: PropTypes.object,
   onSetScheduleAction: PropTypes.func,
   onSetAppointmenteType: PropTypes.func,
   onGetSessionStatus: PropTypes.func,

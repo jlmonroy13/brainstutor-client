@@ -5,6 +5,7 @@ import {
 } from '../requests/messages';
 import { pendingTask, begin, end } from 'react-redux-spinner';
 import Alert from 'react-s-alert';
+import { setScheduleAction } from './scheduleTutor';
 
 const setStatusRequestFalse = () => ({
 	type: 'SET_STATUS_REQUEST',
@@ -37,6 +38,7 @@ const reqCreateMessage = (idReceiver, message, chatId) => {
 		function successreqCreateMessage() {
 			Alert.success('Tu mensaje ha sido enviado.');
 			dispatch(setStatusRequestFalse());
+			dispatch(setScheduleAction({ action: '', scheduleId: '', receiverId: '' }));
 			if(chatId) {
 				dispatch(reqGetMessagesAlone(chatId));
 			}

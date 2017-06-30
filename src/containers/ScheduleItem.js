@@ -5,10 +5,11 @@ import { getSessionStatus } from '../actions/openTokSession';
 
 
 const mapStateToProps = (state) => {
-  const { routing: { locationBeforeTransitions: { pathname } }} = state;
+  const { routing: { locationBeforeTransitions: { pathname } }, userInfo } = state;
 
   return {
     pathname,
+    userInfo,
   };
 };
 

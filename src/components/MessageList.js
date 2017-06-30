@@ -19,6 +19,7 @@ class MessageList extends Component {
 				email={email}
 				role={role}
 				name={name}
+				key={message.id}
 			/>
 		);
 	}
@@ -30,7 +31,7 @@ class MessageList extends Component {
 					<div className="grid grid--center">
 						<div className={`grid__item ${'three-quarters'}`}>
 							<div className="schedule-list__box">
-								<div className="schedule-list__body hard">
+								<div className="schedule-list__body">
 									<h2 className="message-header">Mensajes</h2>
 									{chatsList.map(this.renderChats)}
 								</div>

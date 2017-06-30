@@ -49,6 +49,7 @@ class TutorsDashboard extends React.Component {
         role={role}
         name={name}
         key={message.id}
+        email={message.email}
       />
     );
   }

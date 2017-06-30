@@ -40,6 +40,7 @@ export default function scheduleTutorReducer(state = initialState, action) {
 				scheduleAction: {
 					action: action.payload.action,
 					scheduleId: action.payload.scheduleId,
+					receiverId: action.payload.receiverId,
 				},
 			};
 		case 'SET_SCHEDULE':

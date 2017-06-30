@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import ReactModal from 'react-modal';
-// import { Link } from 'react-router';
+import Alert from 'react-s-alert';
 
 class ModalScheduleAction extends Component {
   constructor() {
@@ -27,18 +27,29 @@ class ModalScheduleAction extends Component {
       role,
       action,
       scheduleId,
+      receiverId,
       onUpdatingScheduleStatus,
+      onSendMessage,
       status,
       selectedPage,
     } = this.props;
+    const { message } = this.state;
 
     const data = {
       id: scheduleId,
       status: action,
-      message: this.state.message,
+      message,
     };
 
-    onUpdatingScheduleStatus(role, data, status, selectedPage);
+    if (action === 'message') {
+      if(message) {
+        onSendMessage(receiverId, message);
+      } else {
+        Alert.error('Tienes que escribir un mensaje.');
+      }
+    } else {
+      onUpdatingScheduleStatus(role, data, status, selectedPage);
+    }
   }
 
   render() {
@@ -53,7 +64,10 @@ class ModalScheduleAction extends Component {
       >
         <div className="Modal__content">
           <div className="Modal__header">
-            <h2 className="Modal__header-title">{action === 'confirmed' || action === 'accepted_awaiting_payment' ? 'Aceptar Tutoria' : 'Rechazar Tutoria' }</h2>
+            <h2 className="Modal__header-title">{action === 'confirmed' || action === 'accepted_awaiting_payment' ? 
+              'Aceptar Tutoria'
+            : action === 'rejected' ? 'Rechazar Tutoria' : 'Enviar Mensaje'}
+            </h2>
             <span className="Modal__btn-close" onClick={this.handleCloseModal}>&#120;</span>
           </div>
           <div className="Modal__body Modal__body--center">
@@ -61,7 +75,7 @@ class ModalScheduleAction extends Component {
               <p>¿Estas seguro que quieres aceptar esta tutoria?</p>
             :
               <div className="push--bottom">
-                <p>Para poder rechazar esta tutoria debes escribirle un mensaje a tu estudiante.</p>
+                {action !== 'message' ? <p>Para poder rechazar esta tutoria debes escribirle un mensaje a tu estudiante.</p> : null}
                 <textArea
                   className="main-form__textarea"
                   onChange={this.onChangeMessage}
@@ -73,7 +87,7 @@ class ModalScheduleAction extends Component {
               <button
                 className="button button--blue push-half--right"
                 onClick={this.onConfirmAction}
-              >Aceptar</button>
+              >{action === 'message' ? 'Enviar' : 'Aceptar'}</button>
               <button
                 className="button button--transparent-blue"
                 onClick={this.handleCloseModal}
@@ -92,9 +106,14 @@ ModalScheduleAction.propTypes = {
     PropTypes.string,
     PropTypes.number
   ]),
+  receiverId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   role: PropTypes.string,
   action: PropTypes.string,
   onSetScheduleAction: PropTypes.func,
+  onSendMessage: PropTypes.func,
   onUpdatingScheduleStatus: PropTypes.func,
   status: PropTypes.string,
   selectedPage: PropTypes.number,
