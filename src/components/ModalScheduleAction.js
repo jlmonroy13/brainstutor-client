@@ -41,12 +41,19 @@ class ModalScheduleAction extends Component {
       message,
     };
 
-    if (action === 'message') {
-      if(message) {
-        onSendMessage(receiverId, message);
+    const sendMsg = (msg, type) => {
+      if(msg) {
+        if(type === 'rejected') onUpdatingScheduleStatus(role, data, status, selectedPage);
+        onSendMessage(receiverId, msg);
       } else {
         Alert.error('Tienes que escribir un mensaje.');
       }
+    };
+
+    if (action === 'message') {
+      sendMsg(message, action);
+    } else if (action === 'rejected') {
+      sendMsg(message, action);
     } else {
       onUpdatingScheduleStatus(role, data, status, selectedPage);
     }
