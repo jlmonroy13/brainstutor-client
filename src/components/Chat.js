@@ -48,6 +48,7 @@ class Chat extends Component {
 
   render() {
     const { messagesList } = this.props;
+
     return (
       <div>
         <div className="message-list message-list--less-padding message-list--height">

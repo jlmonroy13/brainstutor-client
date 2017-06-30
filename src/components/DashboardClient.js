@@ -12,6 +12,7 @@ class DashboardClient extends React.Component {
     };
 
     this.onGoToScheduleTutor = this.onGoToScheduleTutor.bind(this);
+    this.onClickSendMessageAction = this.onClickSendMessageAction.bind(this);
   }
 
   componentWillMount() {
@@ -30,6 +31,11 @@ class DashboardClient extends React.Component {
     this.props.storeTutorInfo(tutor);
     this.props.onSetAppointmenteType('paid');
     browserHistory.push('/estudiantes/agendar-tutoria');
+  }
+
+  onClickSendMessageAction() {
+    const { onSetScheduleAction, client } = this.props;
+    onSetScheduleAction({ action: 'message', scheduleId: '', receiverId: client.id});
   }
 
   render() {
@@ -54,6 +60,7 @@ class DashboardClient extends React.Component {
           : null}
           <button
             className="button button--transparent-blue"
+            onClick={this.onClickSendMessageAction}
           >Enviar mensaje</button>
         </td>
       </tr>
@@ -66,6 +73,7 @@ DashboardClient.propTypes = {
   client: PropTypes.object.isRequired,
   storeTutorInfo: PropTypes.func.isRequired,
   onSetAppointmenteType: PropTypes.func.isRequired,
+  onSetScheduleAction: PropTypes.func.isRequired,
 };
 
 export default DashboardClient;

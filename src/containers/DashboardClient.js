@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import DashboardClient from '../components/DashboardClient';
-import { setTutorInfo, setAppointmenteType } from '../actions/scheduleTutor';
-import { reqCreateMessage } from '../actions/chat';
+import { setScheduleAction, setTutorInfo, setAppointmenteType } from '../actions/scheduleTutor';
 
 const mapStateToProps = (state) => {
 	const type = 'Tutor';
@@ -19,8 +18,8 @@ const mapDispatchToProps = dispatch => ({
 	onSetAppointmenteType: (type) => {
 		dispatch(setAppointmenteType(type));
 	},
-	onCreateMessage: (receiverId, textMessage) => {
-		dispatch(reqCreateMessage(receiverId, textMessage));
+	onSetScheduleAction: (data) => {
+		dispatch(setScheduleAction(data));
 	},
 });
 

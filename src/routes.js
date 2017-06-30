@@ -151,6 +151,7 @@ const onEnterChat = store => {
     const id = pathname.substr(6);
     if(!userInfo.id) browserHistory.push('/mensajes');
     dispatch(reqGetMessages(id, callback));
+    dispatch(reqGetChats());
   };
 };
 
