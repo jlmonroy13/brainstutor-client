@@ -126,10 +126,10 @@ class FindTutor extends React.Component {
             </div>
             <div className="card__body">
               <div className="grid">
-                <div className="grid__item two-fifths">
+                <div className="grid__item medium--two-fifths one-whole">
                   <Gravatar email={teacher.email} className="card__image" size={250} />
                 </div>
-                <div className="grid__item three-fifths">
+                <div className="grid__item medium--three-fifths one-whole">
                   <p className="card__description">{profile.about}</p>
                   <p className="card__subjects"><span className="card__subjects-title">Materias: </span> {`${subjects}.`}</p>
                 </div>

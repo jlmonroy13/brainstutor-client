@@ -6,11 +6,17 @@
 			li {
 				font-size: 0.93rem !important;
 				cursor: pointer !important;
+				@media screen and (max-width: 1180px) {
+					text-align: center;
+				}
 			}
 		}
 		&__link {
 			width: 100%;
 			display: inline-block;
+		}
+		@media screen and (max-width: 1180px) {
+			top: 422px !important;
 		}
 	}
 }

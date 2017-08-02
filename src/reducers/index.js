@@ -4,6 +4,7 @@ import teachers from './teachers';
 import dashboard from './dashboard';
 import chat from './chat';
 import scheduleTutor from './scheduleTutor';
+import header from './header';
 import openTokSession from './openTokSession';
 import { routerReducer } from 'react-router-redux';
 import { pendingTasksReducer as pendingTasks } from 'react-redux-spinner';
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   scheduleTutor,
   openTokSession,
   chat,
+  header,
 });
 
 export default rootReducer;

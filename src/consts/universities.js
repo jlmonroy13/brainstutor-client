@@ -1,5 +1,5 @@
 let universities = [
-	'Pascual Bravo',
+	'Institución Universitaria Pascual Bravo',
 	'ITM(Instituto Tecnológico Metropolitano)',
 	'Colegio Mayor de Antioquia',
 	'Universidad de Antioquia (UDEA) (Medellín)',
