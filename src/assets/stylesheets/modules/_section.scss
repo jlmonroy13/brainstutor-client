@@ -25,6 +25,13 @@
     &--small {
       max-width: 100px;
     }
+    @media screen and (max-width: 767px) {
+      max-width: initial;
+      width: 70%;
+      min-width: 320px;
+      display: block;
+      margin: auto;
+    }
   }
   &__box {
     width: 150px;
@@ -32,6 +39,13 @@
     @include rem(10, 'margin-right');
     &:last-child {
       margin-right: 0;
+    }
+    @media screen and (max-width: 767px) {
+      display: block;
+      margin: auto;
+      &:last-child {
+        margin-right: auto;
+      }
     }
     &-title {
       font-family: $font-family-serif;
@@ -54,6 +68,9 @@
     color: $gray-text;
     font-weight: 700;
     @include rem(5, 'margin-bottom');
+    @media screen and (max-width: 767px) {
+      text-align: center;
+    }
   }
   &__title {
     font-family: $font-family-serif;
@@ -62,6 +79,9 @@
     color: $dark-green;
     text-align: center;
     margin-top: 0;
+    @media screen and (max-width: 767px) {
+      text-align: center;
+    }
   }
   &__description {
     font-family: $font-family-sans-serif;

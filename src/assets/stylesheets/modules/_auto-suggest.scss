@@ -1,6 +1,10 @@
 .react-autosuggest__container {
   display: inline-block;
   position: relative;
+  @media screen and (max-width: 650px) {
+    display: block;
+    margin-bottom: $half-spacing-unit;
+  }
 }
 
 .react-autosuggest__input {
@@ -8,6 +12,10 @@
   width: 440px;
   padding: 0 30px 0 20px;
   @include rem(18);
+  @media screen and (max-width: 650px) {
+    width: 90%;
+    max-width: 440px;
+  }
 }
 
 .react-autosuggest__input--focused {

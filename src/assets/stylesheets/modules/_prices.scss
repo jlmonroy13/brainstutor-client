@@ -3,7 +3,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   height: 560px;
-  width: 432px;
+  width: 80%;
+  max-width: 432px;
   margin: 0 30px 30px 30px;
   padding-left: 0;
 }
@@ -13,7 +14,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   height: 560px;
-  width: 432px;
+  width: 80%;
+  max-width: 432px;
   margin: 0 30px 30px 30px;
   padding-left: 0;
 }
@@ -113,6 +115,9 @@
 	background: #4A494A;
 	padding: 30px 10px;
 	height: 10em;
+	@media screen and (max-width: 530px) {
+	  padding: 50px 10px;
+	}
 }
 
 .payUlogoDiv{
@@ -133,6 +138,9 @@
 .payLogo{
 	display: block;
 	margin: auto;
+	@media screen and (max-width: 530px) {
+	  width: 290px;
+	}
 }
 .payUDetails{
 	.p-price{

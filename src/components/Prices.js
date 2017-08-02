@@ -96,13 +96,13 @@ const Prices = () => {
 						<span className="span-price">Preguntas frecuentes</span>
 					</h4>
 					<div className="grid no-space push--bottom grid--middle text-center">
-						<div className="grid__item one-half">
+						<div className="grid__item medium--one-half one-whole">
 							<div className="favPricesbox">
 								<h6><strong>¿Cuanto cuesta una tutoría en BrainsTutor?</strong></h6>
 								<p className="p-price">Cada tutor establece el costo de su tutoria pero el 80% de nuestros tutores cobran entre $30.000 - $45.000 COP por hora. Puedes ver cuanto cobra cada tutor en su perfil y conocerlo antes de decidirte a tomar una tutoria paga.</p>
 							</div>
 						</div>
-						<div className="grid__item one-half">
+						<div className="grid__item medium--one-half one-whole">
 							<div className="favPricesbox">
 								<h6><strong>¿Como puedo pagar por las tutorías?</strong></h6>
 								<p className="p-price">Contamos con el sistema de pago a través de la plataforma ePayco la cual permite hacer pagos con tarjetas de credito, debido(PSE) y pagos en efectivo con Baloto o Efective(Estos dos úlitmos solo en Colombia).</p>
@@ -112,13 +112,13 @@ const Prices = () => {
 				</div>
 				<div className="container favQuestions">
 					<div className="grid no-space push--bottom grid--middle text-center">
-						<div className="grid__item one-half">
+						<div className="grid__item medium--one-half one-whole">
 							<div className="favPricesbox">
 								<h6><strong>¿El registro en la plataforma es gratuito?</strong></h6>
 								<p className="p-price">El registro a BrainsTutor es totalmente gratis. Al registrarte puedes acceder a las tutorias gratuitas de 10 minutos para conocer a tu tutor, y asi poder estar seguro que si es el tutor indicado para resolver todas tus dudas.</p>
 							</div>
 						</div>
-						<div className="grid__item one-half">
+						<div className="grid__item medium--one-half one-whole">
 							<div className="favPricesbox">
 								<h6><strong>¿Por qué no todos los tutores cobran el mismo precio?</strong></h6>
 								<p className="p-price">BrainsTutor provee una guia en la cual los tutores pueden establecer el precio por su tutoria. Ese precio refleja la experiencia y el conocimiento de cada tutor.</p>

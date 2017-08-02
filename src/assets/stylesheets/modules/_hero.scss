@@ -3,6 +3,9 @@
   background-size: cover;
   padding: $base-spacing-unit*4 0;
   background-color: $gray-bckgr;
+  @media screen and (max-width: 767px) {
+    padding: $base-spacing-unit*2 0;
+  }
   &__title {
     color: #fff;
     font-family: $font-family-serif;
@@ -11,6 +14,12 @@
     font-weight: 700;
     @include rem(46);
     margin: 0;
+    @media screen and (max-width: 767px) {
+      max-width: initial;
+      margin-bottom: $base-spacing-unit*2;
+      text-align: center;
+      @include rem(40);
+    }
   }
   &__tutor {
     background: url("../images/hero-tutor.png") center no-repeat;
@@ -92,6 +101,9 @@
         &:hover {
           color: #000;
         }
+        @media screen and (max-width: 767px) {
+          border-radius: 4px;
+        }
       }
       &-icon {
         max-width: 81px;
@@ -122,6 +134,11 @@
       &:first-child {
         @include rem(80, 'margin-top');
       }
+      @media screen and (max-width: 767px) {
+        &:first-child {
+          @include rem(0, 'margin-top');
+        }
+      }
     }
     &-subtitle {
       color: #fff;
@@ -129,6 +146,12 @@
       font-family: $font-family-serif;
       display: inline-block;
       @include rem(10, 'margin-top');
+      @media screen and (max-width: 767px) {
+        display: block;
+        text-align: center;
+        @include rem(16);
+        @include rem(20, 'margin-bottom');
+      }
     }
   }
   &__universities {
@@ -155,6 +178,9 @@
     min-height: 410px;
     background-color: $gray-bckgr;
     position: relative;
+    @media screen and (max-width: 767px) {
+      padding-top: $base-spacing-unit*3;
+    }
     &-title {
       color: #fff;
       @include rem(68);
@@ -166,6 +192,15 @@
       right: 240px;
       max-width: 380px;
       line-height: 0.8;
+      @media screen and (max-width: 767px) {
+        display: block;
+        margin: auto;
+        text-align: center;
+        background-color: rgba(black, 0.3);
+        border-radius: 15px;
+        position: initial;
+        padding: $base-spacing-unit;
+      }
     }
     &-subtitle {
       color: #fff;
@@ -175,6 +210,16 @@
       top: 160px;
       max-width: 242px;
       line-height: 0.9;
+      @media screen and (max-width: 767px) {
+        display: block;
+        margin: auto;
+        text-align: center;
+        background-color: rgba(black, 0.3);
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        position: initial;
+        padding: $half-spacing-unit;
+      }
     }
     &-selector {
       background-color: $dark-blue;

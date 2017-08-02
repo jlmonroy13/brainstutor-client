@@ -24,6 +24,16 @@
 			@include rem(25);
 			position: relative;
 			top: 4px;
+			@media screen and (max-width: 767px) {
+			  @include rem(21);
+			  display: block;
+			  float: initial;
+			}
+		}
+		@media screen and (max-width: 767px) {
+		  min-height: 114px;
+		  padding: 12px 44px 15px 115px;
+		  @include rem(21);
 		}
 	}
 	&__body {
@@ -40,6 +50,12 @@
 		-webkit-box-shadow: 3px 2px 20px -2px rgba(0,0,0,0.75);
 		-moz-box-shadow: 3px 2px 20px -2px rgba(0,0,0,0.75);
 		box-shadow: 3px 2px 20px -2px rgba(0,0,0,0.75);
+		@media screen and (max-width: 767px) {
+		  width: 80px;
+			height: 80px;
+			top: 15px;
+			left: 20px;
+		}
 	}
 	&__description {
 		max-width: 450px;

@@ -11,5 +11,13 @@
     left: 50%;
     top: -100px;
     transform: translateX(-50%);
+    @media screen and (max-width: 767px) {
+      top: -57px;
+      min-width: 320px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1277px) {
+      min-width: 504px;
+      max-width: 520px;
+    }
   }
 }
