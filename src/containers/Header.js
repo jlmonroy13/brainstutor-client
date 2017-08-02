@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(onLogOutRequest());
   },
   onShowMenu: (data) => {
-  	dispatch(setShowMenu(data));
+    dispatch(setShowMenu(data));
   }
 });
 
