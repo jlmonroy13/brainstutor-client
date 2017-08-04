@@ -50,7 +50,7 @@ class Signup extends React.Component {
     };
 		return (
 			<div className="section__auth">
-				<img className="full-width push--bottom" src={require('../assets/images/hero-authentication.jpg')} />
+				<img className="full-width section__auth-image push--bottom" src={require('../assets/images/hero-authentication.jpg')} />
 				<div className="section__auth-container section__auth-container--form">
 					<form onSubmit={this.onSubmitForm} autoComplete="off">
 						<h1 className="section__auth-title section__auth-title--form">Registro</h1>

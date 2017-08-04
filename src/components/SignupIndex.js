@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const SignupIndex = () => {
   return (
     <div className="section__auth section__auth--index">
-      <img className="full-width" src={require('../assets/images/hero-authentication.jpg')} />
+      <img className="full-width section__auth-image" src={require('../assets/images/hero-authentication.jpg')} />
       <div className="section__auth-container section__auth-container--index">
         <div className="section__auth-circle">registro</div>
         <Link

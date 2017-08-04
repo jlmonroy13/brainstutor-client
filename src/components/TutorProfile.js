@@ -167,7 +167,7 @@ class TutorProfile extends React.Component {
         <div className="profile__container">
           <div className="container">
             <div className="grid">
-              <div className="grid__item three-fifths">
+              <div className="grid__item large--three-fifths one-whole">
                 <div className="profile">
                   <div className="profile__main">
                     <Gravatar email={tutor.email} size={150} className="profile__main-image" />
@@ -198,7 +198,7 @@ class TutorProfile extends React.Component {
                   smallClass={'--small'}
                 />
               </div>
-              <div className="grid__item two-fifths">
+              <div className="grid__item large--two-fifths one-whole">
                 <div className="box-message">
                   <div className="box-message__header">
                     <img className="box-message__icon" src={require('../assets/images/mail-icon.png')} />

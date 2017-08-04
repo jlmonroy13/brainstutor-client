@@ -18,6 +18,9 @@
           }
         }
       }
+      @media screen and (max-width: 685px) {
+        @include rem(10px, 'margin-right');
+      }
     }
     &__label {
       color: $gray;
@@ -65,6 +68,19 @@
           @include rem(60px, 'height');
           @include rem(60px, 'width');
         }
+        @media screen and (max-width: 685px) {
+          @include rem(28px, 'height');
+          @include rem(28px, 'width');
+          cursor: initial;
+          &:before {
+            @include rem(28px, 'height');
+            @include rem(28px, 'width');
+          }
+          &:after {
+            @include rem(28px, 'height');
+            @include rem(28px, 'width');
+          }
+        }
       }
     }
   }
@@ -89,10 +105,19 @@
       color: #fff;
       @include rem(12px);
       font-weight: 700;
+      @media screen and (max-width: 685px) {
+        color: $gray;
+        @include rem(10px);
+      }
     }
     &--small {
       @include rem(60px, 'height');
       @include rem(60px, 'width');
+      @media screen and (max-width: 685px) {
+        @include rem(28px, 'height');
+        @include rem(28px, 'width');
+        background-color: transparent;
+      }
     }
   }
   &-line {
@@ -116,6 +141,14 @@
       @include rem(10px, 'margin-right');
       &:first-child {
         @include rem(73px, 'margin-left');
+        @media screen and (max-width: 685px) {
+          @include rem(40px, 'margin-left');
+        }
+      }
+      @media screen and (max-width: 685px) {
+        @include rem(7px, 'margin-right');
+        @include rem(9px);
+        width: initial;
       }
     }
   }
