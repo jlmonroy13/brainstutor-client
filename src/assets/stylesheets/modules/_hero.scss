@@ -26,6 +26,14 @@
     background-size: cover;
     min-height: 422px;
     position: relative;
+    padding-top: $base-spacing-unit;
+    &-image-step {
+      @media screen and (max-width: 767px) {
+        max-width: 350px;
+        display: block;
+        margin: auto;
+      }
+    }
     &-title {
       color: #fff;
       font-family: $font-family-serif;
@@ -42,6 +50,17 @@
         position: absolute;
         top: 50px;
         right: 180px;
+        @media screen and (max-width: 700px) {
+          position: initial;
+          top: 40px;
+          right: initial;
+          margin-bottom: $base-spacing-unit*2;
+        }
+      }
+      @media screen and (max-width: 700px) {
+        display: block;
+        margin: auto;
+        text-align: center;
       }
     }
     &--universities {
@@ -69,6 +88,11 @@
       vertical-align: top;
       position: relative;
       top: 20px;
+      @media screen and (max-width: 700px) {
+        display: block;
+        margin: auto;
+        text-align: center;
+      }
     }
     &-selector {
       height: 50px;
@@ -84,6 +108,11 @@
         position: absolute;
         top: 260px;
         right: 110px;
+        @media screen and (max-width: 700px) {
+          position: initial;
+          top: initial;
+          right: initial;
+        }
       }
       &-button {
         background-color: $dark-green;
@@ -104,11 +133,23 @@
         @media screen and (max-width: 767px) {
           border-radius: 4px;
         }
+        @media screen and (max-width: 700px) {
+          display: block;
+          margin: auto;
+          max-width: 304px;
+        }
       }
       &-icon {
         max-width: 81px;
         display: inline-block;
         vertical-align: middle;
+        @media screen and (max-width: 700px) {
+          display: none;
+        }
+      }
+      @media screen and (max-width: 700px) {
+        display: block;
+        margin: 0 auto $half-spacing-unit auto;
       }
     }
     &-input {

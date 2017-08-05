@@ -221,6 +221,11 @@
       &--small {
         max-width: 50px;
       }
+      &--ask {
+        @media screen and (max-width: 550px) {
+          display: none;
+        }
+      }
     }
     &__subtitle {
       font-family: $font-family-serif;
@@ -250,6 +255,9 @@
           padding-left: 1rem;
           margin-bottom: 1rem;
         }
+        @media screen and (max-width: 550px) {
+          margin: 0;
+        }
       }
     }
     &__steps {
@@ -258,6 +266,12 @@
         margin: 0;
         max-width: 300px;
         @include rem(18);
+        @media screen and (max-width: 767px) {
+          max-width: 370px;
+          display: block;
+          margin: $half-spacing-unit auto $base-spacing-unit auto;
+          text-align: center;
+        }
       }
       &-container {
         @include rem(50, "margin-bottom");

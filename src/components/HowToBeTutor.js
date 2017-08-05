@@ -58,16 +58,16 @@ class HowToBeTutor extends React.Component {
           <div className="container">
             <section className="section-tutor__steps-container">
               <div className="grid no-space push--bottom">
-                <div className="grid__item one-third">
-                  <img className="full-width" src={require('../assets/images/tutor-step1.png')} />
+                <div className="grid__item medium--one-third one-whole">
+                  <img className="full-width hero__tutor-image-step" src={require('../assets/images/tutor-step1.png')} />
                   <p className="section-tutor__steps-description">Crea una cuenta y envía tu aplicación, te estaremos enviando respuesta para iniciar tus horas de trabajo.</p>
                 </div>
-                <div className="grid__item one-third">
-                  <img className="full-width" src={require('../assets/images/tutor-step2.png')} />
+                <div className="grid__item medium--one-third one-whole">
+                  <img className="full-width hero__tutor-image-step" src={require('../assets/images/tutor-step2.png')} />
                   <p className="section-tutor__steps-description">Crea una cuenta y envía tu aplicación, te estaremos enviando respuesta para iniciar tus horas de trabajo.</p>
                 </div>
-                <div className="grid__item one-third">
-                  <img className="full-width" src={require('../assets/images/tutor-step3.png')} />
+                <div className="grid__item medium--one-third one-whole">
+                  <img className="full-width hero__tutor-image-step" src={require('../assets/images/tutor-step3.png')} />
                   <p className="section-tutor__steps-description">Crea una cuenta y envía tu aplicación, te estaremos enviando respuesta para iniciar tus horas de trabajo.</p>
                 </div>
               </div>
@@ -77,28 +77,28 @@ class HowToBeTutor extends React.Component {
                 <h2 className="section-tutor__banner-title">¿Por qué ser un Tutor?</h2>
               </div>
               <div className="grid no-space push--bottom grid--middle">
-                <div className="grid__item one-quarter">
+                <div className="grid__item medium--one-quarter one-whole push--bottom">
                   <img className="section-tutor__icon section-tutor__icon--medium" src={require('../assets/images/tutor-search-icon.png')} />
                   <div className="inline-block vertical-align--middle">
                     <p className="section-tutor__subtitle">Busca los estudiantes</p>
                     <p className="section-tutor__banner-description">Nuestra plataforma te ayudara a ver que estudiantes estan online buscando asesoria.</p>
                   </div>
                 </div>
-                <div className="grid__item one-quarter">
+                <div className="grid__item medium--one-quarter one-whole push--bottom">
                   <img className="section-tutor__icon section-tutor__icon--medium" src={require('../assets/images/tutor-time-icon.png')} />
                   <div className="inline-block vertical-align--middle">
                     <p className="section-tutor__subtitle">Horarios Flexibles</p>
                     <p className="section-tutor__banner-description">Nuestra plataforma te ayudara a ver que estudiantes estan online buscando asesoria.</p>
                   </div>
                 </div>
-                <div className="grid__item one-quarter">
+                <div className="grid__item medium--one-quarter one-whole push--bottom">
                   <img className="section-tutor__icon section-tutor__icon--medium" src={require('../assets/images/tutor-money-icon.png')} />
                   <div className="inline-block vertical-align--middle">
                     <p className="section-tutor__subtitle">Ingresos extras</p>
                     <p className="section-tutor__banner-description">Nuestra plataforma te ayudara a ver que estudiantes estan online buscando asesoria.</p>
                   </div>
                 </div>
-                <div className="grid__item one-quarter">
+                <div className="grid__item medium--one-quarter one-whole push--bottom">
                   <img className="section-tutor__icon section-tutor__icon--medium" src={require('../assets/images/tutor-ok-icon.png')} />
                   <div className="inline-block vertical-align--middle">
                     <p className="section-tutor__subtitle">Ayudar a otros</p>
@@ -109,7 +109,7 @@ class HowToBeTutor extends React.Component {
             </section>
             <section>
               <div>
-                <img className="section-tutor__icon section-tutor__icon--small push--left" src={require('../assets/images/question-icon.png')} />
+                <img className="section-tutor__icon section-tutor__icon--ask section-tutor__icon--small push--left" src={require('../assets/images/question-icon.png')} />
                 <h2 className="section-tutor__title section-tutor__title--medium">Preguntas Frecuentes:</h2>
                 <p className="section-tutor__questions-text section-tutor__questions-text--bold">-¿Que materias puedo ofrecer como tutor en BrainsTutor?</p>
                 <p className="section-tutor__questions-text section-tutor__questions-text--ans">En BrainsTutor puedes ofrecer materias de cualquier Ingeniería desde el ciclo básico hasta el ciclo profesional. Lo ideal sería que ofrecieras asignaturas en las cuales tengas un excelente dominio del tema y mucho experiencia.</p>
