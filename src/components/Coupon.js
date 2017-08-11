@@ -43,12 +43,12 @@ class Coupon extends React.Component {
                 <div className="coupon-card">
                   <div className="coupon-card__header">
                     <img className="coupon-card__icon" src={require('../assets/images/gift.png')} />
-                    <h2 className="coupon-card__header-title">Obten descuento en tus tutorías</h2>
+                    <h2 className="coupon-card__header-title">Obtén descuento en tus tutorías</h2>
                   </div>
                   <div className="coupon-card__body">
                     <p>Si has recibido un código promocional ingrésalo a continuación.</p>
                     <p>Agregaremos el código a tu cuenta para que puedas usarlo en tus próximas tutorías.</p>
-                    <p className="coupon-card__small-text">(Ten en cuenta la fecha de validación de tu código para poder usarlo. Este código no tiene ningún valor en dinero).</p>
+                    <p className="coupon-card__small-text">(Este código no tiene ningún valor en dinero. Ten en cuenta la fecha de validación de tu código para poder usarlo).</p>
                     <label htmlFor="coupon-code" className="coupon-card__label">Ingresa tu código</label>
                     <input
                       type="text"
