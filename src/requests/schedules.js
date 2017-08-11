@@ -1,6 +1,5 @@
 import { brains } from '../utils/requests';
 import Alert from 'react-s-alert';
-import { } from '../requests/users';
 
 const requestScheduleMeeting = (data) => {
   const { teacherId, studentId, startAt, modality, message, endAt, duration } = data;

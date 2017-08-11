@@ -1,0 +1,104 @@
+.coupon {
+	padding: $base-spacing-unit*2 0 $base-spacing-unit*5;
+	background-color: rgba($gray-bckgr, 0.4);
+	&-card {
+		border: 1px solid rgba($gray, 0.1);
+		-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		transition: 0.2s;
+		max-width: 540px;
+		display: block;
+		margin: auto;
+		&__icon {
+			width: 60px;
+			margin-right: $base-spacing-unit;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		&__header {
+			padding: $half-spacing-unit $base-spacing-unit;
+			border: 1px solid rgba($gray, 0.1);
+			background-color: $blue;
+			color: white;
+			&-title {
+				display: inline-block;
+		    vertical-align: middle;
+		    margin: 0;
+		    @include rem(24);
+		    position: relative;
+		    top: 8px;
+			}
+		}
+		&__body {
+			padding: $base-spacing-unit;
+			background-color: white;
+		}
+		&__small-text {
+			@include rem(12);
+			font-style: italic;
+		}
+		&__label {
+			display: block;
+			@include rem(22);
+			font-weight: 700;
+		}
+		&__input {
+			display: block;
+			width: 100%;
+			text-align: left;
+			border-radius: 4px;
+			height: 45px;
+			border: 1px solid rgba($gray, 0.1);
+			padding: 0 $half-spacing-unit;
+			outline: none;
+			margin-bottom: $base-spacing-unit;
+		}
+	}
+	&-list {
+		background-color: white;
+		max-width: 520px;
+		-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		padding: $half-spacing-unit 0;
+		max-height: 330px;
+		min-height: 95px;
+		position: relative;
+		display: block;
+		margin: auto;
+		&--scroll {
+			overflow: scroll;
+			overflow-x:hidden;
+		}
+		&__title {
+			font-weight: 700;
+			@include rem(34);
+		}
+		&__item {
+			position: relative;
+			padding: $half-spacing-unit $base-spacing-unit;
+			&-title {
+				margin: 0;
+				font-weight: 700;
+				color: $dark-green;
+			}
+			&-description {
+				margin: 0;
+			}
+			&-date {
+				@include rem(13);
+			}
+			&-bold {
+				font-weight: 700;
+			}
+		}
+		&__no-item {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			@include rem(17);
+		}
+	}
+}

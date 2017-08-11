@@ -47,20 +47,21 @@ class Header extends React.Component {
 		const imageClass = authInProcess ? 'header__logo--center' : '';
 		const headerClass = authInProcess ? 'header--center' : '';
 		const logOutFn = info => {
-			if (info.key === "3") onLogOut();
+			if (info.key === "4") onLogOut();
 		};
 		const studentMenu = (
 			<Menu className="dropdown-header__menu" onClick={logOutFn} >
 			<MenuItem key="1"><Link className="dropdown-header__link" to="/perfil-estudiante">Perfil</Link></MenuItem>
 			<MenuItem key="2">Facturas</MenuItem>
-			<MenuItem key="3">Salir</MenuItem>
+			<MenuItem key="3"><Link className="dropdown-header__link" to="/codigo-promocional">Código promo</Link></MenuItem>
+			<MenuItem key="4">Salir</MenuItem>
 			</Menu>
 			);
 		const teacherMenu = (
 			<Menu className="dropdown-header__menu" onClick={logOutFn} >
 			<MenuItem key="1"><Link className="dropdown-header__link" to="/tutores/perfil">Perfil</Link></MenuItem>
 			<MenuItem key="2"><Link className="dropdown-header__link" to="/tutores/informacion-bancaria">Cuenta Bancaria</Link></MenuItem>
-			<MenuItem key="3">Salir</MenuItem>
+			<MenuItem key="4">Salir</MenuItem>
 			</Menu>
 			);
 

@@ -3,6 +3,7 @@ import userInfo from './authentication';
 import teachers from './teachers';
 import dashboard from './dashboard';
 import chat from './chat';
+import coupons from './coupons';
 import scheduleTutor from './scheduleTutor';
 import header from './header';
 import openTokSession from './openTokSession';
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   scheduleTutor,
   openTokSession,
   chat,
+  coupons,
   header,
 });
 

@@ -17,6 +17,7 @@ import ScheduleListContainer from './containers/ScheduleList';
 import OpentokSessionContainer from './containers/OpentokSession';
 import MessageListContainer from './containers/MessageList';
 import ChatContainer from './containers/Chat';
+import CuponContainer from './containers/Coupon';
 import HomePage from './components/HomePage';
 import NotFoundPage from './components/NotFoundPage';
 import SignupIndex from './components/SignupIndex';
@@ -27,6 +28,7 @@ import Prices from './components/Prices';
 import UserDashboardContainer from './containers/UserDashboard';
 import { getUserInfo, setAuthInProcess } from './actions/authentication';
 import { gettingSchedule } from './actions/scheduleTutor';
+import { reqGetCoupons } from './actions/coupons';
 import { setSessionData } from './actions/openTokSession';
 import { reqGetChats, reqGetMessages } from './actions/chat';
 import moment from 'moment-timezone';
@@ -186,6 +188,16 @@ const onEnterIndex = store => {
     const { userInfo } = getState();
 
     verifyToken(userInfo, store, callback);
+  };
+};
+
+const onEnterPromoCode = store => {
+  return (nextState, replace, callback) => {
+    const { dispatch, getState } = store;
+    const { userInfo } = getState();
+
+    verifyToken(userInfo, store, callback);
+    dispatch(reqGetCoupons());
   };
 };
 
@@ -358,6 +370,11 @@ export default store => (
       path="/chat/:id"
       component={ChatContainer}
       onEnter={onEnterChat(store)}
+    />
+    <Route
+      path="/codigo-promocional"
+      component={CuponContainer}
+      onEnter={onEnterPromoCode(store)}
     />
     <Route path="*" component={NotFoundPage} />
   </Route>
