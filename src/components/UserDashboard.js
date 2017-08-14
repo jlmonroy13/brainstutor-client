@@ -16,6 +16,10 @@ class TutorsDashboard extends React.Component {
     this.onRenderDashboardMessages = this.onRenderDashboardMessages.bind(this);
   }
 
+  componentDidMount() {
+    this.props.onGetCoupons();
+  }
+
   onRenderDashboardClient(client) {
     const { role } = this.props;
     return (
@@ -118,6 +122,7 @@ class TutorsDashboard extends React.Component {
 TutorsDashboard.propTypes = {
   role: PropTypes.string.isRequired,
   dashboard: PropTypes.object.isRequired,
+  onGetCoupons: PropTypes.func,
 };
 
 export default TutorsDashboard;

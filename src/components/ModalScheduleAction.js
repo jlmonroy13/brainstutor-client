@@ -11,6 +11,7 @@ class ModalScheduleAction extends Component {
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.onConfirmAction = this.onConfirmAction.bind(this);
     this.onChangeMessage = this.onChangeMessage.bind(this);
+    this.onRenderCoupons = this.onRenderCoupons.bind(this);
   }
 
   handleCloseModal() {
@@ -59,8 +60,21 @@ class ModalScheduleAction extends Component {
     }
   }
 
+  onRenderCoupons(coupon, index) {
+    return (
+      <div className="coupon-list__item push--bottom" key={index}>
+        <p className="coupon-list__item-title">{coupon.code}</p>
+        <p className="coupon-list__item-description">{coupon.description}.</p>
+        <p className="coupon-list__item-date push-half--bottom"><span className="coupon-list__item-bold">Valido:</span> {coupon.valid_from} a {coupon.valid_until}.</p>
+        <button
+          className="button button--blue"
+        >Usar Promo</button>
+      </div>
+    );
+  }
+
   render() {
-    const { isOpen, action } = this.props;
+    const { isOpen, action, couponsList } = this.props;
 
     return (
       <ReactModal
@@ -73,13 +87,16 @@ class ModalScheduleAction extends Component {
           <div className="Modal__header">
             <h2 className="Modal__header-title">{action === 'confirmed' || action === 'accepted_awaiting_payment' ? 
               'Aceptar Tutoria'
-            : action === 'rejected' ? 'Rechazar Tutoria' : 'Enviar Mensaje'}
+            : action === 'rejected' ? 'Rechazar Tutoria' 
+            : action === 'promo' ? 'Elegir Código Promocional' : 'Enviar Mensaje'}
             </h2>
             <span className="Modal__btn-close" onClick={this.handleCloseModal}>&#120;</span>
           </div>
           <div className="Modal__body Modal__body--center">
             {action === 'confirmed' || action === 'accepted_awaiting_payment' ?
               <p>¿Estas seguro que quieres aceptar esta tutoria?</p>
+            : action === 'promo' ?
+              couponsList.map(this.onRenderCoupons)
             :
               <div className="push--bottom">
                 {action !== 'message' ? <p>Para poder rechazar esta tutoria debes escribirle un mensaje a tu estudiante.</p> : null}
@@ -90,16 +107,18 @@ class ModalScheduleAction extends Component {
                 />
               </div>
             }
-            <div>
-              <button
-                className="button button--blue push-half--right"
-                onClick={this.onConfirmAction}
-              >{action === 'message' ? 'Enviar' : 'Aceptar'}</button>
-              <button
-                className="button button--transparent-blue"
-                onClick={this.handleCloseModal}
-              >Salir</button>
-            </div>
+            { action !== 'promo' ?
+              <div>
+                <button
+                  className="button button--blue push-half--right"
+                  onClick={this.onConfirmAction}
+                >{action === 'message' ? 'Enviar' : 'Aceptar'}</button>
+                <button
+                  className="button button--transparent-blue"
+                  onClick={this.handleCloseModal}
+                >Salir</button>
+              </div>
+            : null}
           </div>
         </div>
       </ReactModal>
@@ -124,6 +143,7 @@ ModalScheduleAction.propTypes = {
   onUpdatingScheduleStatus: PropTypes.func,
   status: PropTypes.string,
   selectedPage: PropTypes.number,
+  couponsList: PropTypes.array,
 };
 
 export default ModalScheduleAction;

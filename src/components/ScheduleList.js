@@ -26,6 +26,10 @@ class ScheduleList extends Component {
     onFetchScheduleList(userInfo.role, '', 1);
   }
 
+  componentDidMount() {
+    this.props.onGetCoupons();
+  }
+
   onRenderSchedules(schedule) {
     const { userInfo: { role } } = this.props;
     return (
@@ -150,6 +154,7 @@ class ScheduleList extends Component {
 
 ScheduleList.propTypes = {
   onFetchScheduleList: PropTypes.func,
+  onGetCoupons: PropTypes.func,
   userInfo: PropTypes.object,
   scheduleList: PropTypes.array,
   scheduleAction: PropTypes.object,

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import ScheduleList from '../components/ScheduleList';
 import { fetchingScheduleList } from '../actions/scheduleTutor';
+import { reqGetCoupons } from '../actions/coupons';
 
 const mapStateToProps = (state) => {
 	const {
@@ -25,6 +26,9 @@ const mapDispatchToProps = dispatch => ({
 	onFetchScheduleList: (type, status, page) => {
 		dispatch(fetchingScheduleList(type, status, page));
 	},
+  onGetCoupons: () => {
+    dispatch(reqGetCoupons());
+  },
 });
 
 export default connect(

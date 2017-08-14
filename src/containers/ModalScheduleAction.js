@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
   const {
     userInfo: { role },
     scheduleTutor: { scheduleAction: { action, scheduleId, receiverId } },
+    coupons: { couponsList },
   } = state;
   const isOpen = action !== '' && action !== 'awaiting_tutor';
   return {
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => {
     receiverId,
     action,
     role,
+    couponsList,
   };
 };
 

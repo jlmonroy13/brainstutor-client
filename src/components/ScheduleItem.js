@@ -10,6 +10,7 @@ class ScheduleItem extends Component {
     this.onClickAcceptAction = this.onClickAcceptAction.bind(this);
     this.onClickRejectAction = this.onClickRejectAction.bind(this);
     this.onClickSendMessageAction = this.onClickSendMessageAction.bind(this);
+    this.onClickUsePromo = this.onClickUsePromo.bind(this);
     this.onClickRescheduleAction = this.onClickRescheduleAction.bind(this);
     this.onEnterRoom = this.onEnterRoom.bind(this);
   }
@@ -32,6 +33,12 @@ class ScheduleItem extends Component {
     onSetScheduleAction({ action: 'message', scheduleId: schedule.id, receiverId});
   }
 
+  onClickUsePromo() {
+    const { schedule, onSetScheduleAction, userInfo } = this.props;
+    const receiverId = userInfo === schedule.student_id ? schedule.teacher_id : schedule.student_id;
+    onSetScheduleAction({ action: 'promo', scheduleId: schedule.id, receiverId});
+  }
+
   onClickRescheduleAction() {
     const { schedule, onSetAppointmenteType } = this.props;
     onSetAppointmenteType(schedule.modality);
@@ -44,7 +51,7 @@ class ScheduleItem extends Component {
   }
 
   render() {
-    const { role, schedule, pathname } = this.props;
+    const { role, schedule, pathname, couponsList } = this.props;
     const columnTableClass = pathname === '/tutores/tutorias-agendadas' ? 'schedule-list__row--teacher--large' : '';
 
     return (
@@ -85,7 +92,12 @@ class ScheduleItem extends Component {
         { role === 'student' ?
           <td className={`schedule-list__row ${role === 'student' ? '' : 'schedule-list__row--teacher' }`}>
             {schedule.status === 'accepted_awaiting_payment' ?
-              <a className="button button--light-green" target="_blank" href={`https://brainsapi.herokuapp.com/order/${schedule.order&&schedule.order.number}`}>Pagar Tutoria</a>
+              <span>
+                <a className="button button--light-green push-half--right" target="_blank" href={`https://brainsapi.herokuapp.com/order/${schedule.order&&schedule.order.number}`}>Pagar Tutoria</a>
+                {couponsList.length > 0 ?
+                  <a className="button button--transparent-blue" onClick={this.onClickUsePromo}>Usar Promo</a>
+                : null}
+              </span>  
               :  schedule.status !== 'confirmed' ?
                 <button className="button button--blue" onClick={this.onClickRescheduleAction} >Volver a Agendar</button>
                 :
@@ -138,6 +150,7 @@ ScheduleItem.propTypes = {
   onSetScheduleAction: PropTypes.func,
   onSetAppointmenteType: PropTypes.func,
   onGetSessionStatus: PropTypes.func,
+  couponsList: PropTypes.array,
 };
 
 export default ScheduleItem;
