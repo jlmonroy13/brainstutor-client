@@ -27,7 +27,8 @@ class ScheduleList extends Component {
   }
 
   componentDidMount() {
-    this.props.onGetCoupons();
+    const { onGetCoupons, userInfo } = this.props;
+    if(userInfo.role === 'student') onGetCoupons();
   }
 
   onRenderSchedules(schedule) {
