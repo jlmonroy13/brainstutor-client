@@ -1,4 +1,5 @@
-import { applyPromoCodeRequest, getPromoCodesRequest } from '../requests/coupons';
+import { applyPromoCodeRequest, getPromoCodesRequest, applyPromoCodeToScheduleRequest } from '../requests/coupons';
+import { setScheduleAction } from './scheduleTutor';
 import { pendingTask, begin, end } from 'react-redux-spinner';
 import Alert from 'react-s-alert';
 
@@ -40,6 +41,23 @@ const reqApplyCode = (code) => {
 	};
 };
 
+const reqApplyCodeToSchedule = (scheduleId, couponId) => {
+	return (dispatch) => {
+		dispatch(setStatusRequestTrue());
+		applyPromoCodeToScheduleRequest(scheduleId, couponId)
+			.then(successReqApplyCodeToSchedule);
+
+		function successReqApplyCodeToSchedule(response) {
+			const msg = response && response.data && response.data.coupons;
+			if (msg) Alert.success(msg);
+			dispatch(setStatusRequestFalse());
+			if (msg) dispatch(setScheduleAction({ action: '', scheduleId: '' }));
+			dispatch(reqGetCoupons());
+		}
+	};
+};
+
+
 const reqGetCoupons = () => {
 	return (dispatch) => {
 		dispatch(setStatusRequestTrue());
@@ -57,4 +75,5 @@ export {
 	reqApplyCode,
 	reqGetCoupons,
 	setCoupon,
+	reqApplyCodeToSchedule,
 };

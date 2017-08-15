@@ -59,7 +59,7 @@ class ScheduleItem extends Component {
         <td className={`schedule-list__row ${role === 'student' ? '' : 'schedule-list__row--teacher' }`}>
           <Gravatar className="schedule-list__photo" email={role === 'student' ? schedule.teacher_email||schedule.email : schedule.student_email||schedule.email} size={50} />
           <div className="schedule-list__description">
-            <p className="schedule-list__description-txt">{schedule.start_at}</p>
+            <p className="schedule-list__description-txt">{schedule.start_at} <span className="schedule-list__duration">{`(${schedule.duration} min)`}</span></p>
             <p className="schedule-list__description-txt"><Link className="schedule-list__link">{role === 'student' ? schedule.teacher_name||`${schedule.first_name} ${schedule.last_name}` : schedule.student_name||`${schedule.first_name} ${schedule.last_name}`}</Link></p>
           </div>
         </td>
@@ -94,7 +94,7 @@ class ScheduleItem extends Component {
             {schedule.status === 'accepted_awaiting_payment' ?
               <span>
                 <a className="button button--light-green push-half--right" target="_blank" href={`https://brainsapi.herokuapp.com/order/${schedule.order&&schedule.order.number}`}>Pagar Tutoria</a>
-                {couponsList.length > 0 ?
+                {couponsList && couponsList.length > 0 ?
                   <a className="button button--transparent-blue" onClick={this.onClickUsePromo}>Usar Promo</a>
                 : null}
               </span>  

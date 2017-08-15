@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import ModalScheduleAction from '../components/ModalScheduleAction';
 import { setScheduleAction, updatingScheduleStatus } from '../actions/scheduleTutor';
 import { reqCreateMessage } from '../actions/chat';
+import { reqApplyCodeToSchedule } from '../actions/coupons';
 
 const mapStateToProps = (state) => {
   const {
@@ -29,6 +30,9 @@ const mapDispatchToProps = dispatch => ({
   },
   onSendMessage: (idReceiver, message) => {
     dispatch(reqCreateMessage(idReceiver, message));
+  },
+  onApplyCodeToSchedule: (scheduleId, couponId) => {
+    dispatch(reqApplyCodeToSchedule(scheduleId, couponId));
   }
 });
 

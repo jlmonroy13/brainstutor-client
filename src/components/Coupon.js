@@ -67,8 +67,8 @@ class Coupon extends React.Component {
               </div>
               <div className="grid__item one-whole large--one-half">
                 <h2 className="coupon-list__title">Tus códigos activos</h2>
-                <div className={couponsList.length < 4 ? 'coupon-list' : 'coupon-list coupon-list--scroll'}>
-                  { couponsList.length === 0 ? 
+                <div className={!couponsList||(couponsList && couponsList.length < 4) ? 'coupon-list' : 'coupon-list coupon-list--scroll'}>
+                  { !couponsList ? 
                     <p className="coupon-list__no-item">Aún no tienes códigos registrados</p>
                   : couponsList.map(this.onRenderCoupons)
                   }

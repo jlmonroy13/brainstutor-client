@@ -12,6 +12,7 @@ class ModalScheduleAction extends Component {
     this.onConfirmAction = this.onConfirmAction.bind(this);
     this.onChangeMessage = this.onChangeMessage.bind(this);
     this.onRenderCoupons = this.onRenderCoupons.bind(this);
+    this.onApplyCoupon = this.onApplyCoupon.bind(this);
   }
 
   handleCloseModal() {
@@ -60,6 +61,11 @@ class ModalScheduleAction extends Component {
     }
   }
 
+  onApplyCoupon(coupon) {
+    const { scheduleId, onApplyCodeToSchedule } = this.props;
+    onApplyCodeToSchedule(scheduleId, coupon.id);
+  }
+
   onRenderCoupons(coupon, index) {
     return (
       <div className="coupon-list__item push--bottom" key={index}>
@@ -68,6 +74,7 @@ class ModalScheduleAction extends Component {
         <p className="coupon-list__item-date push-half--bottom"><span className="coupon-list__item-bold">Valido:</span> {coupon.valid_from} a {coupon.valid_until}.</p>
         <button
           className="button button--blue"
+          onClick={this.onApplyCoupon.bind(this, coupon)}
         >Usar Promo</button>
       </div>
     );
@@ -96,7 +103,7 @@ class ModalScheduleAction extends Component {
             {action === 'confirmed' || action === 'accepted_awaiting_payment' ?
               <p>¿Estas seguro que quieres aceptar esta tutoria?</p>
             : action === 'promo' ?
-              couponsList.map(this.onRenderCoupons)
+              couponsList && couponsList.map(this.onRenderCoupons)
             :
               <div className="push--bottom">
                 {action !== 'message' ? <p>Para poder rechazar esta tutoria debes escribirle un mensaje a tu estudiante.</p> : null}
@@ -139,6 +146,7 @@ ModalScheduleAction.propTypes = {
   role: PropTypes.string,
   action: PropTypes.string,
   onSetScheduleAction: PropTypes.func,
+  onApplyCodeToSchedule: PropTypes.func,
   onSendMessage: PropTypes.func,
   onUpdatingScheduleStatus: PropTypes.func,
   status: PropTypes.string,

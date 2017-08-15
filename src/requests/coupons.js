@@ -7,6 +7,12 @@ const applyPromoCodeRequest= (code) => {
     .catch(catchRequestErrorApplyCode);
 };
 
+const applyPromoCodeToScheduleRequest= (scheduleId, codeId) => {
+  return brains
+    .post(`students/schedules/${scheduleId}/apply_promo?coupon_id=${codeId}`)
+    .catch(catchRequestErrorApplyCodeToSchedule);
+};
+
 const getPromoCodesRequest = () => {
   return brains
     .get(`/students/coupons`)
@@ -24,7 +30,13 @@ function catchRequestErrorApplyCode({ response }) {
   Alert.error(errorMsg);
 }
 
+function catchRequestErrorApplyCodeToSchedule({ response }) {
+  const errorMsg = response.data.errors && response.data.errors[0].title;
+  Alert.error(errorMsg);
+}
+
 export {
   applyPromoCodeRequest,
   getPromoCodesRequest,
+  applyPromoCodeToScheduleRequest,
 };

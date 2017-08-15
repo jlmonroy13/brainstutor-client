@@ -4,6 +4,10 @@
 		background-color: #fff;
 		margin: $base-spacing-unit 0 $base-spacing-unit*2;
 	}
+	&__duration {
+		@include rem(12);
+		font-weight: 700;
+	}
 	&__menu {
 		&-btn {
 			width: 50%;

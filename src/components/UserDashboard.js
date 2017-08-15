@@ -17,7 +17,8 @@ class TutorsDashboard extends React.Component {
   }
 
   componentDidMount() {
-    this.props.onGetCoupons();
+    const { role } = this.props;
+    if(role === 'student') this.props.onGetCoupons();
   }
 
   onRenderDashboardClient(client) {
