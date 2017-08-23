@@ -74,6 +74,24 @@ const updatingScheduleStatus = (type, data, status, page) => {
 	};
 };
 
+const finishMeeting = (type, data) => {
+	return (dispatch) => {
+		dispatch(setStatusRequestTrue());
+		updateScheduleStatus(type, data)
+			.then(successFinishMeeting);
+
+		function successFinishMeeting() {
+			dispatch(setStatusRequestFalse());
+			Alert.success("Gracias por estudiar en BrainsTutor");
+			if(type === 'student') {
+				browserHistory.push('/estudiantes/tutorias-agendadas');
+			} else {
+				browserHistory.push('/tutores/tutorias-agendadas');
+			}
+		}
+	};
+};
+
 const scheduleMeeting = (data) => {
 	return (dispatch) => {
 		dispatch(setStatusRequestTrue());
@@ -139,4 +157,5 @@ export {
 	updatingScheduleMeeting,
 	gettingSchedule,
 	setScheduleCreated,
+	finishMeeting,
 };

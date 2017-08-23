@@ -3,6 +3,7 @@ import Spinner from 'react-spinner';
 import classNames from 'classnames';
 import Alert from 'react-s-alert';
 import otCore from 'opentok-accelerator-core';
+import ReactCountdownClock from 'react-countdown-clock';
 
 /**
  * Build classes for container elements based on state
@@ -105,6 +106,7 @@ class OpentokSession extends React.Component {
 
   render() {
     const { connected, active } = this.state;
+    const { startAt, duration } = this.props;
     const {
       localAudioClass,
       localVideoClass,
@@ -116,9 +118,39 @@ class OpentokSession extends React.Component {
       screenSubscriberClass,
     } = containerClasses(this.state);
 
+    const onFinishCountDownFn = function() {
+      const { onFinishMeeting, role, meetingId } = this.props;
+      const context = this;
+      Alert.error('Tu tutoría esta apunto de terminar.');
+      if (role === 'student') {
+        window.setTimeout(() => {
+          onFinishMeeting(role, { id: meetingId, status: 'completed', message: '' });
+          context.endCall();
+        }, 60000);
+      }
+    };
+
+    let leftTime = Math.abs(new Date() - new Date(startAt));
+    if(leftTime > 0) {
+      leftTime = duration - (leftTime/1000) + 300;
+    } else {
+      leftTime = duration;
+    }
+
     return (
       <div>
         <div className="App">
+        {this.state.active ? 
+          <ReactCountdownClock
+            seconds={leftTime}
+            color="#1EA29B"
+            alpha={0.9}
+            timeFormat="hms"
+            size={130}
+            weight={20}
+            onComplete={onFinishCountDownFn}
+          />
+          : null}
           <div className="App-main">
             <div className="App-video-container">
               { !connected && connectingMask() }
@@ -144,6 +176,11 @@ class OpentokSession extends React.Component {
 OpentokSession.propTypes = {
   opentokSettings: PropTypes.object,
   onSetSessionModalState: PropTypes.func,
+  duration: PropTypes.number,
+  meetingId: PropTypes.number,
+  startAt: PropTypes.string,
+  role: PropTypes.string,
+  onFinishMeeting: PropTypes.func,
 };
 
 export default OpentokSession;
